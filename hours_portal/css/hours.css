@@ -1,0 +1,302 @@
+/*** FOR DEALING WITH DEFAULT CLF ***/
+
+
+#UbcContent h2      { margin-bottom:0 !important; }
+
+#UbcContent dl,
+#UbcContent dl dt,
+#UbcContent dd      { margin:0 !important; }
+
+
+/*** HEADER ***/
+
+
+#hours-header       { background:url('../img/hours-locations-header.gif') -8px 0 no-repeat; margin-bottom:20px; }
+
+#hours-header a     { float:left; display:block; width:400px; height:70px; }
+
+
+/*** OVERALL LOCATIONS TABLE STYLES (LEFT SIDE) ***/
+
+
+#locations-table               { position:relative; width:100%; z-index:100;  -webkit-box-shadow:1px 1px 3px 0px #aaa;
+                                                                              -moz-box-shadow:1px 1px 3px 0px #aaa;
+                                                                              box-shadow:1px 1px 3px 0px #aaa;
+                                                                              -webkit-border-radius:5px 5px 0px 0px;
+                                                                              border-radius:5px 5px 0px 0px;
+                                                                              -moz-border-radius-topleft:5px;
+                                                                              -moz-border-radius-topright:5px;
+                                                                              border-radius:5px 5px 0px 0px; }
+
+#locations-table .slide-out    { display:block; height:45px; border:1px solid #ccc; border-top:none; cursor:pointer; }
+
+#locations-table dt            { float:left; width:75%; font-size:12px; font-weight:bold; color:black; border-right:1px solid #ccc; }
+
+#locations-table .slide-out dt { padding:15px 0 15px 12px; }
+
+#locations-table dd            { padding-top:5px; color:black; font-size:11px; text-align:center; }
+
+/* headers class for Location and "at <time>" */
+#locations-table .headers dt, 
+#locations-table .headers dd   { font-size:11px; font-weight:normal; color:#fff; text-transform: uppercase; background-color:#666; padding:7px 0 7px 12px; }
+
+#locations-table .headers dt   { letter-spacing:.5px; -moz-border-radius-topleft:5px;
+                                                      -moz-border-radius-topright:0px;
+                                                      -moz-border-radius-bottomright:0px;
+                                                      -moz-border-radius-bottomleft:0px;
+                                                      -webkit-border-radius:5px 0px 0px 0px;
+                                                      border-radius:5px 0px 0px 0px; }
+
+#locations-table .headers dd   { -moz-border-radius-topleft:5px;
+                                 -moz-border-radius-topright:5px;
+                                 -moz-border-radius-bottomright:0px;
+                                 -moz-border-radius-bottomleft:0px;
+                                 -webkit-border-radius:5px 5px 0px 0px;
+                                 border-radius:5px 5px 0px 0px; }
+
+#locations-table a:visited,
+#locations-table a:hover       { text-decoration:none; color:black; }
+#locations-table a             { color:#333; }
+
+.ie7 #locations-table .headers      { display: block; }
+.ie7 #locations-table .headers dt,
+.ie7 #locations-table .headers dd   { padding: 0; }
+.ie7 #locations-table .headers dt   { padding-left: 11px; }
+
+
+/*** LOCATIONS TABLE EXTRA CLASS STYLES (LEFT SIDE) ***/
+
+
+#locations-table .alt               { background-color:#eee; }
+
+#locations-table .sublevel dt       { font-weight:normal; }
+
+#locations-table .slide-out:hover, 
+#locations-table .selected, 
+#locations-table .hover             { background:#ddddff; border-right-color:#ddddff; }
+
+#locations-table .slide-out:hover dt,
+#locations-table .selected dt,
+#locations-table .hover dt          { border-right-color:#ddddff; }
+
+#locations-table .slide-out img     { position:absolute; margin-top:-14px; left:380px; z-index:100; display:none; }
+
+#locations-table .slide-out:hover img,
+#locations-table .selected img,
+#locations-table .hover img         { display:block; }
+
+#locations-table .open,
+#locations-table .closed            { display:block; color:#006600; font-size:18px; text-align:center; }
+
+#locations-table .closed            { color:#990000; padding:7px 0 4px 0; }
+
+
+/*** PANEL CONTENT (RIGHT SIDE) ***/
+
+
+/* CHANGE HEIGHT HERE TO ADD/DELETE LOCATION */
+#map                              { position:relative; top:27px; width:560px; height:828px;/*this*/ margin-left:0; padding-right:20px; }
+#map #api                         { height:100%; }
+
+#slide-content                    { position:absolute; height:99.5%; width:508px; top:0; left:0;/*default for no javascript*/ overflow:auto;/*default for no javascript*/ font-size:75%; padding:20px 20px 10px 30px; background-color:#fff; border:1px solid #ccc; border-left:none; -webkit-border-radius:0 5px 5px 0; -moz-border-radius:0 5px 5px 0; border-radius:0 5px 5px 0; -webkit-box-shadow:2px 1px 4px 0px rgba(0,0,0,0.2); -moz-box-shadow:2px 1px 4px 0px rgba(0,0,0,0.2); box-shadow:2px 1px 4px 0px rgba(0,0,0,0.2); z-index:50; }
+
+.open-content                     { left:0 !important; }
+
+#slide-content .branch				    { float:left; width:100%; }
+
+#slide-content .close-box         { display:none; /*default for no javascript*/ position:absolute; right:25px; top:10px; width:29px; height:29px; margin-right:-12px; cursor:pointer; text-indent:-999px; background:url('../img/close-icon.png') no-repeat right top; }
+#slide-content .close-box:hover   { background-position:0 -29px; }
+
+.ie7 #xwi7xwa h1,
+.xwi7xwa dt,
+#xwi7xwa p.quiet              { font-family:'Arial Unicode MS' !important; /* fix display of unicode character in Xwi7xwa name*/ }
+
+#slide-content h4             { font-style:italic; font-size:14px !important; margin-top:3px; }
+
+#slide-content h5             { margin-bottom: 8px !important; }
+
+#slide-content .bio           { float:left; width:100%; }
+
+#slide-content .bio header    { font-family:Georgia, "Times New Roman", Times, serif; }
+
+#slide-content .bio h1        { margin-bottom:5px; width: 80%; line-height: 100%; }
+
+#slide-content .bio h3        { font-style:italic; text-indent:15px; }
+
+#slide-content .bio p,
+#slide-content .contact p,
+#slide-content .bio div.quiet { margin:8px 0; line-height:1.5em; }
+
+#slide-content .bio .empty    { color:#fff; height:1px; padding:0; margin:0; }
+
+#slide-content .bio dl dt     { margin:5px 0; }
+#slide-content .bio dl dd     { padding-bottom: 5px; }
+
+#slide-content .contact .button               { margin-top: 14px; }
+
+#slide-content .calendar_wrapper              { clear:left; }
+
+#slide-content .calendar_wrapper p.hours-note { margin-bottom:0; }
+
+#slide-content .calendar p                    { margin:12px 0 8px 0;}
+
+#slide-content .hours                         { background:url('../img/bg.gif'); width:99%; float:left; clear:both; border:1px solid #ccc; margin-top:5px; margin-bottom:15px; zoom:1; }
+
+#slide-content .hours button                  { background:#000; color:#fff; text-align:center; font-size:12px; margin:0; display:block; border:0; cursor:pointer; padding:0 7px; width:66px; height:25px; }
+#slide-content .hours button:hover            { background:#555; color:#fff; text-decoration:none; }
+
+#slide-content button.prev-month              { float:left; border-right:1px solid #fff; }
+#slide-content button.next-month              { float:right; border-left:1px solid #fff; }
+
+#slide-content .hours .monthheading           { background:#555; color:white; font-size:13px; line-height:25px; display:block; text-align:center;  }
+
+#slide-content .hours-table                   { float:left; width:225px; margin:15px; }
+
+#slide-content .hours-table h6                { font-size:11px; text-transform:uppercase; line-height:18px; font-weight:normal; clear:both; }
+
+#slide-content .hours-table .hours-category   { display:block; border:1px solid #ccc; width:20px; height:16px; background-color:#fff; float:left; margin-right:5px; }
+
+#slide-content .hours-table dl         { padding:5px 0 5px 27px; margin-bottom:10px !important; }
+
+#slide-content .hours-table dt         { font-weight:normal; float:left; width:100px; clear:both; line-height:18px; }
+
+#slide-content .hours-table dd         { line-height:18px; }
+
+/* CHANGE HEIGHT HERE TO ADD/DELETE LOCATION */
+.ie7 #map 										         { top:14px; height:825px;/*this*/ }
+.ie7 #slide-content .hours button      { line-height:23px; padding:0 5px; margin-top:-1px; }
+.ie7 #slide-content button.prev-month  { margin-left:-1px; }
+.ie7 #slide-content button.next-month  { margin-right:-1px; }
+.ie7 #slide-content small              { display: inline-block; margin-bottom:5px; }
+
+
+/*** PANEL CALENDAR DISPLAY (RIGHT SIDE) ***/
+
+
+/************
+Color Palette
+#ffffff (White)
+#eeeeee (Light Grey)
+#e6e6ff (Light Blue)
+#ffe6e6 (Light Red)
+#e6ffe6 (Light Green)
+#f0ddff (Light Purple)
+************/
+
+#slide-content .month td.exam,
+#slide-content .hours-table .hours-category.exam             { background-color:#ffe6e6; color:#000; }
+
+#slide-content .month td.exception,
+#slide-content .hours-table .hours-category.exception        { background-color:#dddddd; color:#000; }
+
+#slide-content .month td.holiday,
+#slide-content .hours-table .hours-category.holiday          { background-color:#e6e6ff; color:#000; }
+
+#slide-content .month td.intersession,
+#slide-content .hours-table .hours-category.intersession     { background-color:#e6d3ff; color:#000; }
+
+#slide-content .month td.summer,
+#slide-content .hours-table .hours-category.summer           { background-color:#e6ffe6; color:#000; }
+
+#slide-content .month td.summer-alternate,
+#slide-content .hours-table .hours-category.summer-alternate { background-color:#ffffe6; color:#000; }
+								
+#slide-content .calendar                                     { float:right; margin:15px 15px 15px 0; }
+
+#slide-content .calendar .hours-category                     { margin-left:2px; }
+
+#slide-content .month           { border:1px solid #CCC; border-bottom:none; text-align:center; background-color:#fff; margin-bottom:15px; border-collapse:separate; }
+
+#slide-content .month th,
+#slide-content .month td        { font-weight:normal; border-left:1px solid #CCC; border-bottom:1px solid #CCC; background:#fff; color:#333; padding:3px 6px; font-size:1.2em; }
+
+#slide-content .month td        { cursor:pointer; }
+
+#slide-content .hours-category.today,
+#slide-content .month td.today  { font-weight:bold; outline:2px solid #999; border:none; }
+
+#slide-content .month th        { border-left:none; }
+
+#slide-content .month td:first-child       { border-left:none; }
+
+#slide-content small .hours-category.today { display:inline-block; outline:2px solid #999; border:none; width:20px; height:16px;margin-right:5px; vertical-align:middle; }
+
+#slide-content .hours .note   { clear:both; margin:0 15px 15px; } /* for BMB only */
+
+#slide-content .contact       { float:left; width:100%; }
+
+#slide-content .map-wrapper   { display:block; float:left; margin-right:15px; position:relative; }
+
+#slide-content .map-img       { display:block; border:1px solid #fff; }
+#slide-content .map-img:hover { border:1px solid #999; text-decoration:none; }
+
+#slide-content  .library-img  { float:left; margin:5px 10px 10px 0; width:300px; height:240px; display:block; border:1px solid #eee; 																 background-color:#f6f6f6; padding:8px; -webkit-box-shadow:0px 1px 3px #ccc;
+                                                                        -moz-box-shadow:0px 1px 3px #ccc;
+                                                                        box-shadow:0px 1px 3px #ccc; }
+
+/* ADD/DELETE LINE HERE TO ADD/DELETE LOCATION */                              
+#slide-content #asian .library-img      { background:url('../img/asian-library.jpg') no-repeat 8px 8px; }
+#slide-content #biomedical .library-img { background:url('../img/biomedical-library.jpg') no-repeat 8px 8px; }
+#slide-content #davidlam .library-img   { background:url('../img/david-library.jpg') no-repeat 8px 8px; }
+#slide-content #education .library-img  { background:url('../img/education-library.jpg') no-repeat 8px 8px; }
+#slide-content #hamber .library-img     { background:url('../img/hamber-library.jpg') no-repeat 8px 8px; }
+#slide-content #ikblc .library-img,
+#slide-content #library .library-img,
+#slide-content #chapman .library-img,
+#slide-content #rbsc .library-img,
+#slide-content #archives .library-img   { background:url('../img/irving-library.jpg') no-repeat 8px 8px; }
+#slide-content #koerner .library-img    { background:url('../img/koerner-library.jpg') no-repeat 8px 8px; }
+#slide-content #law .library-img        { background:url('../img/law-library.jpg') no-repeat 8px 8px; }
+#slide-content #music .library-img      { background:url('../img/music-library.jpg') no-repeat 8px 8px; }
+#slide-content #okanagan .library-img   { background:url('../img/okanagan-library.jpg') no-repeat 8px 8px; }
+#slide-content #robson .library-img     { background:url('../img/robson-library.jpg') no-repeat 8px 8px; }
+#slide-content #stpauls .library-img    { background:url('../img/st-library.jpg') no-repeat 8px 8px; }
+#slide-content #woodward .library-img   { background:url('../img/woodward-library.jpg') no-repeat 8px 8px; }
+#slide-content #xwi7xwa .library-img    { background:url('../img/xwi7xwa-library.jpg') no-repeat 8px 8px; }
+
+#slide-content address                  { font-style:normal !important; font-size:13px; margin-bottom:10px !important; }
+
+#slide-content .disability              { vertical-align: middle; margin: 0 0 5px 0; }
+
+.ie7 #slide-content .month          { border-collapse: collapse; }
+.ie7 #slide-content .hours-category.today,
+.ie7 #slide-content .month td.today { border:2px solid #999; }
+
+
+/*** FOOTER ***/
+
+
+.admin                          { text-align:right; font-size:11px; padding:10px 0; }
+
+
+/*** jScrollPane -- http://jscrollpane.kelvinluck.com/ ***/
+
+
+.jspContainer                   { overflow:hidden; position:relative; }
+.jspPane                        { position:absolute; }
+.jspVerticalBar                 { position:absolute; top:0; right:1px; width:10px; height:100%; display:none; }
+.jspHorizontalBar               { position:absolute; bottom:0; left:0; width:100%; height:16px; }
+
+.jspVerticalBar *,
+.jspHorizontalBar *             { margin:0; padding:0; }
+
+.jspCap                         { display:none; }
+.jspHorizontalBar .jspCap       { float:left; }
+.jspTrack                       {	position:relative; }
+.jspDrag                        {	background:#ccc; position:relative; top:0; left:0; cursor:pointer; -webkit-border-radius:5px;
+                                                                                                     -moz-border-radius:5px;
+                                                                                                     border-radius:5px; }
+.jspDrag:hover		  						{ background:#999; }
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag      {	float:left; height:100%; }
+
+.jspArrow                       {	background:#50506d; text-indent:-20000px; display:block; cursor:pointer; }
+.jspArrow.jspDisabled           {	cursor:default; background:#80808d; }
+.jspVerticalBar .jspArrow       { height:16px; }
+.jspHorizontalBar .jspArrow     { width:16px; float:left; height:100%; }
+.jspVerticalBar .jspArrow:focus {	outline:none; }
+.jspCorner                      {	background:#eeeef4; float:left; height:100%; }
+
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+.ie6 .jspCorner          { margin:0 -3px 0 0; }
