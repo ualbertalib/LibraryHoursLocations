@@ -1,0 +1,632 @@
+/**
+ *
+ * Generic CSS for CakePHP
+ *
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
+ * @package       cake
+ * @subpackage    cake.app.webroot.css
+ * @since         CakePHP(tm)
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ */
+
+* {
+	margin:0;
+	padding:0;
+}
+
+/** General Style Info **/
+body {
+	background: #fff;
+	color: #333;
+	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
+	font-size:90%;
+	margin: 0;
+}
+
+a {
+	color: #002859;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #367889;
+	text-decoration:underline;
+}
+a img {
+	border:none;
+}
+
+h1, h2, h3, h4 {
+	font-weight: normal;
+	margin-bottom:0.5em;
+}
+h1 {
+	background:#fff;
+	color: #333;
+	font-size: 100%;
+}
+
+h2 {
+	background:#fff;
+	color: #333;
+	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+	font-size: 190%;
+}
+h3, #UbcContent h3 {
+	color: #333;
+	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+	font-size: 165%;
+}
+h4 {
+	color: #333;
+	font-weight: normal;
+}
+#UbcContent ul, #UbcContent li {
+	margin: 0 12px;
+}
+
+#UbcMainNav li a {
+        font-size:100%;
+}
+
+/** Layout **/
+#container {
+	text-align: left;
+}
+
+#UbcContent ul, ol {
+    margin: 0 0 0 0;
+}
+
+#content{
+	background: #fff;
+	clear: both;
+	color: #333;
+	
+}
+#footer {
+	clear: both;
+	padding: 6px 10px;
+	text-align: right;
+}
+
+
+/** Tables **/
+table {
+	background: #fff;
+	border-right:0;
+	clear: both;
+	color: #333;
+	margin-bottom: 10px;
+	width: 100%;
+}
+th {
+	border:0;
+	border-bottom:2px solid #555;
+	text-align: left;
+        vertical-align: top;
+	padding:4px;
+}
+th a {
+	display: block;
+	padding: 2px 4px;
+	text-decoration: none;
+}
+th a.asc:after {
+	content: ' ⇣';
+}
+th a.desc:after {
+	content: ' ⇡';
+}
+table tr td, #UbcContent td {
+	background: #fff;
+	text-align: left;
+	vertical-align: top;
+	border-bottom:1px solid #ddd;
+}
+
+table tr td a, #UbcContent td a {
+	display:block;
+	padding: 6px;
+}
+
+table tr td a:hover, #UbcContent td a:hover {
+	text-decoration:none;
+	color:#002859;
+}
+
+table tr:nth-child(2n) td {
+	background: #f5f5f5;
+}
+table tr.altrow td {
+	background: #f5f5f5;
+}
+td.actions {
+	text-align: center;
+	white-space: nowrap;
+}
+table td.actions a {
+	margin: 0px 2px;
+	padding:2px 5px;
+}
+div.searchform {
+	margin-bottom:10px;
+}
+.cake-sql-log table {
+	background: #f4f4f4;
+}
+.cake-sql-log td {
+	padding: 4px 8px;
+	text-align: left;
+	font-family: Monaco, Consolas, "Courier New", monospaced;
+}
+.cake-sql-log caption {
+	color:#fff;
+}
+
+/** Paging **/
+div.paging {
+	background:#fff;
+	color: #ccc;
+	margin-top: 20px;;
+	margin-bottom: 20px;
+	clear:both;
+}
+div.paging span.disabled {
+	color: #ddd;
+	display: inline;
+}
+div.paging span.current {
+	color: #c73e14;
+}
+div.paging span a {
+}
+
+/** Scaffold View **/
+dl {
+	line-height: 2em;
+	margin: 0em 0em;
+}
+dl .altrow {
+	background: #f4f4f4;
+}
+dt, #UbcContent dl dt {
+	font-weight: bold;
+	padding-left: 4px;
+	vertical-align: top;
+        margin: 0;
+}
+dd, #UbcContent dd {
+	margin-left: 16em;
+	margin-top: -2em;
+	vertical-align: top;
+}
+
+dd.toggle-item, #UbcContent dd.toggle-item {
+	margin-top:0px;
+	margin-left:2em;
+}
+
+dd blockquote, #UbcContent dd blockquote {
+	margin:0px;
+}
+
+form .input {
+	color: #444;
+}
+form .required {
+	font-weight: bold;
+}
+/*
+form .required label:after {
+	color: #e32;
+	content: '*';
+	display:inline;
+}
+*/
+#UbcContent #SearchKeywords {
+        display:inline;
+}
+
+form div.searchform {
+        font-size:75%;
+}
+
+div.checkbox label {
+	display: inline;
+}
+input[type=radio] {
+	float:left;
+	width:auto;
+	margin: 0 3px 7px 0;
+}
+div.radio label {
+	margin: 0 0 6px 20px;
+}
+
+.inline {
+    display:inline;
+}
+/** Notices and Errors **/
+
+div.error-message {
+	clear: both;
+	background: #FF9999;
+        border: #990000 solid 2px;
+	padding: 3px;
+        font-weight:normal;
+}
+p.error {
+	background-color: #e32;
+	color: #fff;
+	font-family: Courier, monospace;
+	font-size: 120%;
+	line-height: 140%;
+	padding: 0.8em;
+	margin: 1em 0;
+}
+p.error em {
+	color: #000;
+	font-weight: normal;
+	line-height: 140%;
+}
+.notice {
+	background: #ffcc00;
+	color: #000;
+	display: block;
+	font-family: Courier, monospace;
+	font-size: 120%;
+	line-height: 140%;
+	padding: 0.8em;
+	margin: 1em 0;
+}
+.success {
+	background: green;
+	color: #fff;
+}
+
+/**  Actions  **/
+div.actions ul, div.ubcactions ul {
+	margin: 0;
+	padding: 0;
+}
+#UbcContent div.actions li, div.ubcactions ul li {
+	margin:0 0 0.5em 0;
+	list-style-type: none;
+	white-space: nowrap;
+	padding: 0;
+}
+
+div.actions ul li a, div.ubcactions ul li a, div.actions ul li form input[type=submit] {
+	font-weight: normal;
+	display: block;
+	clear: both;
+}
+
+div.actions ul li form {
+	margin-right:0; width: 100%;
+}
+
+#UbcContent div.actions ul li form input[type=submit] {
+	width:100%; text-align:left; padding:4px 8px;
+}
+
+div.actions ul li a:hover, div.ubcactions ul li a:hover {
+	text-decoration: underline;
+}
+
+
+/** Related **/
+div.related {
+	clear: both;
+	display: block;
+        margin-bottom: 1em;
+}
+
+/** Debugging **/
+pre {
+	color: #000;
+	background: #f0f0f0;
+	padding: 1em;
+}
+pre.cake-debug {
+	background: #ffcc00;
+	font-size: 120%;
+	line-height: 140%;
+	margin-top: 1em;
+	overflow: auto;
+	position: relative;
+}
+div.cake-stack-trace {
+	background: #fff;
+	color: #333;
+	margin: 0px;
+	padding: 6px;
+	font-size: 120%;
+	line-height: 140%;
+	overflow: auto;
+	position: relative;
+}
+div.cake-code-dump pre {
+	position: relative;
+	overflow: auto;
+}
+div.cake-stack-trace pre, div.cake-code-dump pre {
+	color: #000;
+	background-color: #F0F0F0;
+	margin: 0px;
+	padding: 1em;
+	overflow: auto;
+}
+div.cake-code-dump pre, div.cake-code-dump pre code {
+	clear: both;
+	font-size: 12px;
+	line-height: 15px;
+	margin: 4px 2px;
+	padding: 4px;
+	overflow: auto;
+}
+div.cake-code-dump span.code-highlight {
+	background-color: #ff0;
+	padding: 4px;
+}
+div.code-coverage-results div.code-line {
+	padding-left:5px;
+	display:block;
+	margin-left:10px;
+}
+div.code-coverage-results div.uncovered span.content {
+	background:#ecc;
+}
+div.code-coverage-results div.covered span.content {
+	background:#cec;
+}
+div.code-coverage-results div.ignored span.content {
+	color:#aaa;
+}
+div.code-coverage-results span.line-num {
+	color:#666;
+	display:block;
+	float:left;
+	width:20px;
+	text-align:right;
+	margin-right:5px;
+}
+div.code-coverage-results span.line-num strong {
+	color:#666;
+}
+div.code-coverage-results div.start {
+	border:1px solid #aaa;
+	border-width:1px 1px 0px 1px;
+	margin-top:30px;
+	padding-top:5px;
+}
+div.code-coverage-results div.end {
+	border:1px solid #aaa;
+	border-width:0px 1px 1px 1px;
+	margin-bottom:30px;
+	padding-bottom:5px;
+}
+div.code-coverage-results div.realstart {
+	margin-top:0px;
+}
+div.code-coverage-results p.note {
+	color:#bbb;
+	padding:5px;
+	margin:5px 0 10px;
+	font-size:10px;
+}
+div.code-coverage-results span.result-bad {
+	color: #a00;
+}
+div.code-coverage-results span.result-ok {
+	color: #fa0;
+}
+div.code-coverage-results span.result-good {
+	color: #0a0;
+}
+
+.after {
+    margin-left: 3px;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.current_page {
+	font-weight:bold;
+}
+
+#UbcContent div.print ul {
+	margin-left:20px;
+	
+}
+
+#UbcContent div.print ul li {
+	margin:0 0 0.5em 0;
+}
+
+#UbcContent ul.bulleted li {	
+	list-style-type:disc;
+}
+
+#UbcContent ul.nobullets li {	
+	list-style-type:none;
+}
+
+.bottom_margin {
+	margin-bottom:20px;
+}
+
+.left_margin {
+	margin-left:20px;
+}
+
+.text-right {
+	text-align:right;
+}
+
+.script_code {
+	font-family:courier new,fixed width;
+	margin-bottom:20px;
+}
+
+.preview {
+	padding:10px;
+	border:1px solid #ccc;
+	margin-bottom:20px;
+}
+
+
+/* FROM UI LIBRARY */
+/* #Buttons 
+================================================== */
+.button,
+input[type=submit],
+div.actions ul li a,
+div.ubcactions ul li a,
+td.actions a,
+form .submit input[type=submit], 
+div.ubcactions ul li a  {
+  display: inline-block;
+  zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+  *display: inline;
+  vertical-align: baseline;
+  margin: 0 0 15px;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font: bold 11px/120% Helvetica, Arial, sans-serif;
+  padding: 8px 18px;
+  text-shadow: 0 1px 1px rgba(0,0,0,.1);
+  -webkit-border-radius: 2px; 
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 1px 0px rgba(0,0,0,.1), inset 0 1px 0px rgba(255,255,255,.1);
+  -moz-box-shadow: 0 1px 0px rgba(0,0,0,.1), inset 0 1px 0px rgba(255,255,255,.1);
+  box-shadow: 0 1px 0px rgba(0,0,0,.1), inset 0 1px 0px rgba(255,255,255,.1);
+  /*grey is the default color*/
+  color: #555;
+  border: solid 1px #ccc;
+  background: #f3f3f3;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#eeeeee));
+  background: -webbkit-linear-gradient(top, #f3f3f3), #eeeeee);
+  background: -moz-linear-gradient(top, #f3f3f3), #eeeeee);
+  background: -ms-linear-gradient(top, #f3f3f3), #eeeeee);
+  background: -o-linear-gradient(top, #f3f3f3), #eeeeee);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#f3f3f3',EndColorStr='#eeeeee');
+  -webkit-transition: all linear 0.2s;
+  -moz-transition: all linear 0.2s;
+  -o-transition: all linear 0.2s;
+  transition:  all linear 0.2s;
+}
+.button:hover,
+input[type=submit]:hover,
+div.actions ul li a:hover,
+div.ubcactions ul li a,:hover
+td.actions a:hover,
+form .submit input[type=submit]:hover, 
+div.ubcactions ul li a:hover {
+	text-decoration: none;
+  /*grey is the default color*/
+  border: solid 1px #888;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 0 3px rgba(255,255,255,0.4);
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 0 3px rgba(255,255,255,0.4);
+  box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 0 3px rgba(255,255,255,0.4);
+  cursor: pointer;
+}
+.button:active,
+input[type=submit]:active,
+div.actions ul li a:active,
+div.ubcactions ul li a,:active
+td.actions a:active,
+form .submit input[type=submit]:active, 
+div.ubcactions ul li a:active {
+  border:solid 1px #77f;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.button a { color: #555; }
+
+ 
+/* blue */
+.blue, #HourDateRangeEditForm input[type=submit].blue {
+  color: #d9eef7;
+  border: solid 1px #0076a3;
+  background: #0D7AFF;
+  background: -webkit-gradient(linear, left top, left bottom, from(#0D7AFF), to(#0073FF));
+  background: -webkit-linear-gradient(top,  #0D7AFF,  #0073FF);
+  background: -moz-linear-gradient(top,  #0D7AFF,  #0073FF);
+  background: -ms-linear-gradient(top,  #0D7AFF,  #0073FF);
+  background: -o-linear-gradient(top,  #0D7AFF,  #0073FF);
+  background: linear-gradient(top,  #0D7AFF,  #0073FF);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0D7AFF', endColorstr='#0073FF');
+}
+.blue:hover, #HourDateRangeEditForm input[type=submit].blue:hover {
+  border: solid 1px #444;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 0 3px rgba(255,255,255,0.4);
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 0 3px rgba(255,255,255,0.4);
+  box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 0 3px rgba(255,255,255,0.4);
+}
+.blue:active, #HourDateRangeEditForm input[type=submit].blue:active {
+  border:solid 1px #c44;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+/* Headings
+-------------------------------------------------------------- */
+
+#UbcContent h1, #UbcContent h2, #UbcContent h3, #UbcContent h4, #UbcContent h5,
+#UbcContent h6 									{ font-family: 'prettyAmp', serif; font-weight:normal; color: #333; text-shadow:0px 1px #DDD; }
+#UbcContent h1									{  }
+#UbcContent h1 a								{ color:#333; }
+#UbcContent h1 a:hover					{ text-decoration:none; }
+#UbcContent h1 a, 
+#UbcContent h2 a, 
+#UbcContent h3 a, 
+#UbcContent h4 a, 
+#UbcContent h5 a,
+#UbcContent h6 a								{ text-decoration:none; }
+#UbcContent h1, #UbcContent .h1 { font-size: 36px; line-height: 1; margin-bottom: 12px; }
+#UbcContent h2, #UbcContent .h2 { font-size: 24px; line-height: 1; margin-bottom: 18px;}
+/*#UbcContent h1, #UbcContent .h1 { font-size: 2.1em; line-height: 1.3; margin-bottom: 0.5em; }
+#UbcContent h2, #UbcContent .h2 { font-size: 1.7em; margin-bottom: 0.75em;} */
+#UbcContent h3, #UbcContent .h3 { font-size: 18px; line-height: 1; margin-bottom: 12px; }
+#UbcContent h4, #UbcContent .h4 { font-size: 16px; line-height: 1; margin-bottom: 18px; }
+#UbcContent h5, #UbcContent .h5 { font-size: 14px; line-height: 18px; font-weight:bold; margin-bottom:18px; text-shadow:none; }
+#UbcContent h6, #UbcContent .h6 { font-size: 14px; line-height: 18px; font-weight:bold; margin-bottom:0; text-shadow:none;}
+
+#UbcContent h1 img,
+#UbcContent h2 img,
+#UbcContent h3 img,
+#UbcContent h4 img,
+#UbcContent h5 img,
+#UbcContent h6 img 			{ margin: 0; }
+
+/*** HEADER ***/
+
+#hours-header              { background:url('../img/hours-locations-header.gif') -8px 0 no-repeat; margin-bottom:15px; }
+#hours-header a            { float:left; display:block; width:400px; height:70px; }
+#navlinks				   { height:55px; padding-top:40px; }
+
+
+/*** FROM hours.css ***/
+.hours-category   { display:block; border:1px solid #ccc; width:20px; height:16px; background-color:#fff; float:left; margin-right:5px; margin-top: 6px; }
+.hours-category.exam             { background-color:#ffe6e6; color:#000; }
+.hours-category.exception        { background-color:#dddddd; color:#000; }
+.hours-category.holiday          { background-color:#e6e6ff; color:#000; }
+.hours-category.intersession     { background-color:#e6d3ff; color:#000; }
+.hours-category.summer           { background-color:#e6ffe6; color:#000; }
+.hours-category.summer-alternate { background-color:#ffffe6; color:#000; }

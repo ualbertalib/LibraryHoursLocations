@@ -1,0 +1,231 @@
+
+
+/*** SIMPLE RESET ***/
+
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup,  menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+
+/*** OVERALL ***/
+
+
+body { /*both*/
+  font: 9pt Arial, "Helvetica Neue", Hevetica, sans-serif;
+  color: black;
+  word-spacing: 1.5pt;
+  letter-spacing: 0.3pt;
+}
+
+#wrapper { /*both*/
+  width: auto;
+}
+
+#hours { /*full view*/
+  margin: 0 .25in;
+  border-top: 2.5pt solid black;
+}
+
+.bookmark { /*bookmark view*/
+  clear: both;
+  display: block;
+  margin-left: 2.2%;
+  padding-top: 5pt;
+  page-break-after: always;
+  font-size: 6.5pt;
+}
+
+
+/*** FULL VIEW HEADER ***/
+
+
+#header {
+  margin: 0 .25in;
+}
+
+#header h1 {
+  line-height: 99%;
+  font-size: 24pt;
+  font-weight: bold;
+}
+
+#header h2 {
+  margin-bottom: 12pt;
+  font-size: 15pt;
+}
+
+#header p {
+  clear: both;
+  margin-bottom: 5pt;
+  line-height: 110%;
+  text-align: center;
+}
+
+#header #logo {
+  float: left;
+  margin: 4pt 22pt 0 0;
+}
+
+
+/*** BOOKMARK VIEW HEADER ***/
+
+
+.bookmark h1 {
+  font-size: 9pt;
+  line-height: 50%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.bookmark h2 {
+  margin: 4pt 0;
+  font-size: 8pt;
+  text-align: center;
+  letter-spacing: 0;
+  word-spacing: 0;
+}
+
+
+/*** COLUMNS ***/
+
+
+.column { /*both*/
+  float: left;
+  width: 22%;
+  min-height: 410pt;
+  margin-left: 12pt;
+  margin-top: 8pt;
+}
+
+.column + .column { /*both*/
+  margin-left: 8pt;
+  padding-left: 8pt;
+  border-left: 1pt solid black;
+}
+
+.bookmark .column { /*bookmark view*/
+  width: 147pt;
+  margin-left: 5pt;
+  padding-left: 11pt;
+  border-left: 1pt dashed #aaa;
+}
+
+.column h3 { /*both*/
+  font-size: 12pt;
+  font-weight: bold;
+  letter-spacing: 0.2pt;
+  line-height: 110%;
+  margin: 5pt 0;
+  padding-top: 5pt;
+  border-top: 1pt dotted black;
+}
+
+.bookmark .column h3 { /*bookmark view*/
+  border-top: none;
+  font-size: 8pt;
+  margin: 3pt 0;
+  padding-top: 0;
+}
+
+.column h3:first-child { /*full view*/
+  padding-top: 0;
+  border-top: none;
+}
+
+.column h3 .unicode { /*both*/
+  font-family: "Arial Unicode MS";
+}
+
+.column h4 { /*both*/
+  font-size: 9.5pt;
+  font-weight: bold;
+  line-height: 105%;
+  letter-spacing: 0.2pt;
+  margin: 5pt 0;
+  padding-left: 4pt;
+}
+
+.bookmark .column h4 { /*bookmark view*/
+  font-size: 7.5pt;
+  margin: 3pt 0;
+}
+
+.column h5 { /*full view (buildings)*/
+  margin-top: -5pt;
+  margin-bottom: 5pt;
+}
+
+.bookmark .column h5 { /*bookmark view*/
+  display: none;
+}
+
+.column p {
+  white-space: nowrap;
+}
+
+.column p.note { /*both (BMB note)*/
+  margin: 5pt 0;
+  padding: 0 5pt 0 0;
+  line-height: 10pt;
+  font-style: italic;
+  white-space: normal;
+}
+
+.bookmark .column p.note { /*bookmark view*/
+  line-height: 8pt;
+}
+ 
+.column p.bottom { /*full view ("printed on" note)*/
+  padding-top: 5pt;
+  text-align: center;
+  white-space: normal;
+}
+
+.bookmark .column p.bottom { /*bookmark view (bottom message)*/
+  margin-top: 5pt;
+  text-align: left;
+  font-size: 7pt;
+  border-top: 1pt dotted black;
+}
+
+.column img { /*full view (QR code)*/
+  padding-left: 10%;
+}
+
+.column .bold { /*both*/
+  margin-top: 5pt;
+  font-weight: bold;
+}
+
+.column .change { /*full view (alternate summer hours)*/
+  padding-left: 7%;
+}
+
+.bookmark .column .change { /*bookmark view (alternate summer hours)*/
+  padding-left: 10pt;
+}
+
+.column .day { /*both*/
+  display: inline-block;
+  width: 68pt;
+  padding-left: 7%;
+}
+
+.bookmark .column .day { /*bookmark view*/
+  padding-left: 10pt;
+}
+
+.column .closed { /*both*/
+  text-transform: uppercase;
+  font-size: 8pt;
+}
+
+.column .closed { /*bookmark view*/
+  font-size: 7pt;
+}

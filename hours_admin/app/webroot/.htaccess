@@ -1,0 +1,12 @@
+AuthType Basic
+AuthName "Library Hours and Locations Administration"
+AuthUserFile /usr/local/conf/.htpasswd
+Require valid-user
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    #RewriteBase /hours_admin/app/webroot/
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>

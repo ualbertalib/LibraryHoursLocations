@@ -1,0 +1,14 @@
+Library Hours and Locations Application
+
+This application is in two parts: one for the public Hours and Locations Portal, and the other for the admin site.  All code is provided as is, with no support offered, aside from the included documentation.  
+
+All code was written with the specific requirements of UBC Libraries in mind, and may require significant changes to suit the purposes of other libraries.  That said, it could be well suited for any multi-branch/multi-location library.
+
+Documentation is in the documentation directory.
+
+The code for the public portal is in hours_portal.
+
+The code for the admin site is in hours_admin.
+
+There is XML output available via the code in the hours_portal/xml directory that is designed for use with CoolSign digital signage software.
+
