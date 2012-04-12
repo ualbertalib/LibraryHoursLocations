@@ -10,5 +10,7 @@ The code for the public portal is in hours_portal.
 
 The code for the admin site is in hours_admin.
 
+The admin site was built using CakePHP 1.3.
+
 There is XML output available via the code in the hours_portal/xml directory that is designed for use with CoolSign digital signage software.
 
