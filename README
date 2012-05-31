@@ -6,6 +6,8 @@ All code was written with the specific requirements of UBC Libraries in mind, an
 
 Documentation is in the documentation directory.
 
+After creating a MySQL database, the necessary tables can be added by importing hours_locations.sql.
+
 The code for the public portal is in hours_portal.
 
 The code for the admin site is in hours_admin.
