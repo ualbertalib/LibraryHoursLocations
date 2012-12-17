@@ -251,7 +251,7 @@
     $('input[id*="CloseTime"], input[id*="OpenTime"]').live("keydown.autocomplete", function() {
     	$(this).autocomplete({
         source: function(request, response) {
-            url = "http://kemano.library.ubc.ca/~jdearles/ltk/staffdirectory/hours_autocomplete.php?term="+request.term;
+            url = "<?php echo SCRIPT_URL; ?>/hours_autocomplete.php?term="+request.term;
             $.getJSON(url + '&callback=?', function(data) {
                 console.log(data);
                 response(data);
@@ -276,7 +276,7 @@
             
             $('input[id*="CloseTime"], input[id*="OpenTime"]').autocomplete({
 	            source: function(request, response) {
-	                url = "http://kemano.library.ubc.ca/~jdearles/ltk/staffdirectory/hours_autocomplete.php?term="+request.term;
+	                url = "<?php echo SCRIPT_URL; ?>/hours_autocomplete.php?term="+request.term;
 	                $.getJSON(url + '&callback=?', function(data) {
 	                    console.log(data);
 	                    response(data);
