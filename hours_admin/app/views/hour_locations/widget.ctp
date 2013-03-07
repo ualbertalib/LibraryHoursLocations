@@ -74,6 +74,22 @@
 			<p>Embed a collapsed text display of this week's hours.</p>
 			<?php echo displayCodePreview("location1=".$hourLocation['HourLocation']['id']."&display=text"); ?>
 		</div>
+	<h3>Today's Hours with Reference Widget</h3>
+                <div class="left_margin">
+                        <p>Embed a table of today's building hours and reference hours, with widget note included.</p> 
+			<?php
+                        if($hourLocation['HourLocation']['id'] == 6) {
+                        // If the location is IKBLC
+                                echo displayCodePreview("location1=6&location2=7&type2=2&location3=11&shorttable=yes");
+                        } elseif($hasReferenceHours) { // end if IKBLC (id=6) 
+                        //If the location DOES have reference hours:                    
+                                echo displayCodePreview("location1=".$hourLocation['HourLocation']['id']."&location2=".$hourLocation['HourLocation']['id']."&shorttable=yes");
+                        } else { // end if location does  have reference hours
+                        //If the location does NOT have reference hours:
+                                echo displayCodePreview("location1=".$hourLocation['HourLocation']['id']."&shorttable=yes");
+                        } // end if location does not have reference hours
+                        ?>
+                </div>
 	<h3>Today's Hours Widget</h3>
 		<div class="left_margin">
 			<p>Embed a simple text line with the current day's hours.</p>

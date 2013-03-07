@@ -30,6 +30,15 @@ body {
 	margin: 0;
 }
 
+/* hoghlights hours-locations in library header */
+#hours-nav, #hours-nav:hover > a { 
+  background: url("http://gates.library.ubc.ca/_ubc_clf/img/header/nav-sprite.jpg") repeat-x 0 -80px #f6f6f6 !important; 
+} 
+#hours-nav > a { 
+  color: #fff !important; 
+  text-shadow: none !important; 
+}
+
 a {
 	color: #002859;
 	text-decoration: none;
@@ -70,10 +79,6 @@ h4 {
 }
 #UbcContent ul, #UbcContent li {
 	margin: 0 12px;
-}
-
-#UbcMainNav li a {
-        font-size:100%;
 }
 
 /** Layout **/

@@ -34,6 +34,7 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('begin_date');?></th>
 			<th><?php echo $this->Paginator->sort('end_date');?></th>
+			<th><?php echo $this->Paginator->sort('Category','HourDateRange.hour_category_id');?></th>
 			<th><?php echo $this->Paginator->sort('Description','HourDateRange.description');?></th>
 	</tr>
 	<?php
@@ -54,6 +55,7 @@
 	<tr<?php echo $class;?>>
 		<td<?php echo $tdclass;?>><?php echo $this->Html->link(date("F j, Y",strtotime($range['HourDateRange']['begin_date'])), array('action' => 'edit', $range['HourDateRange']['id']),array('style'=>"$aclass")); ?></td>
 		<td<?php echo $tdclass;?>><?php echo $this->Html->link(date("F j, Y",strtotime($range['HourDateRange']['end_date'])), array('action' => 'edit', $range['HourDateRange']['id']),array('style'=>"$aclass")); ?></td>
+		<td<?php echo $tdclass;?>><span class="hours-category <?php if ($range['HourCategory']['category'] == 'Summer Alternate') { echo 'summer-alternate'; } else { echo strtolower($range['HourCategory']['category']); } ?>"></span><?php echo $this->Html->link($range['HourCategory']['category'], array('action' => 'edit', $range['HourDateRange']['id']),array('style'=>"$aclass")); ?></td>
 		<td<?php echo $tdclass;?>><?php echo $this->Html->link($range['HourDateRange']['description'], array('action' => 'edit', $range['HourDateRange']['id']),array('style'=>"$aclass")); ?></td>
 	</tr>
 <?php endforeach; ?>

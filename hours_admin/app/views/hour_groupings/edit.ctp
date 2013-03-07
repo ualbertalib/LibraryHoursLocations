@@ -26,21 +26,24 @@
  		
  	    // only admin and super-admin can edit these
  	    if($_SERVER['REMOTE_USER']=='hours' || $_SERVER['REMOTE_USER']=='hours_admin') {	
-	        echo '<div class="first four columns">';
+	        echo '<div class="first five columns">';
 			echo $this->Form->input('HourGrouping.hour_location_id',array('label'=>'Location','empty'=>true,'div'=>false));
 			echo $this->Form->input('HourGrouping.orig_hour_location_id',array('type'=>'hidden','value'=>$origValues['HourGrouping']['hour_location_id']));
 			echo '</div>';
-			echo '<div class="two columns">';
-			echo $this->Form->input('HourGrouping.hour_category_id',array('label'=>'Category','empty'=>true,'div'=>false));
+			//echo '<div class="two columns">';
+			echo $this->Form->input('HourGrouping.hour_category_id',array('type'=>'hidden','div'=>false));
 	        echo $this->Form->input('HourGrouping.orig_hour_category_id',array('type'=>'hidden','value'=>$origValues['HourGrouping']['hour_category_id']));
-	        echo '</div>';
+	        //echo '</div>';
 			echo '<div class="two columns">';
 			echo $this->Form->input('HourGrouping.hour_type_id',array('label'=>'Type','empty'=>true,'div'=>false));
 			echo $this->Form->input('HourGrouping.orig_hour_type_id',array('type'=>'hidden','value'=>$origValues['HourGrouping']['hour_type_id']));			
 	        echo '</div><div style="clear:both;"></div>';
 			echo $this->Form->input('HourGrouping.hour_date_range_id',array('type'=>'hidden','value'=>$origValues['HourGrouping']['hour_date_range_id']));
 			if($this->data['HourGrouping']['hour_type_id'] != 3) {
-			echo '<div class="first twelve columns row"><label for="HourGroupingHourDateRangeId">Date Range</label>'. date("F d, Y",strtotime($this->data['HourDateRange']['begin_date']))." - ".date("F d, Y",strtotime($this->data['HourDateRange']['end_date'])).", ".$this->data['HourDateRange']['description']."</div>";
+			echo '<div class="first twelve columns nest row">';
+			echo '<div class="first five columns"><label for="HourGroupingHourDateRangeId">Date Range</label>'. date("F d, Y",strtotime($this->data['HourDateRange']['begin_date']))." - ".date("F d, Y",strtotime($this->data['HourDateRange']['end_date'])).", ".$this->data['HourDateRange']['description']."</div>";
+			echo '<div class="five columns"><label for="HourGroupingHourCategoryId">Category</label><span class="hours-category ';  if ($this->data['HourCategory']['category'] == 'Summer Alternate') { echo 'summer-alternate'; } else { echo strtolower($this->data['HourCategory']['category']); } echo '"></span> '.$this->data['HourCategory']['category']."</div>";
+			echo '</div>'; // end first twelve columns nest row
 			}
 		} else {
 			// hidden values for branch login form
@@ -62,7 +65,7 @@
 				echo $this->Form->input('HourDay.'.$key.'.modified_by',array('type'=>'hidden','value'=>$_SERVER['REMOTE_USER']));
  				echo $this->Form->input('HourDay.'.$key.'.modified_timestamp',array('type'=>'hidden','value'=>date('Y-m-d H:i:s')));
 				if($this->data['HourGrouping']['hour_category_id'] == 5 || $this->data['HourGrouping']['hour_category_id'] == 7) {					
-					echo '<span id="'.$weekdays[$key].'_text">'.$this->data['HourDay'][$key]['day_of_week'].'</span>';
+					echo '<span id="'.$weekdays[$key].'_text">'.$shortdays[$key].", ".date("m/d/Y",strtotime($this->data['HourDay'][$key]['day_of_week'])).'</span>';
 				} else {
 					echo '<span id="'.$weekdays[$key].'_text">'.$day.'</span>';
 				}	
@@ -136,6 +139,7 @@
         }
     });
     
+/*
     $('#HourGroupingHourCategoryId').change(function() {   		
 	    	//Need to keep original order, which is by date or by day of week depending on category when initially loading the page
 	    	//Compare original category (HourGroupingOrigHourCategoryId) with new one
@@ -149,8 +153,9 @@
 	    		}
 	    	}    	
     });
+*/
   
-    function update_days(daterangeid, categoryid, sortby) {
+    function update_days(daterangeid, sortby) {
     	//lookup date range id and create list of days of week in the range
     	//hide any days of week by div id that are not in range    	
     	var ajaxdata={
@@ -158,12 +163,13 @@
                 dataType:'jsonp',
                 data:{
                     daterangeid: daterangeid,
-                    categoryid: categoryid,
                     sortby: sortby
                 },
                 async: false,
                 success:
                         function(data){
+                        	$('#HourGroupingHourCategoryId').val(data.categoryid);
+                            if(data.categoryid == 5 || data.categoryid == 7) {
                                 // loop over data.days and hide days in the list
                                 for(var i in data.daysout) {
                                 	$('#'+data.daysout[i]).hide();
@@ -205,7 +211,7 @@
             
             $('input[id*="CloseTime"], input[id*="OpenTime"]').autocomplete({
 	            source: function(request, response) {
-	                url = "<?php echo SCRIPT_URL; ?>/hours_autocomplete.php?term="+request.term;
+	                url = "http://kemano.library.ubc.ca/~jdearles/ltk/staffdirectory/hours_autocomplete.php?term="+request.term;
 	                $.getJSON(url + '&callback=?', function(data) {
 	                    console.log(data);
 	                    response(data);

@@ -22,11 +22,11 @@ class HourDateRangesController extends AppController {
 			}	
 			$this->data['Search']['keywords'] = $keywords;
 		}
-		$this->paginate['fields'] = array('DISTINCT begin_date','end_date', 'description', 'id');
+		$this->paginate['fields'] = array('DISTINCT begin_date','end_date', 'description', 'id', 'HourCategory.category');
 		$this->paginate['limit'] = 40;
 		$this->paginate['order'] = 'HourDateRange.end_date DESC, HourDateRange.begin_date DESC';
 		$this->paginate['show'] = "all";
-		$this->HourDateRange->recursive = -1;
+		//$this->HourDateRange->recursive = -1;
     	$hour_date_ranges = $this->paginate();  
 		$this->set(compact('hour_date_ranges'));
 		$this->__checkLogin();
@@ -85,6 +85,8 @@ class HourDateRangesController extends AppController {
 				$this->Session->setFlash('The date range could not be added.', 'flash_failure');
 			}
 		}
+		$hourCategories = $this->HourDateRange->HourCategory->find('list');
+		$this->set(compact('hourCategories'));	
 		$this->__checkLogin();
 	}
 	
@@ -108,10 +110,12 @@ class HourDateRangesController extends AppController {
 			}
 		} else {
 			$this->data = $this->HourDateRange->find('first',array('conditions' => array('HourDateRange.id' => $id)));
+			//debug($this->data);
 		}
-		$this->HourDateRange->recursive=-1;
+		//$this->HourDateRange->recursive=-1;
 		$origValues = $this->HourDateRange->find('first',array('conditions' => array('HourDateRange.id' => $id)));
-		$this->set(compact('origValues'));
+		$hourCategories = $this->HourDateRange->HourCategory->find('list');
+		$this->set(compact('origValues','hourCategories'));		
 		$this->__checkLogin();
     }
 
@@ -392,7 +396,7 @@ class HourDateRangesController extends AppController {
 	function __checkLogin() {
 		$login = "'".$_SERVER['REMOTE_USER']."'";
 		$locations = '';
-		$sql = "SELECT id, name FROM hour_locations WHERE login = $login";
+		$sql = "SELECT `id`, `name` FROM `hour_locations` WHERE `login` = $login";
 		$result = $this->HourDateRange->query($sql);	
 		$count = 1;	
 		if(!empty($result)) {

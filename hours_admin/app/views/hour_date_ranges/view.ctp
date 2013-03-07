@@ -31,7 +31,11 @@
 			<?php echo date("F j, Y",strtotime($hourDateRange['HourDateRange']['end_date'])); ?>
 			&nbsp;
 		</dd>
-       
+       <dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Print Note'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $hourDateRange['HourDateRange']['print_note']; ?>
+			&nbsp;
+		</dd>
 	</dl>
 
 </div>

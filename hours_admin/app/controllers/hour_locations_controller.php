@@ -87,10 +87,10 @@ class HourLocationsController extends AppController {
             if(!empty($this->data['HourLocation']['hour_location_id'])) {
                 $this->data['HourLocation']['parent_hour_location_id'] = $this->data['HourLocation']['hour_location_id'];
             }
-        	// format phone and fax numbers for consistency
-            if(!empty($this->data['HourLocation']['phone'])) {
-                $this->data['HourLocation']['phone'] = $this->__formatPhone($this->data['HourLocation']['phone']);
-            }  
+        	// format phone and fax numbers for consistency -- taken out 8/21/12 to enable inclusion of text
+            //if(!empty($this->data['HourLocation']['phone'])) {
+            //    $this->data['HourLocation']['phone'] = $this->__formatPhone($this->data['HourLocation']['phone']);
+            //} 
 			if ($this->HourLocation->save($this->data)) {
 				$this->Session->setFlash("Hours location added.", 'flash_success');
 				$this->redirect(array('action' => 'index'));
@@ -133,10 +133,10 @@ class HourLocationsController extends AppController {
             if(!empty($this->data['HourLocation']['hour_location_id'])) {
                 $this->data['HourLocation']['parent_hour_location_id'] = $this->data['HourLocation']['hour_location_id'];
             } 
-        	// format phone and fax numbers for consistency
-            if(!empty($this->data['HourLocation']['phone'])) {
-                $this->data['HourLocation']['phone'] = $this->__formatPhone($this->data['HourLocation']['phone']);
-            }
+        	// format phone and fax numbers for consistency -- taken out 8/21/12 to enable inclusion of text
+            //if(!empty($this->data['HourLocation']['phone'])) {
+            //    $this->data['HourLocation']['phone'] = $this->__formatPhone($this->data['HourLocation']['phone']);
+            //}
             if ($this->HourLocation->save($this->data)) {                                
 				$this->Session->setFlash("Hours location updated.", 'flash_success');
 				$this->redirect(array('action' => 'index'));

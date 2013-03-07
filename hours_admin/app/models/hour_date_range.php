@@ -11,6 +11,14 @@ class HourDateRange extends AppModel {
 		)		
 	);
 	
+	var $belongsTo = array(
+        'HourCategory' => array(
+            'className' => 'HourCategory',
+            'foreignKey' => 'hour_category_id',
+            'fields' => 'category'
+        )
+	);
+	
 	// check that begin date is before end date	
 	function dateOrder($check) {
         return strtotime($this->data['HourDateRange']['begin_date']) <= strtotime($this->data['HourDateRange']['end_date']); 

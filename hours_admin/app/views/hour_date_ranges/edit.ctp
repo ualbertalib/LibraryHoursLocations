@@ -35,11 +35,6 @@
     echo $this->Form->input('id');
     echo $this->Form->input('modified_by',array('type'=>'hidden','value'=>$_SERVER['REMOTE_USER']));
 	echo $this->Form->input('modified_timestamp',array('type'=>'hidden','value'=>date('Y-m-d H:i:s')));
-    echo '<fieldset>';
-    echo '<div class="first eight columns">';
-    echo $this->Form->input('HourDateRange.description',array('label'=>'Description <span class="after">(for admin use only; not displayed on public facing pages)</span>'));
-    echo '</div><div class="clear"></div>';
-	echo '</fieldset>';
 	echo '<fieldset>';
 	echo '<div class="first two columns"><label for="HourDateRangeBeginDateMonth">From</label></div>';
 	echo '<div class="nine columns"><label for="HourDateRangeEndDateMonth">To</label></div>';
@@ -51,6 +46,21 @@
 	echo $this->Form->input('HourDateRange.end_date', array('label'=>false,'type'=>'text','value'=>$end_date));
 	echo $this->Form->input('HourDateRange.orig_end_date',array('type'=>'hidden','value'=>$origValues['HourDateRange']['end_date']));
 	echo '</div><div class="clear"></div>';
+	echo '</fieldset>';
+	echo '<fieldset>';
+	echo '<div class="first two columns">';
+	echo $this->Form->input('HourDateRange.hour_category_id',array('label'=>'Category','empty'=>true,'div'=>false));
+	echo '</div>';
+	echo '</fieldset>';
+	echo '<fieldset>';
+    echo '<div class="first eight columns">';
+    echo $this->Form->input('HourDateRange.description',array('label'=>'Description <span class="after">(for admin use only; not displayed on public facing pages)</span>'));
+    echo '</div><div class="clear"></div>';
+	echo '</fieldset>';
+	echo '<fieldset>';
+    echo '<div class="first eight columns">';
+    echo $this->Form->input('HourDateRange.print_note',array('label'=>'Print Note <span class="after">(displayed on hours print pages)</span>'));
+    echo '</div><div class="clear"></div>';
 	echo '</fieldset>';
 			
 ?>
