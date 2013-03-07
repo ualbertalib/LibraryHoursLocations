@@ -69,8 +69,8 @@ function displayLocationsStatus($branchID = null) {
   $currenttime = date('H:i:s');
   
   // for testing other dates and times
-  //$currentdate = '2012-04-15';
-  //$currenttime = '01:30:00';
+  //$currentdate = '2011-12-20';
+  //$currenttime = '00:30:00';
   
   $sql = "SELECT hour_locations.id, hour_locations.name, hour_locations.parent_hour_location_id AS parent, hour_locations.login
           FROM hour_locations
@@ -624,8 +624,7 @@ function displayHoursByMonth($month, $year, $branchID = null) {
   
   $sql = "SELECT hour_days.day_of_week, hour_days.open_time, hour_days.close_time, hour_days.is_closed, hour_days.is_tbd,
                  hour_groupings.hour_category_id,
-                 hour_categories.category,
-                 hour_date_ranges.begin_date, hour_date_ranges.end_date
+                 hour_categories.category
           FROM hour_days
           JOIN hour_groupings
           ON hour_days.hour_grouping_id = hour_groupings.id
@@ -703,11 +702,7 @@ function displayHoursByMonth($month, $year, $branchID = null) {
       // show color block and heading when category is new
       if ($results[$i]['hour_category_id'] != $prev_category) {   
         $hours .= '
-              <h6><span class="hours-category '; if ($results[$i]['hour_category_id'] == 4) { $hours .= 'summer-alternate'; } else { $hours .= strtolower($results[$i]['category']); } $hours .= '"></span>';
-        
-        if ($results[$i]['hour_category_id'] == 4 || $results[$i]['hour_category_id'] == 3) { $hours .= 'Summer Hours'; } else { $hours .= $results[$i]['category'].' Hours'; }
-        
-        if ($results[$i]['hour_category_id'] != 5 && $results[$i]['hour_category_id'] != 7) { $hours .= ' ('.date('M j', strtotime($results[$i]['begin_date'])).'-'.date('M j', strtotime($results[$i]['end_date'])).')'; } $hours .= '</h6>
+              <h6><span class="hours-category '; if ($results[$i]['hour_category_id'] == 4) { $hours .= 'summer-alternate'; } else { $hours .= strtolower($results[$i]['category']); } $hours .= '"></span>'.$results[$i]['category'].' Hours</h6>
               <dl class="'; if ($results[$i]['hour_category_id'] == 4) { $hours .= 'summer-alternate'; } else { $hours .= strtolower($results[$i]['category']); } $hours .= '">';
       }//closes if
       
@@ -869,7 +864,7 @@ function getAllHours($category, $limit, $id, $begin, $end) {
                       AND '$begin' <= hour_date_ranges.begin_date
                       AND '$end' >= hour_date_ranges.end_date
                       AND '$today' <= hour_date_ranges.end_date )
-                 OR ( hour_groupings.hour_category_id IN (6, 7)
+                 OR ( hour_groupings.hour_category_id = 7
                       AND '$begin' <= hour_date_ranges.begin_date
                       AND '$end' >= hour_date_ranges.end_date
                       AND '$today' <= hour_date_ranges.end_date ) )

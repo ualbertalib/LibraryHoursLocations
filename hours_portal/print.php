@@ -17,20 +17,12 @@ include('includes/head.inc.php');
 
   <div class="twelve columns">
     
-    <h3>Print Signage and Bookmarks</h3>
-    
-    <p>Please note that the signage and bookmark links reflect what is <em>currently</em> in our database. When new hours are entered and approved, an update notice will be sent to staff to print new materials.</p>
-    
+    <h3>Print Signage and Bookmarks</h3>	
+
     <div class="message note row">
       
       <ul><strong>For best print results, please adjust your print settings to: </strong>
-        <li>Turn off headers and footers
-          <ol>In Firefox:
-            <li>From the File menu, select Page Setup</li>
-            <li>Select the tab Margins &amp; Header/Footer</li>
-            <li>Select "blank" in each of the 6 drop-down options</li>
-          </ol>
-        </li>
+        <li>Turn off headers and footers</li>
         <li>Set print margins to 0.5&quot;</li>
         <li>Use Landscape orientation</li> 
       </ul>

@@ -103,7 +103,7 @@ if ($category == 5) {
     // fall/winter hours
     case 9:
     $title = 'Fall/Winter';
-    $message = ''/*Unless otherwise noted, all locations except Irving K. Barber Learning Centre are CLOSED on Thanksgiving and Remembrance Day. Modified hours will be posted for Christmas and Easter.*/;
+    $message = 'Unless otherwise noted, all locations except Irving K. Barber Learning Centre are CLOSED on Thanksgiving and Remembrance Day. Modified hours will be posted for Christmas and Easter.';
     break;
     
     // summer session term 2
@@ -313,16 +313,9 @@ if (!$results || ($version != "full" && $version != "bookmark")) {
     $prev_location = isset($results[$i-1]['id']) ? $results[$i-1]['id'] : '0';
     $prev_date = isset($results[$i-1]['begin_date']) ? $results[$i-1]['begin_date'] : '0';
     
-    // when same location has a new range to display (should apply to summer and exam hours only), show the start date
+    // when same location has a new range to display (should apply to summer hours only), show the start date
     if ($prev_location == $results[$i]['id'] && $prev_date != $results[$i]['begin_date'] && $results[$i]['hour_category_id'] != '5' && $results[$i]['hour_category_id'] != '7') {
-      
-      // exam hours are date range, summer hours are starting date
-      if ($results[$i]['hour_category_id'] == '6') {
-        $print .= '<p class="bold change"><span>'.date('F j', strtotime($results[$i]['begin_date'])).'-'.date('F j', strtotime($results[$i]['end_date'])).':</span></p>';
-      } else {
-        $print .= '<p class="bold change"><span>Starting '.date('F j', strtotime($results[$i]['begin_date'])).':</span></p>';
-      }//closes if-else
-    
+      $print .= '<p class="bold change"><span>Starting '.date('F j', strtotime($results[$i]['begin_date'])).':</span></p>';
     }//closes if
     
     // if the next set of hours is the same (and not a different location or a second range), set the range start date, change match to true, break the loop
@@ -418,11 +411,7 @@ if (!$results || ($version != "full" && $version != "bookmark")) {
       } else if ($results[$i]['is_closed'] == 1) {
      
         $print .= '<span class="closed">Closed</span></p>';
-      
-      } else if ($results[$i]['is_closed'] == 0 && $results[$i]['open_time'] == $results[$i]['close_time']) {
-      
-        $print .= 'Open 24 Hours';
-      
+       
       } else {
       
         $print .= displayTime($results[$i]['open_time']).'-'.displayTime($results[$i]['close_time']).'</p>';
@@ -448,7 +437,7 @@ if (!$results || ($version != "full" && $version != "bookmark")) {
       
       <h3></h3>
       <img src="img/qr.png" height="155" width="155" />
-      <p class="bottom"><strong>Current as of '.date('M j, Y').'</strong> <br />Check hours.library.ubc.ca for latest hours information.</p>
+      <p class="bottom"><span class="bold">Current as of '.date('M j, Y').'</span></p>
       
     </div><!-- closes column -->';
         
