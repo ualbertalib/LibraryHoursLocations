@@ -22,21 +22,7 @@ if(!isset($this->data['HourDateRange']['begin_date'])) {
 
 <?php	  
 	echo $this->Form->input('modified_by',array('type'=>'hidden','value'=>$_SERVER['REMOTE_USER']));
-    echo '<fieldset>';
-    echo '<div class="first eight columns">';
-    echo $this->Form->input('HourDateRange.description',array('label'=>'Description <span class="after">(for admin use only; not displayed on public facing pages)</span>'));
-    echo '</div><div class="clear"></div>';
-	echo '</fieldset>';
-	echo '<fieldset>';
-	/*
-echo '<div class="first four columns"><label for="HourDateRangeBeginDateMonth">From</label></div>';
-	echo '<div class="seven columns"><label for="HourDateRangeEndDateMonth">To</label></div>';
-	echo '<div class="first two columns">';
-	echo $this->Form->input('HourDateRange.begin_date',array('label'=>false,'empty'=>true,'div'=>false,'minYear'=>date('Y'),'maxYear'=>date('Y')+3,'separator'=>'</div><div class="one column">'));
-	echo '</div>';			
-	echo '<div class="two columns">';
-	echo $this->Form->input('HourDateRange.end_date', array('label'=>false,'empty'=>true,'div'=>false,'minYear'=>date('Y'),'maxYear'=>date('Y')+3,'separator'=>'</div><div class="one column">'));
-*/
+	echo '<fieldset>';		
 	echo '<div class="first two columns"><label for="HourDateRangeBeginDateMonth">From</label></div>';
 	echo '<div class="nine columns"><label for="HourDateRangeEndDateMonth">To</label></div>';
 	echo '<div class="first two columns">';
@@ -46,6 +32,21 @@ echo '<div class="first four columns"><label for="HourDateRangeBeginDateMonth">F
 	echo $this->Form->input('HourDateRange.end_date', array('label'=>false,'type'=>'text'));
 	echo '</div><div class="clear"></div>';
 	echo '</fieldset>';
+	echo '<fieldset>';
+	echo '<div class="first two columns">';
+	echo $this->Form->input('HourDateRange.hour_category_id',array('label'=>'Category','empty'=>true,'div'=>false));
+	echo '</div>';
+	echo '</fieldset>';
+	echo '<fieldset>';
+	echo '<fieldset>';
+    echo '<div class="first eight columns">';
+    echo $this->Form->input('HourDateRange.description',array('label'=>'Description <span class="after">(for admin use only; not displayed on public facing pages)</span>'));
+    echo '</div><div class="clear"></div>';
+	echo '</fieldset>';
+    echo '<div class="first eight columns">';
+    echo $this->Form->input('HourDateRange.print_note',array('label'=>'Print Note <span class="after">(displayed on hours print pages)</span>'));
+    echo '</div><div class="clear"></div>';
+	echo '</fieldset>';	
 			
 ?>
 	

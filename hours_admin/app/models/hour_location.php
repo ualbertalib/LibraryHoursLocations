@@ -45,7 +45,8 @@ class HourLocation extends AppModel {
 				'on' => 'c'
 			),
 		),		
-		'phone' => array(
+		/*
+'phone' => array(
 			'phone' => array(
 				'rule' => array('phone','/^(?:\+?1)?[-. ]?\\(?[2-9][0-8][0-9]\\)?[-. ]?[2-9][0-9]{2}[-. ]?[0-9]{4}(, )?((?:\+?1)?[-. ]?\\(?[2-9][0-8][0-9]\\)?[-. ]?[2-9][0-9]{2}[-. ]?[0-9]{4})?$/'),
 				'message' => 'Please enter one or two valid phone numbers with area code (comma and space between if two)',
@@ -53,6 +54,7 @@ class HourLocation extends AppModel {
 				'required' => false,
 			),
 		)
+*/
 
 	);
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

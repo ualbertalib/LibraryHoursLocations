@@ -18,21 +18,8 @@
  */
 
 // pull from main library website header
-$uhead = file_get_contents('http://www.library.ubc.ca/home/includefiles/header.html');
-
-//repair unescaped &'s in links
-$uhead = preg_replace('~&([a-z0-9_]*)=~ims','&amp;\1=',$uhead);
-
-//fix invalid html (value attribute with image type?)
-$uhead = str_replace('value="Search"','',$uhead);
-
-//believe it or not, the template gives us an unclosed <head>
-if(!strpos($uhead,'</head>')){
-    $uhead=str_replace('<!-- BEGIN: UBC CLF HEADER -->','</head><body><!-- BEGIN: UBC CLF HEADER -->',$uhead);
-}
-
-//library's jQuery is too fusty
-$uhead=str_replace('http://www.library.ubc.ca/_ubc_clf/js/jquery-min-latest.js','http://ltk.library.ubc.ca/js/jquery.js',$uhead);
+//$uhead = file_get_contents('http://www.library.ubc.ca/home/includefiles/header.html');
+$uhead = file_get_contents('http://gates.library.ubc.ca/_ubc_clf/header.html');
 
 //need this id to win specificity wars with the UBC CLF
 $uhead=str_replace('<body>','<body id="hours_locations">',$uhead);

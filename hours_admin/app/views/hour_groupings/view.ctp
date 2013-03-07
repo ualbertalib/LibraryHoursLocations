@@ -24,7 +24,16 @@
         <?php 
         foreach($hourGrouping['HourDay'] as $day) {
         ?>
-            <dt<?php if ($i % 2 == 0) echo $class;?>><?php echo $day['day_of_week']; ?></dt>
+            <dt<?php if ($i % 2 == 0) echo $class;?>>
+		<?php 
+			$days = array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
+			if(array_search($day['day_of_week'],$days)!==false) {
+				echo $day['day_of_week'];
+			} else {
+				echo date("n/j/Y",strtotime($day['day_of_week']));
+			} 
+		?>
+	    </dt>
     		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
     			<?php
     			    if($day['is_closed']) {

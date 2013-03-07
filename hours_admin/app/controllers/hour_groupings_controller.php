@@ -148,10 +148,15 @@ class HourGroupingsController extends AppController {
 			if (array_key_exists('cancel', $this->params['form'])) { 
 				$this->redirect(array('action'=>'index'));
 			}	
-			// convert times to 24 hour format
+			// convert times to 24 hour format and set TBD times to midnight
 			foreach($this->data['HourDay'] as $key=>$day) {
-				$this->data['HourDay'][$key]['open_time'] = date("H:i:s",strtotime($day['open_time']));
-				$this->data['HourDay'][$key]['close_time'] = date("H:i:s",strtotime($day['close_time']));
+				if($this->data['HourDay'][$key]['is_tbd']==1) {
+					$this->data['HourDay'][$key]['open_time'] = date("H:i:s",strtotime("0:00:00"));
+                                        $this->data['HourDay'][$key]['close_time'] = date("H:i:s",strtotime("0:00:00"));
+				} else {
+					$this->data['HourDay'][$key]['open_time'] = date("H:i:s",strtotime($day['open_time']));
+					$this->data['HourDay'][$key]['close_time'] = date("H:i:s",strtotime($day['close_time']));
+				}
 			}
 			// convert days of week to dates when applicable, and remove days not in date range
 			$this->data['HourDay'] = $this->__convertDays($this->data);			
@@ -221,12 +226,15 @@ class HourGroupingsController extends AppController {
 		// get sorted list of days
 		$days = array();
 		$weekdays = array();
+		$shortdays = array(); // for display next to dates
 		foreach($hourdays as $key=>$day) {
 			$days[$key] = $day['day_of_week'];
 			if(in_array($day['day_of_week'],$this->days)) {
 				$weekdays[$key] = $day['day_of_week'];
+				$shortdays[$key] = substr($day['day_of_week'], 1, 3);
 			} else {
 				$weekdays[$key] = date("l",strtotime($day['day_of_week'])); 
+				$shortdays[$key] = date("D",strtotime($day['day_of_week']));
 			}
 		}
 		/*
@@ -240,7 +248,7 @@ if($this->data['HourGrouping']['hour_category_id'] == 5 || $this->data['HourGrou
 		$hourCategories = $this->HourGrouping->HourCategory->find('list');
 		$hourLocations = $this->HourGrouping->HourLocation->find('list');
 		$hourDateRanges = $this->HourGrouping->HourDateRange->find('all');
-		$this->set(compact('hourDateRanges','hourLocations', 'hourCategories', 'hourTypes', 'days', 'weekdays', 'origValues'));	
+		$this->set(compact('hourDateRanges','hourLocations', 'hourCategories', 'hourTypes', 'days', 'weekdays', 'shortdays', 'origValues'));	
     }
 
 	function delete($id = null) {

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 31, 2012 at 02:43 PM
+-- Generation Time: Mar 06, 2013 at 07:15 PM
 -- Server version: 5.5.17
 -- PHP Version: 5.3.8
 
@@ -48,6 +48,19 @@ CREATE TABLE IF NOT EXISTS `hour_categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
+--
+-- Dumping data for table `hour_categories`
+--
+
+INSERT INTO `hour_categories` (`id`, `category`, `description`) VALUES
+(1, 'Regular', 'Includes:\r\n-Fall Term: Beginning of September - End of April'),
+(5, 'Holiday', 'Includes:\r\n- Thanksgiving: Oct\r\n- Remembrance Day: Nov\r\n- Christmas: December - January\r\n- Easter: April\r\n- Victoria Day: May \r\n- Canada Day: July 1\r\n- BC Day: Aug 1\r\n- Labour Day: Sept\r\n'),
+(6, 'Exam', 'Includes:\r\n- Mid April - End of April\r\n- Beginning of December - Mid December'),
+(7, 'Exception', 'Includes:\r\n- Days within another range that are different but not a holiday, exam, intercession, etc.'),
+(4, 'Summer Alternate', 'Includes:\r\n-Summer Term Alternate Hours'),
+(2, 'Intersession', 'Includes:\r\n-Intersession Spring: End of April - Beginning of May\r\n-Intersession Fall: Mid August - Beginning of September'),
+(3, 'Summer', 'Includes:\r\n-Summer Term: Beginning of May - Mid August');
+
 -- --------------------------------------------------------
 
 --
@@ -56,13 +69,15 @@ CREATE TABLE IF NOT EXISTS `hour_categories` (
 
 CREATE TABLE IF NOT EXISTS `hour_date_ranges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hour_category_id` int(11) DEFAULT NULL,
   `description` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
   `begin_date` date NOT NULL,
   `end_date` date NOT NULL,
+  `print_note` text COLLATE utf8_bin,
   `modified_by` varchar(50) CHARACTER SET utf8 NOT NULL,
   `modified_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=89 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
 
 -- --------------------------------------------------------
 
@@ -81,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `hour_days` (
   `modified_by` varchar(50) COLLATE utf8_bin NOT NULL,
   `modified_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5110 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
 
 -- --------------------------------------------------------
 
@@ -98,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `hour_groupings` (
   `modified_by` varchar(50) DEFAULT NULL,
   `modified_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=637 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
 
 -- --------------------------------------------------------
 
@@ -113,11 +128,12 @@ CREATE TABLE IF NOT EXISTS `hour_locations` (
   `parent_hour_location_id` int(11) DEFAULT NULL,
   `location_id` int(11) DEFAULT NULL,
   `division_id` int(11) DEFAULT NULL,
+  `service_point_id` int(11) DEFAULT NULL,
   `map_code` text,
   `name` varchar(150) DEFAULT NULL,
   `description` text,
   `address` text,
-  `phone` varchar(30) DEFAULT NULL,
+  `phone` varchar(250) DEFAULT NULL,
   `url` varchar(250) DEFAULT NULL,
   `accessibility_url` varchar(500) DEFAULT NULL,
   `hours_notes` text,
@@ -127,17 +143,7 @@ CREATE TABLE IF NOT EXISTS `hour_locations` (
   `widget_note` text,
   `login` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
-
---
--- RELATIONS FOR TABLE `hour_locations`:
---   `division_id`
---       `divisions` -> `id`
---   `location_id`
---       `locations` -> `id`
---   `parent_hour_location_id`
---       `hour_locations` -> `id`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
 
 -- --------------------------------------------------------
 
@@ -149,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `hour_types` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
 
 -- --------------------------------------------------------
 
