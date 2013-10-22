@@ -19,120 +19,152 @@ if ($requestMonth*1 < 10) {
 }
 ?>
 
+<ul class="breadcrumb expand">
+  <li><a href="http://www.library.ubc.ca" title="UBC Library">Library Home</a> <span class="divider">/</span></li>
+  <li>Hours &amp; Locations</li>
+</ul>
+
 <div class="grid">
 
-  <header class="twelve columns" id="hours-header">
-    
-    <a href="" title="Hours and Locations"></a>
-    
+  <header id="hours-header">
+    <h1><a href="" title="Hours and Locations"><img src="img/hours-locations-header.gif" title="Hours and Locations" /></a></h1>
   </header>
   
-  <div class="fit five columns">
+  <div class="row-fluid">
     
-    <?= displayLocationsStatus(); ?>
-    
-  </div><!-- closes first column -->
-  
-  <div class="fit seven columns" id="map">
-    
-    <div id="api">
-    </div>
-  
-    <div id="slide-content" class="scrollpane">
+    <div class="span5 left-side">
       
-    <?php
-    // grab array of library name ids (login names)
-    $name_id = getNameIDs();
+      <div class="switcher visible-phone">
+        <p><strong>See:</strong> <a class="switch-map"><img src="img/maps.png" /> Map View</a></p>
+      </div>
+      
+      <?= displayLocationsStatus(); ?>
+      
+    </div><!-- closes first column -->
     
-    // loop through these for the panel display
-    for ($i = 0; $i < count($name_id); $i++) {
-      
-      // smaller functions used for future flexibility
-      $nameid = $name_id[$i];
-      $id = getID($name_id[$i]);
-      $url = getURL($name_id[$i]);
-      $name = getName($name_id[$i]);
-      $building = getBuilding($name_id[$i], 'at ');
-      $description = getDescription($name_id[$i]);
-      $notes = getHoursNotes($name_id[$i]);
-      $map = getMapCode($name_id[$i]);
-      $address = getAddress($name_id[$i]);
-      $phone = getPhone($name_id[$i]);
-      $accessurl = getAccessURL($name_id[$i]);
-    ?>
-
-      <div id="<?= $nameid ?>" class="branch">
-      
-        <a class="return-to-map close-box">Close</a>
-
-        <section class="bio">
-          
-          <header>
-            <h1><?php if ($name != "Library") {
-              echo '<a href="'.$url.'">'.$name.'</a>';
-            } else {
-              echo $name;
-            } ?></h1>
-            <h3><?= $building ?></h3>
-          </header>
-
-          <p><a href="<?= $url ?>" class="external"><?= $url ?></a><?php if ($name == "Library") { echo ' &nbsp; | &nbsp; <a href="http://scieng.library.ubc.ca/" class="external">http://scieng.library.ubc.ca/</a>'; } ?></p>
-          <div class="quiet"><?php if ($nameid == 'library') { echo '
-            <p>The Library at Irving K. Barber Learning Centre includes:</p>
-            <dl class="toggle">'.$description.'<dt class="toggle-list empty"><span></span>&nbsp;</dt><dd class="toggle-item empty">Bacon ipsum dolor sit amet sed pork eu, nulla tongue meatball ham hock bacon beef nisi frankfurter in short loin.</dd></dl>';
-          } else {
-            echo $description; } ?>
-          </div>
-          
-        </section><!-- closes bio -->
+    <div class="span7 right-side">
+    
+      <div id="map">
         
-        <section id="calendar_<?= $nameid ?>" class="calendar_wrapper">
-          
-          <?= $notes ?>
-          
+        <div id="api">
+        </div>
+        
+        <div id="slide-content" class="scrollpane">
+        
           <?php
-          $location_id = $id;
-          include('includes/calendar.inc.php');
-          ?>
+          // grab array of library name ids (login names)
+          $name_id = getNameIDs();
           
-        </section><!-- closes calendar wrapper -->
+          // loop through these for the panel display
+          for ($i = 0; $i < count($name_id); $i++) {
+          
+            // smaller functions used for future flexibility
+            $nameid = $name_id[$i];
+            $id = getID($name_id[$i]);
+            $url = getURL($name_id[$i]);
+            $name = getName($name_id[$i]);
+            $building = getBuilding($name_id[$i], 'at ');
+            $description = getDescription($name_id[$i]);
+            $notes = getHoursNotes($name_id[$i]);
+            $map = getMapCode($name_id[$i]);
+            $address = getAddress($name_id[$i]);
+            $phone = getPhone($name_id[$i]);
+            $accessurl = getAccessURL($name_id[$i]);
+            $currentdate = date('Y-m-d');
+            $currenttime = date('H:i:s');
+            ?>
+            
+            <a name="view-<?= $nameid ?>"></a>
+            <div id="<?= $nameid ?>" class="branch">
+            
+              <div class="controls visible-phone">
+                <p class="status"><?= displayCurrentStatus($currentdate, $currenttime, $id); ?></p>
+                <p><a class="button green show-locations">&laquo; All Locations</a></p>
+              </div>
+              
+              <a class="return-to-map close-box">Close</a>
+              
+              <section class="bio">
+                
+                <header>
+                  <h1><a href="<?= $url; ?>"><?= $name; ?></a></h1>
+                  <h3><?= $building; ?></h3>
+                </header>
+                
+                <p class="theurl"><a href="<?= $url ?>" class="external"><?= $url ?></a></p>
+                
+                <div class="quiet">
+                  <?= $description; ?>
+                </div>
+              
+              </section><!-- closes bio -->
+              
+              <?= $notes ?>
+              
+              <?php if ($nameid != "hamber" && $nameid != "stpauls" && $nameid != "music") { ?>
+              
+              <section id="calendar_<?= $nameid ?>" class="calendar_wrapper"> 
+                
+                <?php $location_id = $id;
+                include('includes/calendar.inc.php');
+                ?>
+                
+              </section><!-- closes calendar wrapper -->
+              
+              <?php } else if ($nameid == "music") { ?>
+              
+              <p class="message note"><strong>Music services at this location have changed.</strong> Please refer to <a href="http://barber.library.ubc.ca/">Music, Art and Architecture Library</a>. Contact information for this location is provided below.</p>
+              
+              <?php } else { ?>
+              
+              <p class="message note"><strong>Hospital services at this location have changed.</strong> Please refer to <a href="http://www.library.ubc.ca/woodward/">Woodward Library</a> or <a href="http://www.library.ubc.ca/bmb/">Biomedical Branch Library</a>. You may also view <a href="http://www.library.ubc.ca/life/about/refhours.html">reference hours</a> for these locations. Contact information for Woodward is provided below.</p>
+              
+              <?php } ?>
+              
+              <section class="contact">
+              
+                <span class="library-img"></span>
+                
+                <div class="small-left">
+                  
+                  <h5>Address</h5>
+                  
+                  <address>
+                    <a href="http://maps.google.com/maps?q=<?= $map ?>+(<?= urlencode($name) ?>)&z=16&ll=<?= $map ?>&iwloc=A" title="View on Google Maps" class="external"><?= $address ?></a>
+                  </address>
+                  
+                  <?php if ($accessurl != '') { ?>
+                  <p><a href="<?= $accessurl ?>" title="Disability Access" class="external"><img src="img/wheelchair.gif" alt="Disability Access" height="32" width="32" class="disability" /> Disability Access</a></p>
+                  <?php }//closes if ?>
+                  
+                  <p class="hidden-phone"><a class="button return-to-map">Map Overview</a></p>
+                  
+                </div>
+                
+                <h5>Phone</h5>
+                <p class="visible-desktop"><?= $phone ?></p>
+                <p class="hidden-desktop"><a href="tel:1+<?= $phone ?>"><?= $phone ?></a></p>
+                
+                <div class="controls visible-phone">
+                  <p><a class="button green show-locations map-view">&laquo; Map Overview</a></p>
+                </div>
+              
+              </section><!-- closes contact -->
+            
+            </div><!-- closes branch -->
+          
+          <?php }//closes for ?>
         
-        <section class="contact">
-          
-          <span class="library-img"></span>
-          
-          <h5>Address</h5>
-          
-          <address>
-            <a href="http://maps.google.com/maps?q=<?= $map ?>+(<?= urlencode($name) ?>)&z=16&ll=<?= $map ?>&iwloc=A" title="View on Google Maps">
-            <?= $address ?></a>
-          </address>
-          
-          <?php if ($accessurl != '') { ?>
-          <p><a href="<?= $accessurl ?>" title="Disability Access" class="external"><img src="img/wheelchair.gif" alt="Disability Access" height="32" width="32" class="disability" /> Disability Access</a></p>
-          <?php }//closes if ?>
-  
-          <h5>Information Desk</h5>
-          <p><?= $phone ?></p>
-          
-
-          
-          <p><a class="button return-to-map">See Map Overview</a></p>
-          
-        </section><!-- closes contact -->
-
-      </div><!-- closes branch -->
+        </div><!-- closes slide-content -->
+        
+      </div><!-- closes map --><br />
+      
+    </div><!-- closes second column -->
     
-    <?php
-    }//closes for
-    ?>
+  </div><!-- closes row-fluid -->
 
-    </div><!-- closes slide-content -->
+  <div class="admin">
     
-  </div><!-- closes second column/map -->
-
-  <div class="twelve columns admin">
-	
     <?php
     // footer links depend on dev/prod server
     if ($_SERVER['SERVER_NAME'] != "kemano.library.ubc.ca" && $_SERVER['SERVER_NAME'] != "hours-dev.library.ubc.ca") { ?>
@@ -143,7 +175,7 @@ if ($requestMonth*1 < 10) {
     <a href="print.php">Signage and Bookmarks</a>
    
   </div><!-- closes admin -->
-   
+
 </div><!-- closes grid -->
 
 <script type="text/javascript">

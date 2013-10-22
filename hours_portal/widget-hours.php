@@ -27,6 +27,9 @@
   border: 1px solid #ddd;
   text-transform: capitalize;
 }
+.hours th .nowrap {
+  white-space: nowrap;
+}
 .hours td, .hours th {
   border-bottom: 1px solid #ddd;
   letter-spacing: 0;
@@ -73,6 +76,7 @@
 
 <body>
 
+<script type="text/javascript" src="http://kemano.library.ubc.ca/~letitia/hours/widget-hours-js.php?location1=2&location2=2&shorttable=yes"></script>
 
 <?php 
 require_once('functions.php');
@@ -83,49 +87,94 @@ require_once('functions.php');
 
 
 // grab submitted values (which locations/hours, what display)
-$location1 = isset($_GET['location1']) ? sanitize($_GET['location1']) : 6;
+$location1 = isset($_GET['location1']) ? sanitize($_GET['location1']) : 2;
 $type1 = isset($_GET['type1']) ? sanitize($_GET['type1']) : 2;
-$location2 = isset($_GET['location2']) ? sanitize($_GET['location2']) : '';
+$location2 = isset($_GET['location2']) ? sanitize($_GET['location2']) : 2;
 $type2 = isset($_GET['type2']) ? sanitize($_GET['type2']) : 3;
 $location3 = isset($_GET['location3']) ? sanitize($_GET['location3']) : '';
 $type3 = isset($_GET['type3']) ? sanitize($_GET['type3']) : 2;
 $display = isset($_GET['display']) ? sanitize($_GET['display']) : 'table';
+$shorttable = isset($_GET['shorttable']) ? sanitize($_GET['shorttable']) : '';
 
 
 // set current year, week, day, date, time
-$currentyear = date('Y');
+$currentyear = date('o');
 $currentweek = date('W');
 $currentdate = date('Y-m-d');
 $currentday = date('l', strtotime($currentdate));
 $currenttime = date('H:i:s');
 
 // for testing different dates, times
-//$currentyear = '2012';
-//$currentweek = '15';
-//$currentdate = '2011-12-10';
+//$currentdate = '2013-01-01';
+//$currentyear = date('o', strtotime($currentdate)); // a "rounded" year that follows the 52 week count
+//$currentweek = date('W', strtotime($currentdate));
 //$currentday = date('l', strtotime($currentdate));
 //$currenttime = '01:00:00';
 
 
-// find first monday of the year
+// find first monday of the year and its week number
 $firstmon = strtotime("mon jan {$currentyear}");
+$firstmonweek = date('W', $firstmon);
 
-// weeks offset is always one less than current week
-$weeksoffset = $currentweek - 1;
+// if the "rounded" year is in fact a year ahead of the current date (i.e. monday is previous year)
+if (date('Y', strtotime($currentdate)) < $currentyear) {
 
-// calculate this week's monday
-$thismon = date( 'Y-m-d', strtotime("+{$weeksoffset} week " . date('Y-m-d', $firstmon)) );
+  // go back to the previous year and grab that monday
+  $lastyear = ($currentyear - 1);
+  $lastyrfirstmon = strtotime("mon jan {$lastyear}");
+  $thismon = date( 'Y-m-d', strtotime("+52 week " . date('Y-m-d', $lastyrfirstmon)) );
+
+} else {
+
+  // number of weeks to add depends on when the first monday occurs (first week or second week of the year)
+  if ($firstmonweek == 01) {
+    $weeksoffset = $currentweek - 1;
+  } else {
+    $weeksoffset = $currentweek - 2;
+  }//closes if-else
+  
+  // calculate this week's monday using the above offset
+	$thismon = date( 'Y-m-d', strtotime("+{$weeksoffset} week " . date('Y-m-d', $firstmon)) );
+
+}//closes if-else
+
+//echo 'Today: '.$currentyear.'<br />';
+//echo 'This week: '.$currentweek.' <br />This Mon: '.$thismon.' <br/>First Mon: '.date('Y-m-d', $firstmon).' <br />First Mon Week: '.$firstmonweek;
 
 
 // begin widget variable string depending on display
 if ($display == 'table') {
   
+  // account for single day table display
+  if ($shorttable == "yes") {
+   
+    // for single day table
+    $caption = '<caption>Today\'s Hours</caption>';
+    
+  } else {
+    
+    $caption = '<caption>This Week ';
+    
+    if (!$location2) {
+      $caption .= '<br />';
+    }//closes if
+    
+    $caption .= '('.date('F j, Y', strtotime($thismon)).')</caption>';
+    
+  }//closes if-else
+  
   $widget = '
 <table class="hours">
-<caption>This Week '; if (!$location2) { $widget .= '<br />'; } $widget .= '('.date('F j, Y', strtotime($thismon)).')</caption>
+  '.$caption.'
   <tbody>
-    <tr>
-      <th>HOURS</th>
+    <tr>';
+  
+  // for weekly table
+  if ($shorttable != "yes") { $widget .= '
+      <th>Hours</th>';
+  }//closes if
+  
+  $widget .= '
       <th>';
 
   // for library hours in column 1
@@ -139,7 +188,7 @@ if ($display == 'table') {
       break;
       
       case 7:
-      $widget .= 'IKBLC Library<br />(AArP/SciEng)';
+      $widget .= 'Music, Art &amp;<br /> Architecture Library';
       break;
       
       case 11:
@@ -147,7 +196,7 @@ if ($display == 'table') {
       break;
       
       default:
-      $widget .= 'Open Hours';
+      $widget .= '<span class="nowrap">Open Hours</span>';
       break;
     
     }//closes switch
@@ -159,7 +208,7 @@ if ($display == 'table') {
     switch ($location1) {
     
       case 2:
-      $widget .= 'Reference<br />&amp; Microform';
+      $widget .= 'Research Commons<br />&amp; Reference';
       break;
       
       default:
@@ -189,7 +238,7 @@ if ($display == 'table') {
         break;
         
         case 7:
-        $widget .= 'IKBLC Library<br />(AArP/SciEng)';
+        $widget .= 'Music, Art &amp;<br /> Architecture Library';
         break;
         
         case 11:
@@ -209,7 +258,7 @@ if ($display == 'table') {
       switch ($location2) {
       
         case 2:
-        $widget .= 'Reference<br />&amp; Microform';
+        $widget .= 'Research Commons<br />&amp; Reference';
         break;
         
         default:
@@ -241,7 +290,7 @@ if ($display == 'table') {
         break;
         
         case 7:
-        $widget .= 'IKBLC Library<br />(AArP/SciEng)';
+        $widget .= 'Music, Art &amp;<br /> Architecture Library';
         break;
         
         case 11:
@@ -261,7 +310,7 @@ if ($display == 'table') {
       switch ($location3) {
       
         case 2:
-        $widget .= 'Reference<br />&amp; Microform';
+        $widget .= 'Research Commons<br />&amp; Reference';
         break;
         
         default:
@@ -282,8 +331,51 @@ if ($display == 'table') {
   // begin table rows with gray background (= false)
   $alt = false;
   
+  // limit loop for single day table
+  if ($shorttable == "yes") {
+    
+    switch($currentday) {
+    
+      case "Monday":
+      $start = 0;
+      break;
+      
+      case "Tuesday":
+      $start = 1;
+      break;
+      
+      case "Wednesday":
+      $start = 2;
+      break;
+      
+      case "Thursday":
+      $start = 3;
+      break;
+      
+      case "Friday":
+      $start = 4;
+      break;
+      
+      case "Saturday":
+      $start = 5;
+      break;
+      
+      case "Sunday":
+      $start = 6;
+      break;
+    }//closes switch;
+    
+    $days = 1 + $start;
+  
+  } else {
+  
+    $start = 0;
+    $days = 7;
+  
+  }//closes if-else
+  
   // for loop to display day rows
-  for ($i = 0; $i < 7; $i++) {
+  for ($i = $start; $i < $days; $i++) {
    
     // change day and date with each iteration
     switch ($i) {
@@ -344,10 +436,15 @@ if ($display == 'table') {
     <tr class="odd '; if ($currentday == $day) { $row .= ' today'; } $row .= '">';
       $alt = false;
       
-    }//closes if-else  
+    }//closes if-else
     
-    // add in day of week
-    $row .= '<td>'.$day.'</td>';
+    // no day column for single day table
+    if ($shorttable != "yes") {
+      
+      // add in day of week
+      $row .= '<td>'.$day.'</td>';
+      
+    }//closes if
     
     // for first column returns
     if ($column1) {
@@ -588,6 +685,11 @@ if ($display == 'table') {
 <div class="hours-widget">
   <p><strong>'.$status.'</strong></p>
 </div>';
+
+} else if ($display == 'homepage') {
+  
+  // grab full table display for the homepage
+  $widget = displayLocationsStatusHomepage();
 
 } else {
   

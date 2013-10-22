@@ -9,7 +9,7 @@ if(file_exists($config_file)) {
 	while (!feof($fp)) {
 		$line = trim(fgets($fp));
 		
-		if($line && !ereg("^$comment", $line)) {
+		if($line && !preg_match("/^$comment/", $line)) {
 			$pieces = explode("=", $line);
 			$option = $pieces[0];
 			$value = $pieces[1];
@@ -20,24 +20,13 @@ if(file_exists($config_file)) {
 
   fclose($fp);
 
-  // set values to local variables
-
-  /*** mysql hostname ***/
-  $hostname = $config_values['HOSTNAME'];
-
-  /*** mysql database name ***/
-  $dbname = $config_values['DBNAME'];
-
-  /*** mysql username ***/
-  $username = $config_values['USER'];
-
-  /*** mysql password ***/
-  $password = $config_values['PASS'];
+  // set values to local variables, getting hostname from dbfinder
+  $dsn = 'mysql:host='.$config_values['DBHOST'].';dbname='.$config_values['DBNAME'];
 
   // connect to database for selecting
   try {
     
-    $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
+    $dbh = new PDO($dsn, $config_values['USER'], $config_values['PASS']);
     
     //add attribute to convert empty strings to null
     $dbh->setAttribute(PDO::ATTR_ORACLE_NULLS, PDO::NULL_EMPTY_STRING);

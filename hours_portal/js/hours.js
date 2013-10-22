@@ -1,16 +1,32 @@
 $(document).ready(function(){
 
+
+  // force page reload when navigation drop-down menu used
+  function forcePageReload(url) {
+    window.location.assign(url);
+    window.location.reload(true);
+  }//closes function
+  
+  $("#hours-nav a").click(function() { 
+    var url = $(this).attr('href');
+    forcePageReload(url);
+  });//closes click
+
+  $("#hours-nav-footer a").click(function() { 
+    var url = $(this).attr('href');
+    forcePageReload(url);
+  });//closes click
   
   // first, modify display for enabled javascript
   $('#map').css('overflow', 'hidden');
   $('#slide-content .branch .close-box').css('display', 'block');
-  $('#slide-content').css({ 'left' : '-560px' });
+  $('#slide-content').css({ 'left' : '-666px' });
   $('#slide-content .branch').css('display', 'none');
   $('#slide-content h2').css('clear', 'none');
   
   
   // set array for the div content options available (each location) <-- ADD/DELTE HERE TO ADD/DELETE LOCATION
-  var divsArray = new Array('asian', 'biomedical', 'davidlam', 'education', 'hamber', 'ikblc', 'library', 'chapman', 'rbsc', 'archives', 'koerner', 'law', 'music', 'okanagan', 'robson', 'stpauls', 'woodward', 'xwi7xwa');
+  var divsArray = new Array('asian', 'biomedical', 'davidlam', 'education', 'ikblc', 'library', 'chapman', 'rbsc', 'archives', 'koerner', 'law', 'okanagan', 'woodward', 'xwi7xwa');
   
   
   // the function to open the slide content
@@ -39,20 +55,20 @@ $(document).ready(function(){
     $(divid).css('display', 'block');
     
     // need to hack the height for jScrollPane to work w/toggle description, so animate empty dd when library panel selected 
-    if (divid == "#library") {
-      $('dl.toggle dd.toggle-item.empty').animate(
-        {
-        height: 'toggle'
-        }, 0, function() {
-        $('dl.toggle dd.toggle-item.empty').animate({ height: 'toggle'
-          }, 0, function() {
-        });
-      });//closes animate
-    }//closes if
+    //if (divid == "#library") {
+    //  $('dl.toggle dd.toggle-item.empty').animate(
+    //    {
+    //    height: 'toggle'
+    //    }, 0, function() {
+    //    $('dl.toggle dd.toggle-item.empty').animate({ height: 'toggle'
+    //      }, 0, function() {
+    //    });
+    //  });//closes animate
+    //}//closes if
     
-    // now initialize the scrollpane
+    // now initialize the scrollpane (and prevent horizontal scrolling)
     setTimeout(function() {    
-      $('.scrollpane').jScrollPane();
+      $('.scrollpane').jScrollPane({contentWidth: '1'});
     }, 20);
     
   }//closes function
@@ -68,7 +84,7 @@ $(document).ready(function(){
     // close the slide content container
     $('#slide-content').stop().animate(
       {
-      left:'-560px'
+      left:'-666px'
       }, {
       queue:false,
       duration:400,
@@ -80,10 +96,38 @@ $(document).ready(function(){
     });//closes animate
   
   }//closes function
-
-
-   // when user clicks on a table item  
-  $('.slide-out').click(function(){
+  
+  
+  // the function to switch between the table and map views on a small screen
+  function switchMap() {
+    
+    // swap out table for map underneath
+    $('#locations-table').toggle();
+    
+    // determine button text
+    var label = $('.switch-map').text();
+    
+    // replace button text
+    if (label.indexOf("Map") >= 0) {
+      $('.switch-map').html("<img src='img/list.png' /> Table View");
+      $('#map').css({'width' : '100%'});
+      $('#api').css({'margin-left' : '-115%'});
+    } else if (label.indexOf("Table") >= 0) {
+      $('.switch-map').html("<img src='img/maps.png' /> Map View");
+      $('#map').css({'width' : '95%'});
+      $('#api').css({'margin-left' : '-110%'});
+    }//closes if-else if
+    
+  }//closes function
+  
+  
+  // when user clicks on a table item  
+  $('.slide-out').on('click', function(){
+    
+    if ($('.right-side').hasClass('onscreen') == false) {
+      $('.right-side').addClass('onscreen');
+      $('.left-side').addClass('offscreen');
+    }//closes if
     
     // close the window if user selects the already selected item
     if ($(this).hasClass('selected') == true) {
@@ -113,6 +157,30 @@ $(document).ready(function(){
 		
   });//closes click
   
+  // when user on small device wants to switch between table and map view
+  $('.switch-map').click(function(){
+    switchMap();
+  });//closes click
+  
+  // when user on small device wants to view locations table 
+  $('.show-locations').on('click', function(){
+    
+    if ($('.right-side').hasClass('onscreen') == true) {
+      $('.right-side').removeClass('onscreen');
+      $('.left-side').removeClass('offscreen');
+    }//closes if
+    
+    $('.right-side .jspPane').css({'top' : '0'}); 
+    
+    if ($(this).hasClass('map-view') == true) {
+      $('.switch-map').html("<img src='img/list.png' /> Table View");
+      $('#locations-table').hide();
+      $('#map').css({'width' : '100%'});
+      $('#api').css({'margin-left' : '-115%'});
+      window.scrollTo(0, 150);
+    }//closes if
+    
+  });//closes click
   
   // creates hours highlighting when clicking the calendar days
 	$(".month td").live('click',function(){
@@ -156,13 +224,28 @@ $(document).ready(function(){
     // FUNCTIONS
     
     // the function to create new markers
-    function newMarker(pos, title) {
+    function newMarker(pos, title, label) {
       
-      var marker = new google.maps.Marker({
+      var point1 = -4;
+      var point2 = 24;
+      
+      if (label == "Asian") {
+        point1 = 47;
+      }
+      if (label == "Learning Centre") {
+        point2 = 26;
+      }
+      if (label == "Xwi7xwa") {
+        point1 = 64;
+      }
+      
+      var marker = new MarkerWithLabel({
         position: pos,
         map: map,
-        animation: google.maps.Animation.DROP,
-        title: title
+        title: title,
+        labelContent: label,
+        labelAnchor: new google.maps.Point(point1, point2),
+        labelClass: "map-label"
       });
    
       return marker;
@@ -244,6 +327,7 @@ $(document).ready(function(){
     
     // default map appearance
     var mapOptions = {
+      scrollwheel: false,
       zoom: 15,
       center: latlngDefault,
       disableDefaultUI: true,
@@ -266,15 +350,11 @@ $(document).ready(function(){
     var latlngBiomedical = new google.maps.LatLng(49.260848, -123.125474);
     var latlngDavid = new google.maps.LatLng(49.265797, -123.253850);
     var latlngEducation = new google.maps.LatLng(49.264333, -123.252310);
-    var latlngHamber = new google.maps.LatLng(49.245709, -123.127641);
     var latlngIrving = new google.maps.LatLng(49.267611, -123.25204); // includes 4 child locations
     var latlngKoerner = new google.maps.LatLng(49.266843, -123.254461);
     var latlngLaw = new google.maps.LatLng(49.269499, -123.253543);
-    var latlngMusic = new google.maps.LatLng(49.267115, -123.256477);
     var latlngOkanagan = new google.maps.LatLng(49.940437, -119.394375);
-    var latlngRobson = new google.maps.LatLng(49.282019, -123.120833);
     var latlngWoodward = new google.maps.LatLng(49.264150, -123.247779);
-    var latlngSt = new google.maps.LatLng(49.280419, -123.127141);
     var latlngXwi7xwa = new google.maps.LatLng(49.265744, -123.256468);
     
     
@@ -297,46 +377,34 @@ $(document).ready(function(){
     
     var markersArray = [];
     
-    var asian = newMarker(latlngAsian, "Asian Library");
+    var asian = newMarker(latlngAsian, "Asian Library", "Asian");
     markersArray.push(asian);
    
-    var biomedical = newMarker(latlngBiomedical, "Biomedical Branch Library");
+    var biomedical = newMarker(latlngBiomedical, "Biomedical Branch Library", "Biomedical");
     markersArray.push(biomedical);
     
-    var davidlam = newMarker(latlngDavid, "David Lam Management Research Library");
+    var davidlam = newMarker(latlngDavid, "David Lam Management Research Library", "David Lam");
     markersArray.push(davidlam);
     
-    var education = newMarker(latlngEducation, "Education Library");
+    var education = newMarker(latlngEducation, "Education Library", "Education");
     markersArray.push(education);
     
-    var hamber = newMarker(latlngHamber, "Hamber Library");
-    markersArray.push(hamber);
-    
-    var ikblc = newMarker(latlngIrving, "Irving K. Barber Learning Centre");
+    var ikblc = newMarker(latlngIrving, "Irving K. Barber Learning Centre", "Learning Centre");
     markersArray.push(ikblc);
     
-    var koerner = newMarker(latlngKoerner, "Koerner Library");
+    var koerner = newMarker(latlngKoerner, "Koerner Library", "Koerner");
     markersArray.push(koerner);
     
-    var law = newMarker(latlngLaw, "Law Library");
+    var law = newMarker(latlngLaw, "Law Library", "Law");
     markersArray.push(law);
     
-    var music = newMarker(latlngMusic, "Music Library");
-    markersArray.push(music);
-    
-    var okanagan = newMarker(latlngOkanagan, "Okanagan Library");
+    var okanagan = newMarker(latlngOkanagan, "Okanagan Library", "Okanagan");
     markersArray.push(okanagan);
-   
-    var robson = newMarker(latlngRobson, "Robson Square Library");
-    markersArray.push(robson);
     
-    var stpauls = newMarker(latlngSt, "St. Paul's Hospital Library");
-    markersArray.push(stpauls);
-    
-    var woodward = newMarker(latlngWoodward, "Woodward Library");
+    var woodward = newMarker(latlngWoodward, "Woodward Library", "Woodward");
     markersArray.push(woodward);
     
-    var xwi7xwa = newMarker(latlngXwi7xwa, "Xwi7xwa Library");
+    var xwi7xwa = newMarker(latlngXwi7xwa, "Xwi7xwa Library", "Xwi7xwa");
     markersArray.push(xwi7xwa);
     
     
@@ -344,7 +412,7 @@ $(document).ready(function(){
     
     // variables to use in for loop  <-- ADD/DELETE HERE TO ADD/DELETE LOCATION
     var markersCount = markersArray.length;
-    var markersSelectedChoices = new Array('asian', 'biomedical', 'davidlam', 'education', 'hamber', 'ikblc', 'koerner', 'law', 'music', 'okanagan', 'robson', 'stpauls', 'woodward', 'xwi7xwa');
+    var markersSelectedChoices = new Array('asian', 'biomedical', 'davidlam', 'education', 'ikblc', 'koerner', 'law', 'okanagan', 'woodward', 'xwi7xwa');
     
     for (i = 0; i < markersCount; i++) {
       
@@ -369,7 +437,10 @@ $(document).ready(function(){
           contentSwitch('#'+temp);
           window.location.href = '#view-'+temp;
           $('.'+temp).addClass('selected');
-
+          if ($('.right-side').hasClass('onscreen') == false) {
+            $('.right-side').addClass('onscreen');
+            $('.left-side').addClass('offscreen');
+          }//closes if
         });
       
       })();//closes function
@@ -377,7 +448,7 @@ $(document).ready(function(){
     }//closes for
     
     
-    // TABLE EVENTS <-- ADD/DELETE HERE TO ADD/DELETE LOCATION (BOTH HOVER & CLICK)
+    // TABLE EVENTS <-- ADD/DELETE HERE TO ADD/DELETE LOCATION (BOTH HOVER & CLICK) **UPDATE MARKER NUMBERS HERE AS WELL**
     
     $('.asian').hoverIntent(function() {
       tableMouseover(latlngDefault, 15, 0);
@@ -403,94 +474,70 @@ $(document).ready(function(){
       tableMouseout(3); }
     );//closes hover
     
-    $('.hamber').hoverIntent(function() {
-      tableMouseover(latlngBiomedical, 13, 4);
-      }, function() {
-      tableMouseout(4); }
-    );//closes hover
-      
     $('.ikblc').hoverIntent(function() {
       tableMouseover(latlngDefault, 15, 5);
       }, function() {
-      tableMouseout(5); }
+      tableMouseout(4); }
     );//closes hover
     
     $('.library').hoverIntent(function() {
       tableMouseover(latlngDefault, 15, 5);
       }, function() {
-      tableMouseout(5); }
+      tableMouseout(4); }
     );//closes hover
     
     $('.chapman').hoverIntent(function() {
       tableMouseover(latlngDefault, 15, 5);
       }, function() {
-      tableMouseout(5); }
+      tableMouseout(4); }
     );//closes hover
     
     $('.rbsc').hoverIntent(function() {
       tableMouseover(latlngDefault, 15, 5);
       }, function() {
-      tableMouseout(5); }
+      tableMouseout(4); }
     );//closes hover
     
     $('.archives').hoverIntent(function() {
       tableMouseover(latlngDefault, 15, 5);
       }, function() {
-      tableMouseout(5); }
+      tableMouseout(4); }
     );//closes hover
     
     $('.koerner').hoverIntent(function() {
       tableMouseover(latlngDefault, 15, 6);
       }, function() {
-      tableMouseout(6); }
+      tableMouseout(5); }
     );//closes hover
     
     $('.law').hoverIntent(function() {
       tableMouseover(latlngDefault, 15, 7);
       }, function() {
-      tableMouseout(7); }
-    );//closes hover
-    
-    $('.music').hoverIntent(function() {
-      tableMouseover(latlngDefault, 15, 8);
-      }, function() {
-      tableMouseout(8); }
+      tableMouseout(6); }
     );//closes hover
     
     $('.okanagan').hoverIntent(function() {
       tableMouseover(latlngOkanagan, 16, 9);
       }, function() {
-      tableMouseout(9); }
-    );//closes hover
-    
-    $('.robson').hoverIntent(function() {
-      tableMouseover(latlngBiomedical, 13, 10); },
-      function() {
-      tableMouseout(10); }
-    );//closes hover
-    
-    $('.stpauls').hoverIntent(function() {
-      tableMouseover(latlngBiomedical, 13, 11);
-      }, function() {
-      tableMouseout(11); }
+      tableMouseout(7); }
     );//closes hover
     
     $('.woodward').hoverIntent(function() {
-      tableMouseover(latlngDefault, 15, 12);
+      tableMouseover(latlngDefault, 15, 11);
       }, function() {
-      tableMouseout(12); }
+      tableMouseout(8); }
     );//closes hover
     
     $('.xwi7xwa').hoverIntent(function() {
-      tableMouseover(latlngDefault, 15, 13);
+      tableMouseover(latlngDefault, 15, 12);
       }, function() {
-      tableMouseout(13); }
+      tableMouseout(9); }
     );//closes hover  
-
+    
+    
 		$('.asian').click(function() {
       tableMouseover(latlngDefault, 15, 0);
      });//closes hover
-    
     
     $('.biomedical').click(function() {
       tableMouseover(latlngBiomedical, 13, 1);
@@ -504,10 +551,6 @@ $(document).ready(function(){
       tableMouseover(latlngDefault, 15, 3);
     });//closes click
     
-    $('.hamber').click(function() {
-      tableMouseover(latlngBiomedical, 13, 4);
-    });//closes click
-      
     $('.ikblc').click(function() {
       tableMouseover(latlngDefault, 15, 5);
     });//closes click
@@ -536,28 +579,16 @@ $(document).ready(function(){
       tableMouseover(latlngDefault, 15, 7);
     });//closes click
     
-    $('.music').click(function() {
-      tableMouseover(latlngDefault, 15, 8);
-    });//closes click
-    
     $('.okanagan').click(function() {
       tableMouseover(latlngOkanagan, 16, 9);
     });//closes click
     
-    $('.robson').click(function() {
-      tableMouseover(latlngBiomedical, 13, 10); 
-		});//closes click
-    
-    $('.stpauls').click(function() {
-      tableMouseover(latlngBiomedical, 13, 11);
-    });//closes click
-    
     $('.woodward').click(function() {
-      tableMouseover(latlngDefault, 15, 12);
+      tableMouseover(latlngDefault, 15, 11);
     });//closes click
     
     $('.xwi7xwa').click(function() {
-      tableMouseover(latlngDefault, 15, 13);
+      tableMouseover(latlngDefault, 15, 12);
     });//closes click
     
     
@@ -566,9 +597,9 @@ $(document).ready(function(){
     $('.return-to-map').click(function() {
 
       // determine view to reset to
-      if (window.location.hash == "#view-biomedical" || window.location.hash == "#view-hamber" || window.location.hash == "#view-robson" || window.location.hash == "#view-stpauls") {
+      if (window.location.hash == "#view-biomedical") {
         tableMouseover(latlngBiomedical, 13, -1);
-      } else if (window.location.hash == "#view-okanagan"){
+      } else if (window.location.hash == "#view-okanagan") {
         tableMouseover(latlngOkanagan, 16, -1);
       } else {
         tableMouseover(latlngDefault, 15, -1);
@@ -598,11 +629,26 @@ $(document).ready(function(){
       
       contentSwitch('#'+location);
       $('.'+location).addClass('selected');
-      $('#slide-content').addClass('open-content');
+      slideOpen();
+      if ($('.right-side').hasClass('onscreen') == false) {
+        $('.right-side').addClass('onscreen');
+        $('.left-side').addClass('offscreen');
+      }//closes if
     
     }//closes if
     
   }//closes if
+  
+  
+  // when user on small device hits back button to original URL
+  $(window).hashchange(function(){
+    
+    var currentURL = window.location.hash;
+    if (currentURL == "") {
+      window.location.reload(true);
+    }//closes if
+    
+  });//closes hashchange
 
 
 	// display/hide the scroll bar unless someone has mouse over content area
@@ -616,13 +662,13 @@ $(document).ready(function(){
 
   
   // add and display the scroll bar if needed when the accordion items (e.g. IKBLC Library floors) are clicked
-  $('.toggle-list').click(function() {
-    // timeout allows slide animation to complete first
-		setTimeout(function() {
-      $('.scrollpane').jScrollPane();
-      $('.jspVerticalBar').show();
-    }, 150); 
-  });//closes click
-    
-    
+  //$('.toggle-list').click(function() {
+  //  // timeout allows slide animation to complete first
+  //  setTimeout(function() {
+  //    $('.scrollpane').jScrollPane({contentWidth: '1'});
+  //    $('.jspVerticalBar').show();
+  //  }, 150); 
+  //});//closes click
+  
+  
 });//closes jQuery

@@ -69,8 +69,8 @@ function displayLocationsStatus($branchID = null) {
   $currenttime = date('H:i:s');
   
   // for testing other dates and times
-  //$currentdate = '2011-12-20';
-  //$currenttime = '00:30:00';
+  //$currentdate = '2012-04-09';
+  //$currenttime = '13:30:00';
   
   $sql = "SELECT hour_locations.id, hour_locations.name, hour_locations.parent_hour_location_id AS parent, hour_locations.login
           FROM hour_locations
@@ -91,7 +91,7 @@ function displayLocationsStatus($branchID = null) {
 
       <span class="headers">
         <dt>Location</dt>
-        <dd>at '.date('g:i a').'</dd>
+        <dd>Today</dd>
       </span>
       ';
   
@@ -103,18 +103,18 @@ function displayLocationsStatus($branchID = null) {
     // start the display with appropriate span tag (inserts alternating rows)
     if ($alt == false && $results[$i]['parent'] == NULL) {
       $locationstable .= '
-      <a href="#view-'.$id.'"><span class="slide-out '.$id.'">';
+      <a href="#view-'.$id.'" title="Click to see hours for this location"><span class="slide-out '.$id.'">';
       $alt = true;
     } else if ($alt == true && $results[$i]['parent'] == NULL) {
       $locationstable .= '
-      <a href="#view-'.$id.'"><span class="alt slide-out '.$id.'">';
+      <a href="#view-'.$id.'" title="Click to see hours for this location"><span class="alt slide-out '.$id.'">';
       $alt = false;
     } else if ($alt == false && $results[$i]['parent'] != NULL){
       $locationstable .= '
-      <a href="#view-'.$id.'"><span class="alt slide-out '.$id.' sublevel">';
+      <a href="#view-'.$id.'" title="Click to see hours for this location"><span class="alt slide-out '.$id.' sublevel">';
     } else if ($alt == true && $results[$i]['parent'] != NULL){
       $locationstable .= '
-      <a href="#view-'.$id.'"><span class="slide-out '.$id.' sublevel">';
+      <a href="#view-'.$id.'" title="Click to see hours for this location"><span class="slide-out '.$id.' sublevel">';
     }//closes if-elseif
     
     // add image
@@ -127,11 +127,7 @@ function displayLocationsStatus($branchID = null) {
     
     } else {
       
-      if ($results[$i]['name'] == "Library") {
-        $locationstable .= '&nbsp; &nbsp; Library &nbsp; (ASRS, AArP, SciEng)';
-      } else {
-        $locationstable .= '&nbsp; &nbsp; '.$results[$i]['name'];
-      }//closes if-else
+      $locationstable .= '&nbsp; &nbsp; '.$results[$i]['name'];
       
     }//closes if-else
     
@@ -145,6 +141,83 @@ function displayLocationsStatus($branchID = null) {
     </dl>';
   
   return $locationstable;
+  
+}//closes function
+
+
+// retrieve and display locations and status in a dl based on (optional) branch id for the homepage
+function displayLocationsStatusHomepage($branchID = null) {
+  
+  global $dbh;
+  
+  if ($branchID == null) {
+    $hourlocation = "";
+  } else if ($branchID != null && is_int($branchID)) {
+    $hourlocation = "AND hour_locations.id = $branchID";
+  }//closes if-else
+  
+  $currentdate = date('Y-m-d');
+  $currenttime = date('H:i:s');
+  
+  $sql = "SELECT hour_locations.id, hour_locations.name, hour_locations.parent_hour_location_id AS parent, hour_locations.login
+          FROM hour_locations
+          WHERE hour_locations.display = 1
+          $hourlocation
+          ORDER BY hour_locations.display_position";
+
+  $sth = $dbh->prepare($sql);
+  $status = $sth->execute();
+  $results = $sth->fetchAll();
+  $count = count($results);
+  
+  // alternating rows start with false (white row first)
+  $alt = false;
+  
+  // variable to store code string
+  $locationstable = '<dl id="locations-table"><span class="headers"><dt>Location</dt><dd>at '.date('g:i a').'</dd></span>';
+  
+  for ($i = 0; $i < $count; $i++) {
+    
+    $id = $results[$i]['login'];
+    $url = 'http://hours.library.ubc.ca/#view-'.$results[$i]['login'];
+    
+    // start the display with appropriate span tag (inserts alternating rows)
+    if ($alt == false && $results[$i]['parent'] == NULL) {
+      $locationstable .= '<a href="'.$url.'" title="Click to see this location"><span class="slide-out '.$id.'">';
+      $alt = true;
+    } else if ($alt == true && $results[$i]['parent'] == NULL) {
+      $locationstable .= '<a href="'.$url.'" title="Click to see this location"><span class="alt slide-out '.$id.'">';
+      $alt = false;
+    } else if ($alt == false && $results[$i]['parent'] != NULL){
+      $locationstable .= '<a href="'.$url.'" title="Click to see this location"><span class="alt slide-out sublevel '.$id.'">';
+    } else if ($alt == true && $results[$i]['parent'] != NULL){
+      $locationstable .= '<a href="'.$url.'" title="Click to see this location"><span class="slide-out sublevel '.$id.'">';
+    }//closes if-elseif
+    
+    // add image
+    $locationstable .= '<dt>';
+    
+    // indent "hack" for sublevels (padding/margin breaks display)
+    if ($results[$i]['parent'] == NULL) {
+      
+      $locationstable .= $results[$i]['name'];
+    
+    } else {
+      
+      $locationstable .= '&nbsp; &nbsp; '.$results[$i]['name'];
+      
+    }//closes if-else
+    
+    // add status (uses displayCurrentStatus function to retrieve and calculate status)
+    $locationstable .= '</dt><dd>'.displayCurrentStatus($currentdate, $currenttime, $results[$i]['id']).'</dd></span></a>';
+
+  }//closes for
+  
+  // close list
+  $locationstable .= '</dl>';
+  
+  // deal with apostrophe in St. Paul's
+  return str_replace("'", "\'", $locationstable);
   
 }//closes function
 
@@ -228,7 +301,7 @@ function displayCurrentStatus($ymd, $time, $branchID) {
   //if no hours were found
   if (!$results) {
     
-    $currentstatus .= '<span class="closed">N/A</span>';
+    $currentstatus .= '<span class="closed">N/A</span> currently';
   
   } else {
 
@@ -237,15 +310,15 @@ function displayCurrentStatus($ymd, $time, $branchID) {
     
       // for closing hours before midnight (uses displayTime function to trim zero minutes)
       if ( ($results[0]['is_closed'] == 1) || ($results[0]['open_time'] > $time || $close_time <= $time) ) {
-        $currentstatus .= '<span class="closed">Closed</span>';
+        $currentstatus .= '<span class="closed">Closed</span> currently';
       } else {
         $currentstatus .= '<span class="open">Open</span> until '.displayTime($close_time);
       }//closes if-else
       
     // for TBD time  
     } else if ($results[0]['is_tbd'] == 1) {
-    
-      $currentstatus .= '<span class="closed">TBD</span>';
+
+      $currentstatus .= '<span class="closed">N/A</span> currently';
     
     // for 24-hour time  
     } else if ($close_time == $results[0]['open_time'] && $results[0]['is_closed'] == 0) {
@@ -256,7 +329,7 @@ function displayCurrentStatus($ymd, $time, $branchID) {
     
       // for closing hours on or after midnight (uses displayTime function to trim zero minutes)
       if ( ($results[0]['is_closed'] == 1) || ($close_time <= $time && $results[0]['open_time'] > $time) ) {
-        $currentstatus .= '<span class="closed">Closed</span>';
+        $currentstatus .= '<span class="closed">Closed</span> currently';
       } else {
         $currentstatus .= '<span class="open">Open</span> until '.displayTime($close_time);
       }//closes if-else
@@ -542,7 +615,7 @@ function getHoursNotes($name_id) {
   $hours_notes=preg_replace('/\s\s+/', '<br /><br />', $row['hours_notes']);
 
 	if ($hours_notes != '') {
-		return '<p class="warning message hours-note">'.$hours_notes.'</p>';
+		return '<p class="clear warning message hours-note">'.$hours_notes.'</p>';
 	}//closes if
 
 }//closes function
@@ -624,7 +697,8 @@ function displayHoursByMonth($month, $year, $branchID = null) {
   
   $sql = "SELECT hour_days.day_of_week, hour_days.open_time, hour_days.close_time, hour_days.is_closed, hour_days.is_tbd,
                  hour_groupings.hour_category_id,
-                 hour_categories.category
+                 hour_categories.category,
+                 hour_date_ranges.begin_date, hour_date_ranges.end_date
           FROM hour_days
           JOIN hour_groupings
           ON hour_days.hour_grouping_id = hour_groupings.id
@@ -702,7 +776,11 @@ function displayHoursByMonth($month, $year, $branchID = null) {
       // show color block and heading when category is new
       if ($results[$i]['hour_category_id'] != $prev_category) {   
         $hours .= '
-              <h6><span class="hours-category '; if ($results[$i]['hour_category_id'] == 4) { $hours .= 'summer-alternate'; } else { $hours .= strtolower($results[$i]['category']); } $hours .= '"></span>'.$results[$i]['category'].' Hours</h6>
+              <h6><span class="hours-category '; if ($results[$i]['hour_category_id'] == 4) { $hours .= 'summer-alternate'; } else { $hours .= strtolower($results[$i]['category']); } $hours .= '"></span>';
+        
+        if ($results[$i]['hour_category_id'] == 4 || $results[$i]['hour_category_id'] == 3) { $hours .= 'Summer Hours'; } else { $hours .= $results[$i]['category'].' Hours'; }
+        
+        if ($results[$i]['hour_category_id'] != 5 && $results[$i]['hour_category_id'] != 7) { $hours .= ' ('.date('M j', strtotime($results[$i]['begin_date'])).'-'.date('M j', strtotime($results[$i]['end_date'])).')'; } $hours .= '</h6>
               <dl class="'; if ($results[$i]['hour_category_id'] == 4) { $hours .= 'summer-alternate'; } else { $hours .= strtolower($results[$i]['category']); } $hours .= '">';
       }//closes if
       
@@ -733,13 +811,17 @@ function displayHoursByMonth($month, $year, $branchID = null) {
         // when a range has been set, display it
         if ($match == true) {
         
-          $hours .= $start_range.'-';
+          $hours .= $start_range;
           
           // exception/holiday hours display as dates, regular hours display as days
           if ($results[$i]['hour_category_id'] == 5 || $results[$i]['hour_category_id'] == 7) {
-            $hours .= date('j', strtotime($results[$i]['day_of_week']));
+            if ($results[$i]['begin_date'] == $results[$i]['end_date']) {
+              $hours .= ' &amp '.date('j', strtotime($results[$i]['day_of_week']));
+            } else {
+              $hours .= '-'.date('j', strtotime($results[$i]['day_of_week']));
+            }//closes if-else
           } else {
-            $hours .= date('D', strtotime($results[$i]['day_of_week']));
+            $hours .= '-'.date('D', strtotime($results[$i]['day_of_week']));
           }//closes if-else
         
         // otherwise, just display the current date
@@ -800,7 +882,7 @@ function getAllRanges($month, $category) {
   global $dbh;
   
   // determine range(s) to work with based on passed parameters
- $sql = "SELECT hour_date_ranges.id, hour_date_ranges.begin_date, hour_date_ranges.end_date
+ $sql = "SELECT DISTINCT hour_date_ranges.id, hour_date_ranges.begin_date, hour_date_ranges.end_date, hour_date_ranges.print_note
          FROM hour_date_ranges
          JOIN hour_groupings
          ON hour_groupings.hour_date_range_id = hour_date_ranges.id
@@ -815,16 +897,26 @@ function getAllRanges($month, $category) {
   // store range ids in an array
   $id = array();
 
+  $last = count($range)-1;
+  $message = '';
+
   for ($i = 0; $i < count($range); $i++) {
     array_push($id, $range[$i]['id']);
+    if(!empty($range[$i]['print_note'])) {
+    	$message .= $range[$i]['print_note'];
+    	if($i < $last && !empty($range[$i+1]['print_note'])) {
+	  		$message .= " ";
+	  	}
+  	}
   }//closes for
 
   // ids return in SQL-friendly list, begin pulls in first date, end pulls in last date
+  $last = count($range)-1;
   $id = implode("', '", array_unique($id));
   $begin = isset($range[0]['begin_date']) ? $range[0]['begin_date'] : '';
-  $end = isset($range[(count($range)-1)]['end_date']) ? $range[(count($range)-1)]['end_date'] : '';
+  $end = isset($range[$last]['end_date']) ? $range[$last]['end_date'] : '';
  
-  $return = array('id' => $id, 'begin' => $begin, 'end' => $end);
+  $return = array('id' => $id, 'begin' => $begin, 'end' => $end, 'message' => $message);
  
   return $return;
  
@@ -837,6 +929,7 @@ function getAllHours($category, $limit, $id, $begin, $end) {
   
   global $dbh;
   
+  $limit = "AND hour_locations.id NOT IN ($limit)";
   $today = date('Y-m-d');
   
   // for all non-holiday hours
@@ -864,7 +957,7 @@ function getAllHours($category, $limit, $id, $begin, $end) {
                       AND '$begin' <= hour_date_ranges.begin_date
                       AND '$end' >= hour_date_ranges.end_date
                       AND '$today' <= hour_date_ranges.end_date )
-                 OR ( hour_groupings.hour_category_id = 7
+                 OR ( hour_groupings.hour_category_id IN (6, 7)
                       AND '$begin' <= hour_date_ranges.begin_date
                       AND '$end' >= hour_date_ranges.end_date
                       AND '$today' <= hour_date_ranges.end_date ) )
