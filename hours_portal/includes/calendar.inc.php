@@ -48,6 +48,15 @@ $blank = date('w', $first_day);  // find out what day of the week the first day 
             
             <span class="monthheading"><?= $title.' '.$year ?></span>
             
+                        <section class="hours-table">
+              
+              <?php
+              // display the month's hours in collapsed dl lists (by category, with colours corresponding to the calendar)
+              echo displayHoursByMonth($month, $year, $location_id);
+              ?>
+              
+            </section><!-- closes hours table -->
+            
             <section class="calendar">
               
               <table class="month">
@@ -196,58 +205,32 @@ $blank = date('w', $first_day);  // find out what day of the week the first day 
                 </tbody>
               </table>'; 
               ?>
-            
-              <small><span class="hours-category today"></span> denotes today</small>
               
               <?php
               // reference URLs not all the same as database-saved, site URLs <-- ADD/DELETE HERE TO ADD/DELETE LOCATION (IF DIFFERENT REF URL NEEDED)
-              if ($nameID === 'biomedical' || $nameID === 'hamber' || $nameID === 'stpauls' || $nameID === 'woodward') {
-                $refurl = 'http://www.library.ubc.ca/life/about/refhours.html';
-              }	else if ($nameID === 'koerner') {
-                $refurl = 'http://hss.library.ubc.ca/';
-              }	else if ($nameID === 'ikblc' || $nameID === 'archives' || $nameID === 'robson' || $nameID === 'chapman') {
+              if ($nameID === 'koerner') {
+                $refurl = 'http://koerner.library.ubc.ca/koerner-library/hours/';
+              }	else if ($nameID === 'ikblc' || $nameID === 'archives' || $nameID === 'chapman' || $nameID === 'okanagan') {
                 $refurl = null;
-              }	else if ($nameID === 'rbsc') {
-                $refurl = 'http://www.library.ubc.ca/spcoll/refhours.html';
               }	else if ($nameID === 'law') {
-                $refurl = 'http://www.library.ubc.ca/law/refstaff.html';
-              }	else if ($nameID === 'okanagan') {
-                $refurl = 'http://www.ubc.ca/okanagan/library/hours.html';
+                $refurl = 'http://law.library.ubc.ca/refstaff/';
               }//closes if-elseif
               
               if (isset($refurl)) {
               ?>
               
-              <p><strong>See also:</strong>
+              <p><strong>See also:</strong> <a href="<?= $refurl; ?>">Reference Help Hours</a></p>
               
-                <?php
-                if ($nameID === 'library') {
-                  // library is exception, needs two ref URLs
-                  echo '<a href="'.$refurl.'">AArP Reference Hours</a>,<br /><a href="http://scieng.library.ubc.ca/">SciEng Reference Hours</a></p>';
-                } else {
-                  echo '<a href="'.$refurl.'">Reference Hours</a></p>';
-                }//closes if-else
-                ?>
-                
               <?php
               }//closes if
               ?>
               
             </section><!-- closes calendar -->
             
-            <section class="hours-table">
-              
-              <?php
-              // display the month's hours in collapsed dl lists (by category, with colours corresponding to the calendar)
-              echo displayHoursByMonth($month, $year, $location_id);
-              ?>
-              
-            </section><!-- closes hours table -->
-            
             <?php
             // BMB has standing hours note
             if ($nameID === 'biomedical') {
-              echo '<p class="message note bmb"><strong>Note:</strong> Library access is limited to building pass-holders after 7pm Monday through Friday and all day Saturday and Sunday. For more information, please see <a href="http://www.library.ubc.ca/bmb/about/access.html">After Hours Access to BMB</a>.</p>';
+              echo '<p class="message note bmb"><strong>Note:</strong> Library access is limited to building pass-holders after 7pm Monday through Friday and all day Saturday and Sunday.</p>';
             }//closes if
             ?>
             

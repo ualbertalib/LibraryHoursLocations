@@ -1,57 +1,40 @@
 <?php 
-//header('Cache-Control: no-cache,must-revalidate');
-//header('Pragma: no-cache');
-//$pageloadstart=microtime(true);
-$uhead = file_get_contents('http://www.library.ubc.ca/home/includefiles/header.html');
+$clfheader = file_get_contents('http://clf.library.ubc.ca/7.0.2/library-header.html');
 
-//repair unescaped &'s in links
-$uhead = preg_replace('~&([a-z0-9_]*)=~ims','&amp;\1=',$uhead);
+$start = strpos($clfheader, '<!-- JavaScript -->');
+$end = strpos($clfheader, '</script>', $start);
+$length = $end - $start;
 
-//fix invalid html (value attribute with image type?)
-$uhead = str_replace('value="Search"','',$uhead);
+// we need older jQuery for the portal to work properly with jScrollPane
+$clfheader = substr_replace($clfheader, '<!-- JavaScript --> <script src="http://clf.library.ubc.ca/7.0.2/js/jquery-1.7.2.min.js">', $start, $length);
 
-//believe it or not, the template gives us an unclosed <head>
-if(!strpos($uhead,'</head>')){
-    $uhead=str_replace('<!-- BEGIN: UBC CLF HEADER -->','</head><body><!-- BEGIN: UBC CLF HEADER -->',$uhead);
-}
-
-//library's jQuery is too fusty
-$uhead=str_replace('http://www.library.ubc.ca/_ubc_clf/js/jquery-min-latest.js',
-    'http://search.library.ubc.ca/js/jquery-1.6.1.min.js',
-        $uhead);
-        
-//        $uhead=str_replace('http://www.library.ubc.ca/_ubc_clf/js/jquery-min-latest.js','/js/jquery.js',$uhead);
-
-//need this id to win specificity wars with the UBC CLF
-//$uhead=str_replace('<body>','<body id="HNbody">',$uhead);
-
-$insert='
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
-';
+$insert = '';
 
 if (basename($_SERVER["SCRIPT_NAME"]) != "print.php") {
-  $insert .= '<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  $insert .= '
+<script>
+if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+    var msViewportStyle = document.createElement("style");
+    msViewportStyle.appendChild(
+        document.createTextNode(
+            "@-ms-viewport{width:auto!important}"
+        )
+    );
+    document.getElementsByTagName("head")[0].
+        appendChild(msViewportStyle);
+}
+</script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="js/markerwithlabel_packed.js" type="text/javascript"></script>
+<script src="js/jquery.hashchange.min.js" type="text/javascript"></script>';
+}
 
-'; }
-
-$uhead = str_replace('</head>',$insert.'</head>', $uhead);
-
-//Google stuff, not wanted
-//$uhead = preg_replace('~<script[^>]*jsapi[^>]*></script>~','',$uhead);
-
-header('Content-type: text/html; charset=UTF-8');
-$uhead='<!DOCTYPE html>
-<!--[if lt IE 7]> <html class="ie6 oldie" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="ie7 oldie" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+$insert .= '
 <title>Hours and Locations | UBC Library Hours and Locations</title>
 <link rel="stylesheet" type="text/css" href="css/hours.css" />
+';
 
-'.$uhead;
+$clfheader = str_replace('</head>', $insert.'</head>', $clfheader);
 
-if(!isset($noecho)){
-    echo $uhead;
-}
+echo $clfheader;
+?>

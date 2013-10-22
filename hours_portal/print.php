@@ -5,38 +5,52 @@ session_start();
 include('includes/head.inc.php');
 ?>
 
+<ul class="breadcrumb expand">
+  <li><a href="http://www.library.ubc.ca" title="UBC Library">Libray Home</a> <span class="divider">/</span></li>
+  <li><a href="http://hours.library.ubc.ca" title="UBC Library Hours and Locations">Hours &amp; Locations</a> <span class="divider">/</span></li>
+  <li>Print Signage &amp; Bookmarks</li>
+</ul>
+
 <div class="grid">
+
+  <header id="hours-header">
+    <h1><a href="" title="Hours and Locations"><img src="img/hours-locations-header.gif" title="Hours and Locations" /></a></h1>
+  </header>
+
+  <h3>Print Signage and Bookmarks</h3>
   
-  <div class="first five columns">
+  <p>Please note that the signage and bookmark links reflect what is <em>currently</em> in our database. When new hours are entered and approved, an update notice will be sent to staff to print new materials.</p>
+  
+  <div class="message note">
     
-    <header id="hours-header" class="twelve columns">
-      <a title="Hours and Locations" href="/"></a>
-    </header>
+    <p><strong>For best print results, please adjust your print settings to: </strong></p>
+    <ul>
+      <li>Turn off headers and footers
+        <ol>In Firefox:
+          <li>From the File menu, select Page Setup</li>
+          <li>Select the tab Margins &amp; Header/Footer</li>
+          <li>Select "blank" in each of the 6 drop-down options</li>
+        </ol>
+      </li>
+      <li>Set print margins to 0.5&quot;</li>
+      <li>Use Landscape orientation</li> 
+    </ul>
     
-  </div><!-- closes first five -->
-
-  <div class="twelve columns">
+    <p><strong>For 2-sided printing of bookmarks, please also:</strong></p>
+    <ul>
+      <li>Use Firefox or Internet Explorer</li>
+      <li>Select 2-sided printing with the &quot;flip&quot; or &quot;binding&quot; on the short edge</li>
+    </ul>
     
-    <h3>Print Signage and Bookmarks</h3>	
-
-    <div class="message note row">
-      
-      <ul><strong>For best print results, please adjust your print settings to: </strong>
-        <li>Turn off headers and footers</li>
-        <li>Set print margins to 0.5&quot;</li>
-        <li>Use Landscape orientation</li> 
-      </ul>
-      
-      <ul><strong>For 2-sided printing of bookmarks, please also:</strong>
-        <li>Use Firefox or Internet Explorer</li>
-        <li>Select 2-sided printing with the &quot;flip&quot; or &quot;binding&quot; on the short edge</li>
-      </ul>
-      
-    </div><!-- closes message -->
+  </div><!-- closes message -->
+  
+  <br />
+  
+  <div class="row-fluid">
     
-    <div class="fit five columns">
+    <div class="span5">
       
-      <h3>Signage</h3>
+      <h4>Signage</h4>
       
       <form action="print-hours.php" method="post">
         <input type="hidden" name="month" value="9" />
@@ -89,9 +103,9 @@ include('includes/head.inc.php');
       
     </div><!-- closes first column --->
     
-    <div class="fit six columns row">
+    <div class="span7">
       
-      <h3>Bookmarks</h3>
+      <h4>Bookmarks</h4>
       
       <form action="print-hours.php" method="post">
         <input type="hidden" name="month" value="9" />
@@ -144,7 +158,7 @@ include('includes/head.inc.php');
       
     </div><!-- closes second column -->
     
-  </div><!-- closes twelve -->
+  </div>
   
 </div><!-- closes grid -->
 

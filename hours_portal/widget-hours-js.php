@@ -7,13 +7,14 @@ require_once('functions.php');
 
 
 // grab submitted values (which locations/hours, what display)
-$location1 = isset($_GET['location1']) ? sanitize($_GET['location1']) : 6;
+$location1 = isset($_GET['location1']) ? sanitize($_GET['location1']) : 2;
 $type1 = isset($_GET['type1']) ? sanitize($_GET['type1']) : 2;
-$location2 = isset($_GET['location2']) ? sanitize($_GET['location2']) : '';
+$location2 = isset($_GET['location2']) ? sanitize($_GET['location2']) : 2;
 $type2 = isset($_GET['type2']) ? sanitize($_GET['type2']) : 3;
 $location3 = isset($_GET['location3']) ? sanitize($_GET['location3']) : '';
 $type3 = isset($_GET['type3']) ? sanitize($_GET['type3']) : 2;
 $display = isset($_GET['display']) ? sanitize($_GET['display']) : 'table';
+$shorttable = isset($_GET['shorttable']) ? sanitize($_GET['shorttable']) : '';
 
 
 // send widget as javascript
@@ -24,47 +25,81 @@ var hourswidget = "";
 
 <?php
 // set current year, week, day, date, time
-$currentyear = date('Y');
+$currentyear = date('o');
 $currentweek = date('W');
 $currentdate = date('Y-m-d');
 $currentday = date('l', strtotime($currentdate));
 $currenttime = date('H:i:s');
 
 // for testing different dates, times
-//$currentyear = '2012';
-//$currentweek = '15';
-//$currentdate = '2011-12-10';
+//$currentdate = '2013-02-11';
+//$currentyear = date('o', strtotime($currentdate)); // a "rounded" year that follows the 52 week count
+//$currentweek = date('W', strtotime($currentdate));
 //$currentday = date('l', strtotime($currentdate));
 //$currenttime = '01:00:00';
 
 
-// find first monday of the year
+// find first monday of the year and its week number
 $firstmon = strtotime("mon jan {$currentyear}");
+$firstmonweek = date('W', $firstmon);
 
-// weeks offset is always one less than current week
-$weeksoffset = $currentweek - 1;
+// if the "rounded" year is in fact a year ahead of the current date (i.e. monday is previous year)
+if (date('Y', strtotime($currentdate)) < $currentyear) {
 
-// calculate this week's monday
-$thismon = date( 'Y-m-d', strtotime("+{$weeksoffset} week " . date('Y-m-d', $firstmon)) );
+  // go back to the previous year and grab that monday
+  $lastyear = ($currentyear - 1);
+  $lastyrfirstmon = strtotime("mon jan {$lastyear}");
+  $thismon = date( 'Y-m-d', strtotime("+52 week " . date('Y-m-d', $lastyrfirstmon)) );
+
+} else {
+
+  // number of weeks to add depends on when the first monday occurs (first week or second week of the year)
+  if ($firstmonweek == 01) {
+    $weeksoffset = $currentweek - 1;
+  } else {
+    $weeksoffset = $currentweek - 2;
+  }//closes if-else
+  
+  // calculate this week's monday using the above offset
+	$thismon = date( 'Y-m-d', strtotime("+{$weeksoffset} week " . date('Y-m-d', $firstmon)) );
+
+}//closes if-else
 
 
 // begin widget variable string depending on display
 if ($display == 'table') {
+  
+    // account for single day table display
+  if ($shorttable == "yes") {
+   
+    // for single day table
+    $caption = '<caption>Today&#39;s Hours</caption>';
+    
+  } else {
+    
+    $caption = '<caption>This Week ';
+    
+    if (!$location2) {
+      $caption .= '<br />';
+    }//closes if
+    
+    $caption .= '('.date('F j, Y', strtotime($thismon)).')</caption>';
+    
+  }//closes if-else
 ?>
 
-hourswidget += '<table class="hours"><caption>This Week ';
+hourswidget += '<table class="hours"><?= $caption; ?><tbody><tr>';
 
 <?php
-  if (!$location2) {
+// for weekly table
+if ($shorttable != "yes") {
 ?>
 
-hourswidget += '<br />';
+hourswidget += '<th>HOURS</th>';
 
-<?php
-  }//closes if
-?>
+<?php } ?>
 
-hourswidget += '(<?= date('F j, Y', strtotime($thismon)); ?>)</caption><tbody><tr><th>HOURS</th><th>';
+hourswidget += '<th>';
 
 <?php
   // for library hours in column 1
@@ -78,7 +113,7 @@ hourswidget += '(<?= date('F j, Y', strtotime($thismon)); ?>)</caption><tbody><t
       break;
       
       case 7:
-      $heading = 'IKBLC Library<br />(AArP/SciEng)';
+      $heading = 'Music, Art &amp;<br /> Architecture Library';
       break;
       
       case 11:
@@ -86,7 +121,7 @@ hourswidget += '(<?= date('F j, Y', strtotime($thismon)); ?>)</caption><tbody><t
       break;
       
       default:
-      $heading = 'Open Hours';
+      $heading = '<span class="nowrap">Open Hours</span>';
       break;
     
     }//closes switch
@@ -102,7 +137,7 @@ hourswidget += '<?= $heading; ?>';
     switch ($location1) {
     
       case 2:
-      $heading = 'Reference<br />&amp; Microform';
+      $heading = 'Research Commons<br />&amp; Reference';
       break;
       
       default:
@@ -139,7 +174,7 @@ hourswidget += '<th>';
         break;
         
         case 7:
-        $heading = 'IKBLC Library<br />(AArP/SciEng)';
+        $heading = 'Music, Art &amp;<br /> Architecture Library';
         break;
         
         case 11:
@@ -163,7 +198,7 @@ hourswidget += '<?= $heading; ?>';
       switch ($location2) {
       
         case 2:
-        $heading = 'Reference<br />&amp; Microform';
+        $heading = 'Research Commons<br />&amp; Reference';
         break;
         
         default:
@@ -202,7 +237,7 @@ hourswidget += '<th>';
         break;
         
         case 7:
-        $heading = 'IKBLC Library<br />(AArP/SciEng)';
+        $heading = 'Music, Art &amp;<br /> Architecture Library';
         break;
         
         case 11:
@@ -226,7 +261,7 @@ hourswidget += '<?= $heading; ?>';
       switch ($location3) {
       
         case 2:
-        $heading = 'Reference<br />&amp; Microform';
+        $heading = 'Research Commons<br />&amp; Reference';
         break;
         
         default:
@@ -254,8 +289,52 @@ hourswidget += '</tr>';
   // begin table rows with gray background (= false)
   $alt = false;
   
+  // limit loop for single day table
+  if ($shorttable == "yes") {
+    
+    switch($currentday) {
+    
+      case "Monday":
+      $start = 0;
+      break;
+      
+      case "Tuesday":
+      $start = 1;
+      break;
+      
+      case "Wednesday":
+      $start = 2;
+      break;
+      
+      case "Thursday":
+      $start = 3;
+      break;
+      
+      case "Friday":
+      $start = 4;
+      break;
+      
+      case "Saturday":
+      $start = 5;
+      break;
+      
+      case "Sunday":
+      $start = 6;
+      break;
+    
+    }//closes switch;
+    
+    $days = 1 + $start;
+  
+  } else {
+    
+    $start = 0;
+    $days = 7;
+    
+  }//closes if-else
+  
   // for loop to display day rows
-  for ($i = 0; $i < 7; $i++) {
+  for ($i = $start; $i < $days; $i++) {
    
     // change day and date with each iteration
     switch ($i) {
@@ -344,12 +423,17 @@ row += '">';
 <?php
       $alt = false;
       
-    }//closes if-else  
+    }//closes if-else
+    
+    // no day column for single day table
+    if ($shorttable != "yes") {
 ?>
 
 row += '<td><?= $day; ?></td>';
 
-<?php    
+<?php
+    }//closes if
+    
     // for first column returns
     if ($column1) {
 ?>
@@ -689,6 +773,15 @@ hourswidget += '</div>';
 hourswidget = '<div class="hours-widget"><p><strong><?= $status; ?></strong></p></div>';
 
 <?php
+} else if ($display == 'homepage') {
+  
+  // grab status based on date, time and location (library hours only)
+  $widget = displayLocationsStatusHomepage();
+?>
+
+hourswidget = '<?= $widget; ?>';
+
+<?php
 } else {
 ?>
 
@@ -709,13 +802,23 @@ document.write(hourswidget);
 
 jQuery('.hours').css({ 'background-color' : '#fff', 'border' : '1px solid #ddd', 'border-spacing' : '1px', 'margin-bottom' : '0', 'max-width' : '98%' });
 jQuery('.hours caption').css({ 'font-size' : '125%', 'line-height' : '100%', 'margin-bottom' : '8px', 'margin-top' : '0', 'font-weight' : 'bold', 'text-align' : 'center', 'background-color' : '#fff' });
-jQuery('.hours th').css({ 'font-size' : '100%', 'background-color' : '#eee', 'text-align' : 'left', 'border' : '1px solid #ddd', 'text-transform' : 'capitalize' });
+jQuery('.hours th').css({ 'font-size' : '100%', 'color' : '#333', 'background-color' : '#eee', 'text-align' : 'left', 'border' : '1px solid #ddd', 'text-transform' : 'capitalize' });
+jQuery('.hours th .nowrap').css({ 'white-space' : 'nowrap' });
 jQuery('.hours td, .hours th').css({ 'border-bottom' : '1px solid #ddd', 'letter-spacing' : '0', 'padding' : '3px 5px' });
 jQuery('.hours tr.even td').css('background', 'none');
 jQuery('.hours tr.odd').css('background-color', '#efefef');
-jQuery('.hours tr.today').css('background-color', '#ffffbb');
 jQuery('.widget-note').css({ 'font-size' : '85%', 'background-color' : '#efefef' });
 jQuery('.hours + p').css('margin-top', '8px');
+
+<?php
+    if ($shorttable != 'yes') {
+?>
+
+jQuery('.hours tr.today').css('background-color', '#ffffbb');
+
+<?php
+    }//closes if
+?>
 
 <?php
   // add text styles with jQuery, write into div (if it exits)
@@ -755,6 +858,12 @@ jQuery('.hours-widget .open, .hours-widget .closed').css({ 'font-variant' : 'sma
 document.write(hourswidget);
 
 jQuery('.hours-widget').css('margin', '10px 0');
+
+<?php
+  } else if ($display == 'homepage') {
+?>
+
+document.write(hourswidget);
 
 <?php
   }// closes if-elseif
