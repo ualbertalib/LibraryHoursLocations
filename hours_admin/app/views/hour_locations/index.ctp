@@ -1,4 +1,5 @@
-    <div class="locations index twelve columns nest">
+  
+<div class="locations index twelve columns nest">
     <div class="first ten columns"><h2><?php __('Locations');?></h2></div>
     <div class="last two columns text-right">
         <?php 
@@ -11,9 +12,9 @@
 
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('Location','HourLocation.name');?></th>
+			<th style="width: 40%;" class="sm" ><?php echo $this->Paginator->sort('Location','HourLocation.name');?></th>
 			<?php if($_SERVER['REMOTE_USER'] == 'hours') { ?>
-			<th><?php echo $this->Paginator->sort('Display on Portal','HourLocation.display');?></th>
+			<th style="width: 15%; text-align: left;"><?php echo $this->Paginator->sort('Display on Portal','HourLocation.display');?></th>
 			<th><?php echo $this->Paginator->sort('URL','HourLocation.url');?></th>
 			<?php } ?>
 			<th><?php echo $this->Paginator->sort('Phone','HourLocation.phone');?></th>			

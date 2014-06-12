@@ -4,11 +4,11 @@
         <?php
 			// don't show add button for branch users
             if($_SERVER['REMOTE_USER'] == 'hours'  || $_SERVER['REMOTE_USER'] == 'hours_admin') { 
-            	echo $this->Html->link(__('Edit Locations',true),array('controller'=>'hour_locations','action'=>'index'),array('class'=>'medium button'));
+            	echo $this->Html->link(__('Edit Locations',true),array('controller'=>'hour_locations','action'=>'index'),array('class'=>'small button'));
             	echo '<span style="width:10px;">&nbsp;</span>';
-            	echo $this->Html->link(__('Edit Date Ranges', true), array('controller'=>'hour_date_ranges','action' => 'index'),array('class'=>'medium button'));
+            	echo $this->Html->link(__('Edit Date Ranges', true), array('controller'=>'hour_date_ranges','action' => 'index'),array('class'=>'small button'));
             	echo '<span style="width:10px;">&nbsp;</span>';            	
-            	echo $this->Html->link(__('Add Hours', true), array('action' => 'add'),array('class'=>'medium button'));	            
+            	echo $this->Html->link(__('Add Hours', true), array('action' => 'add'),array('class'=>'small button'));	            
 			}	
 		?>
 	</div>
@@ -39,13 +39,21 @@
 	            foreach($types as $id=>$name) {
 	                $toptions[$id]=$name;
 	            }
-	            $tselected = '2';
+                    
+	            $tselected = 'any';
+                    
 	            if(!empty($session_type)) {
 	            	$tselected = $this->data['Filter']['hour_type_id'] = $session_type;
-	            } 
+	            }else{
+                        $tselected = $this->data['Filter']['hour_type_id'] = $tselected;
+                    } 
+                   
 	            if(isset($this->passedArgs['Filter.hour_type_id'])) {
 	                $tselected = $this->data['Filter']['hour_type_id'] = $this->passedArgs['Filter.hour_type_id'];
-	            }          
+	            }
+                    
+                   
+                    
 	            //options for category select field
 	            $coptions=array();
 	            $coptions[] = array('any'=>'- any category -');
@@ -89,10 +97,10 @@
 				echo $form->input('Filter.hour_type_id',array('label'=>false,'options'=>$toptions,'selected'=>$tselected,'div'=>false));
 				echo '</div>';
 				echo '<div class="one column">';
-				echo $form->submit('Filter',array('label'=>false,'div'=>false, 'class'=>'medium button'));
+				echo $form->submit('Filter',array('label'=>false,'div'=>false, 'class'=>'small button'));
 				echo '</div>';
 				echo '<div class="last one column">';
-				echo $form->submit('Clear',array('label'=>false,'div'=>false,'name'=>'ClearFilter','class'=>'medium button'));
+				echo $form->submit('Clear',array('label'=>false,'div'=>false,'name'=>'ClearFilter','class'=>'small button'));
 				echo '</div>';
 				echo '<div class="clear"></div>';
 			}

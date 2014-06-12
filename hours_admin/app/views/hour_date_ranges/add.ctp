@@ -25,10 +25,10 @@ if(!isset($this->data['HourDateRange']['begin_date'])) {
 	echo '<fieldset>';		
 	echo '<div class="first two columns"><label for="HourDateRangeBeginDateMonth">From</label></div>';
 	echo '<div class="nine columns"><label for="HourDateRangeEndDateMonth">To</label></div>';
-	echo '<div class="first two columns">';
+	echo '<div class="first two columns" style="margin-left: 30px;">';
 	echo $this->Form->input('HourDateRange.begin_date',array('label'=>false,'type'=>'text'));
 	echo '</div>';	
-	echo '<div class="two columns">';
+	echo '<div class="two columns" style="margin-left: 30px;">';
 	echo $this->Form->input('HourDateRange.end_date', array('label'=>false,'type'=>'text'));
 	echo '</div><div class="clear"></div>';
 	echo '</fieldset>';
@@ -39,11 +39,11 @@ if(!isset($this->data['HourDateRange']['begin_date'])) {
 	echo '</fieldset>';
 	echo '<fieldset>';
 	echo '<fieldset>';
-    echo '<div class="first eight columns">';
+    echo '<div class="first eight columns" style="margin-left: 0px;">';
     echo $this->Form->input('HourDateRange.description',array('label'=>'Description <span class="after">(for admin use only; not displayed on public facing pages)</span>'));
     echo '</div><div class="clear"></div>';
 	echo '</fieldset>';
-    echo '<div class="first eight columns">';
+    echo '<div class="first eight columns" style="margin-left: 0px;" >';
     echo $this->Form->input('HourDateRange.print_note',array('label'=>'Print Note <span class="after">(displayed on hours print pages)</span>'));
     echo '</div><div class="clear"></div>';
 	echo '</fieldset>';	

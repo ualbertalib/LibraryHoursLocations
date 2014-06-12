@@ -39,9 +39,10 @@
 		}
 		?>
 	</div>
-	<div class="clear"></div>
+	<div style="clear: both;" class="clear"></div>
 	<p>
-	Choose from the four widget types below, and copy and paste the script tag for the desired widget into the source code of the web page where you want the widget to appear. Please <a href="http://helpdesk.library.ubc.ca/lsit/web-services-support/">request help</a> if you need assistance.
+	Choose from the four widget types below, and copy and paste the script tag for the desired widget into the source code of the web page where you want the widget to appear. 
+        Please <a href="mailto:libmail@ualberta.ca">request help</a> if you need assistance.
 	</p>
 	
 	<h3>Weekly Hours Table Widget</h3>
@@ -56,7 +57,7 @@
 				echo displayCodePreview("location1=".$hourLocation['HourLocation']['id']."&location2=".$hourLocation['HourLocation']['id']);		
 			} else { // end if location does  have reference hours
 			//If the location does NOT have reference hours:
-				echo displayCodePreview("location1=".$hourLocation['HourLocation']['id']);  
+				echo displayCodePreview("location1=".$hourLocation['HourLocation']['id'] . "&type1=1");  
 			} // end if location does not have reference hours
 			?>
 			<!-- only the table widget includes widget note -->
@@ -64,6 +65,7 @@
 			<?php 
 				echo $this->Form->create('HourLocation');
 				echo $this->Form->input('id');
+                                echo $this->Form->input('display_position',array('type'=>'hidden'));
 				echo $this->Form->input('widget_note',array('type'=>'textarea','rows'=>'4','cols'=>'60'));
 				echo $this->Form->submit('Save Changes',array('name'=>'submit','div'=>false,'class'=>'medium blue button'));
 			 	echo $this->Form->end();

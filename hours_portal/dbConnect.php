@@ -26,7 +26,7 @@ if(file_exists($config_file)) {
   // connect to database for selecting
   try {
     
-    $dbh = new PDO($dsn, $config_values['USER'], $config_values['PASS']);
+    $dbh = new PDO($dsn, $config_values['USER'], $config_values['PASS'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
     
     //add attribute to convert empty strings to null
     $dbh->setAttribute(PDO::ATTR_ORACLE_NULLS, PDO::NULL_EMPTY_STRING);

@@ -2,6 +2,7 @@
 <?php echo $this->Form->create('HourLocation');?>
 <div class="first six columns">
 	<h2><?php echo 'Edit Location: ' . $this->data['HourLocation']['name']; ?></h2>
+       
 </div>
 <div class="last five columns text-right">
 	<?php echo $this->Form->submit('Save Changes',array('name'=>'submit','div'=>false,'class'=>'medium blue button')); ?>

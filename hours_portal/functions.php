@@ -242,12 +242,13 @@ function displayCurrentStatus($ymd, $time, $branchID) {
                 JOIN hour_date_ranges
                 ON hour_groupings.hour_date_range_id = hour_date_ranges.id
                 WHERE ( hour_date_ranges.begin_date <= '$ymd' AND '$ymd' <= hour_date_ranges.end_date )
-                AND hour_groupings.hour_type_id = 2
+                AND hour_groupings.hour_type_id = 1
                 AND hour_groupings.hour_location_id = $branchID )
           AND hour_locations.display = 1
           AND ( hour_days.day_of_week = '$ymd' OR hour_days.day_of_week = '$dayofweek' )
           ORDER BY hour_groupings.hour_category_id DESC";
 
+  
   $sth = $dbh->prepare($sql);
   $status = $sth->execute();
   $results = $sth->fetchAll();
@@ -270,12 +271,14 @@ function displayCurrentStatus($ymd, $time, $branchID) {
                     JOIN hour_date_ranges
                     ON hour_groupings.hour_date_range_id = hour_date_ranges.id
                     WHERE ( hour_date_ranges.begin_date <= '$prevymd' AND '$prevymd' <= hour_date_ranges.end_date )
-                    AND hour_groupings.hour_type_id = 2
+                    AND hour_groupings.hour_type_id = 1
                     AND hour_groupings.hour_location_id = $branchID )
               AND hour_locations.display = 1
               AND ( hour_days.day_of_week = '$prevymd' OR hour_days.day_of_week = '$prevdayofweek' )
               ORDER BY hour_groupings.hour_category_id DESC";
 
+  //echo $prevsql;
+  //echo "<hr>";
   $prevsth = $dbh->prepare($prevsql);
   $prevstatus = $prevsth->execute();
   $prevresults = $prevsth->fetchAll();
@@ -668,7 +671,7 @@ function getRangesByMonth($month, $year, $branchID = null) {
           WHERE (  (EXTRACT(YEAR FROM hour_date_ranges.begin_date) = $year AND EXTRACT(MONTH FROM hour_date_ranges.begin_date) = $month)
                 OR (EXTRACT(YEAR FROM hour_date_ranges.end_date) = $year AND EXTRACT(MONTH FROM hour_date_ranges.end_date) = $month)
                 OR (hour_date_ranges.begin_date <= '$ymd' AND '$ymd' <= hour_date_ranges.end_date)  )
-          AND hour_groupings.hour_type_id = 2
+          AND hour_groupings.hour_type_id = 1
           $hourlocation
           ORDER BY hour_groupings.hour_category_id ASC";
 
@@ -718,7 +721,7 @@ function displayHoursByMonth($month, $year, $branchID = null) {
                         AND EXTRACT(MONTH FROM hour_date_ranges.end_date) = $month)
                         OR
                         (hour_date_ranges.begin_date <= '$ymd' AND '$ymd' <= hour_date_ranges.end_date)  )
-                AND hour_groupings.hour_type_id = 2
+                AND hour_groupings.hour_type_id = 1
                 $hourlocation )
           AND ( EXTRACT(MONTH FROM hour_days.day_of_week) = $month
                 OR hour_days.day_of_week = 'Monday'
@@ -948,7 +951,7 @@ function getAllHours($category, $limit, $id, $begin, $end) {
            JOIN hour_date_ranges
            ON hour_groupings.hour_date_range_id=hour_date_ranges.id
            WHERE hour_locations.display = 1
-           AND hour_groupings.hour_type_id = 2
+           AND hour_groupings.hour_type_id = 1
            $limit
            AND ( ( hour_groupings.hour_date_range_id IN ('$id') )
                  OR ( hour_groupings.hour_category_id = 5
@@ -971,11 +974,11 @@ function getAllHours($category, $limit, $id, $begin, $end) {
                     hour_days.day_of_week = 'Saturday' DESC,
                     hour_days.day_of_week = 'Sunday' DESC,
                     hour_days.day_of_week ASC";
-    
+    //echo $sql;
     $sth = $dbh->prepare($sql);
     $status = $sth->execute();
     $results = $sth->fetchAll();
-  
+
   // for holiday hours
   } else if ($category == 5) {
   
@@ -995,7 +998,7 @@ function getAllHours($category, $limit, $id, $begin, $end) {
            JOIN hour_date_ranges
            ON hour_groupings.hour_date_range_id=hour_date_ranges.id
            WHERE hour_locations.display = 1
-           AND hour_groupings.hour_type_id = 2
+           AND hour_groupings.hour_type_id = 1
            $limit
            AND hour_groupings.hour_date_range_id IN ('$id')
            ORDER BY hour_locations.display_position,
@@ -1021,15 +1024,16 @@ function getHoursByDate($ymd, $branchID, $type) {
   
   global $dbh;
   
+  
   // only two types accepted
-  if ($type != '2' && $type != '3') {
-    $type = 2;
-  }//closes if
+  //if ($type != '2' && $type != '3') {
+  //  $type = 2;    
+ // }//closes if
 
   $subquery = "";
   
   // only library hours need date range constraint (reference hours only have one range)
-  if ($type == 2) {
+  if ($type == 1) {
     $subquery = "AND (hour_date_ranges.begin_date <= '$ymd' AND '$ymd' <= hour_date_ranges.end_date)";
   }//closes if
  
@@ -1049,16 +1053,22 @@ function getHoursByDate($ymd, $branchID, $type) {
                 ON hour_groupings.hour_date_range_id = hour_date_ranges.id
                 JOIN hour_days
                 ON hour_groupings.id = hour_days.hour_grouping_id
-                WHERE hour_groupings.hour_type_id = '$type'
-                AND hour_groupings.hour_location_id = '$branchID'
+                WHERE hour_groupings.hour_type_id =:hour_type_id 
+                AND hour_groupings.hour_location_id = :branchID 
                 $subquery )
-          AND ( hour_days.day_of_week = '$ymd' OR hour_days.day_of_week = '$dayofweek' )
+          AND ( hour_days.day_of_week = :day_of_week OR hour_days.day_of_week = :day_of_week2 )
           ORDER BY hour_groupings.hour_category_id DESC
           LIMIT 1";
- 
+ //echo $sql . "\n";
   $sth = $dbh->prepare($sql);
+  $sth->bindParam(':branchID', $branchID, PDO::PARAM_INT);
+  $sth->bindParam(':hour_type_id', $type, PDO::PARAM_INT);
+  $sth->bindParam(':day_of_week', $ymd, PDO::PARAM_STR);
+  $sth->bindParam(':day_of_week2', $dayofweek, PDO::PARAM_STR);
+  
   $status = $sth->execute();
   $results = $sth->fetchAll();
+  
   
   return $results;
  

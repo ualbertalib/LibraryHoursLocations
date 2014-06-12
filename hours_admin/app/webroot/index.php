@@ -22,6 +22,7 @@
 /**
  * Use the DS to separate the directories in other defines
  */
+
 	if (!defined('DS')) {
 		define('DS', DIRECTORY_SEPARATOR);
 	}
@@ -36,8 +37,10 @@
  *
  */
 	if (!defined('ROOT')) {
-		define('ROOT', .DS. 'hours_locations');
+		//define('ROOT', DS . 'hours_locations');
+            define('ROOT', DS . 'var/www/sites/hours.library.ualberta.ca/docroot/hours_admin');
 	}
+       
 /**
  * The actual directory name for the "app".
  *
@@ -51,7 +54,8 @@
  *
  */
 	if (!defined('CAKE_CORE_INCLUDE_PATH')) {
-        define('CAKE_CORE_INCLUDE_PATH', DS.'usr'.DS.'local'.DS.'lib');
+        //define('CAKE_CORE_INCLUDE_PATH', DS.'usr'.DS.'local'.DS.'lib');
+            define('CAKE_CORE_INCLUDE_PATH', DS.'var'.DS.'www'.DS.'sites'.DS.'hours.library.ualberta.ca'.DS.'cakephp-1.3.17');
 	}
 
 
@@ -61,7 +65,7 @@
  */
 
     if (!defined('PUBLIC_URL')) {
-		define('PUBLIC_URL', 'http://hours.library.ca');
+		define('PUBLIC_URL', 'http://hours.library.ualberta.ca/hours_portal');
 	}
 	
 
@@ -71,7 +75,7 @@
  */
 
     if (!defined('ADMIN_URL')) {
-		define('ADMIN_URL', 'http://hours-admin.library.ca');
+		define('ADMIN_URL', 'http://hours.library.ualberta.ca/hours_admin');
 	}	
 	
 /**
@@ -80,7 +84,7 @@
  */
 
     if (!defined('SCRIPT_URL')) {
-		define('SCRIPT_URL', 'http://www.library.ca/');
+		define('SCRIPT_URL', 'http://hours.library.ualberta.ca/hours_admin');
 	}		
 
 
@@ -90,10 +94,11 @@
  *
  */
 	if (!defined('WEBROOT_DIR')) {
-		define('WEBROOT_DIR', basename(dirname(__FILE__)));
+		define('WEBROOT_DIR', basename(dirname(__FILE__)));                
 	}
 	if (!defined('WWW_ROOT')) {
 		define('WWW_ROOT', dirname(__FILE__) . DS);
+              
 	}
 	if (!defined('CORE_PATH')) {
 		if (function_exists('ini_set') && ini_set('include_path', CAKE_CORE_INCLUDE_PATH . PATH_SEPARATOR . ROOT . DS . APP_DIR . DS . PATH_SEPARATOR . ini_get('include_path'))) {
@@ -102,15 +107,26 @@
 		} else {
 			define('APP_PATH', ROOT . DS . APP_DIR . DS);
 			define('CORE_PATH', CAKE_CORE_INCLUDE_PATH . DS);
+                        
 		}
-	}
+	        
+        }
+        
 	
         if (!include(CORE_PATH . 'cake' . DS . 'bootstrap.php')) {
 		trigger_error("CakePHP core could not be found.  Check the value of CAKE_CORE_INCLUDE_PATH in APP/webroot/index.php.  It should point to the directory containing your " . DS . "cake core directory and your " . DS . "vendors root directory.", E_USER_ERROR);
 	}
 	if (isset($_GET['url']) && $_GET['url'] === 'favicon.ico') {
+           
 		return;
+                
 	} else {
+            
 		$Dispatcher = new Dispatcher();
+                  
 		$Dispatcher->dispatch();
 	}
+        
+        
+
+      

@@ -1,0 +1,4 @@
+DBHOST=mySQL-host.com
+DBNAME=hours_locations
+USER=
+PASS=

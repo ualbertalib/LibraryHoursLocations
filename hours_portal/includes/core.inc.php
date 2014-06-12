@@ -20,7 +20,7 @@ if ($requestMonth*1 < 10) {
 ?>
 
 <ul class="breadcrumb expand">
-  <li><a href="http://www.library.ubc.ca" title="UBC Library">Library Home</a> <span class="divider">/</span></li>
+  <li><a href="http://www.library.ualberta.ca" title="UofA Library">Library Home</a> <span class="divider">/</span></li>
   <li>Hours &amp; Locations</li>
 </ul>
 
@@ -168,9 +168,9 @@ if ($requestMonth*1 < 10) {
     <?php
     // footer links depend on dev/prod server
     if ($_SERVER['SERVER_NAME'] != "kemano.library.ubc.ca" && $_SERVER['SERVER_NAME'] != "hours-dev.library.ubc.ca") { ?>
-    <a href="http://hoursadmin.library.ubc.ca">Staff Admin Login</a><br />
+    <a href="http://hours.library.ualberta.ca">Staff Admin Login</a><br />
     <?php } else { ?>
-    <a href="http://hours-admin-dev.library.ubc.ca">Dev Admin Login</a><br />
+    <a href="http://hours.library.ualberta.ca">Dev Admin Login</a><br />
     <?php } ?>
     <a href="print.php">Signage and Bookmarks</a>
    

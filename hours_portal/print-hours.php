@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 
-<title>Hours and Locations | UBC Library Signage &amp; Bookmarks</title>
+<title>Hours and Locations | Signage &amp; Bookmarks</title>
 
-<link rel="icon" type="image/vnd.microsoft.icon" href="http://www.library.ubc.ca/_ubc_clf/img/favicon.ico" />
+<link rel="icon" type="image/vnd.microsoft.icon" href="//www.library.ualberta.ca/favicon.ico" />
 <link href="css/print-hours.css" type="text/css" rel="stylesheet" media="all" />
 <!--[if IE]><style>.bookmark { margin-left: 3.8%; }</style><![endif]-->
 
@@ -137,8 +137,9 @@ if ($id && $version == "full") {
   
   $print = '
   <div id="header">
-
-    <img src="img/ubc-library-logo-small.gif" width="346" height="60" alt="UBC Library Logo" id="logo" />
+<!--
+    <img src="img/library-logo-small.gif" width="346" height="60" alt="Library Logo" id="logo" /> -->
+    
     
     <h1>'.$title.' Hours</h1>
     
@@ -160,7 +161,7 @@ if ($id && $version == "full") {
   $print = '
     <div class="column">
     
-      <h1>UBC Library Hours</h1>
+      <h1>University Of Alberta Library Hours</h1>
       
       <h2>'.date('M j, Y', strtotime($begin)).' - '.date('M j, Y', strtotime($end)).'</h2>';
 
@@ -171,10 +172,10 @@ if ($id && $version == "full") {
  
   $print = '
   <div id="header">
+  
 
-    <img src="img/ubc-library-logo-small.gif" width="346" height="60" alt="UBC Library Logo" id="logo" />
  
-    <h1>Hours Unavailable</h1>
+    <h1>University Of Alberta Libraries - Hours Unavailable</h1>
  
     <h2>Please return to the <a href="print.php">print page</a> and select another version.</h2>
 
@@ -215,7 +216,7 @@ if (!$results || ($version != "full" && $version != "bookmark")) {
   $print .= '
     <div class="column">
     
-      <p>Sorry, no hours available for this view. Please contact <a href="http://helpdesk.library.ubc.ca/lsit/web-services-support/">Web Services</a> if you are unable to locate the correct print hours.</p>
+      <p>Sorry, no hours available for this view. Please contact <a href="libhelp@ualberta.ca">Web Services</a> if you are unable to locate the correct print hours.</p>
       
     </div><!-- closes column -->';
   
@@ -464,7 +465,7 @@ if (!$results || ($version != "full" && $version != "bookmark")) {
       
       <h3></h3>
       <img src="img/qr.png" height="155" width="155" />
-      <p class="bottom"><strong>Current as of '.date('M j, Y').'</strong> <br />Check hours.library.ubc.ca for latest hours information.</p>
+      <p class="bottom"><strong>Current as of '.date('M j, Y').'</strong> <br />Check hours.library.ualberta.ca for latest hours information.</p>
       
     </div><!-- closes column -->';
         

@@ -57,7 +57,7 @@ class HourGroupingsController extends AppController {
 		if(!empty($session_location)) {
 			if($session_location != 'any') { $this->paginate['conditions']['HourGrouping.hour_location_id'] = $session_location; }	 
 		}
-		$session_type = $this->Session->read('HourGroupings.hour_type_id');
+		$session_type = $this->Session->read('HourGrouping.hour_type_id');
 		if(!empty($session_type)) {
 			if($session_type != 'any') { $this->paginate['conditions']['HourGrouping.hour_type_id'] = $session_type; }
 		}
@@ -165,6 +165,8 @@ class HourGroupingsController extends AppController {
 				$this->Session->setFlash("Hours added.", 'flash_success');
 				$this->redirect(array('action'=>'view',$this->HourGrouping->id));
 			} else {
+                            debug($this); die();
+                           
 				$this->Session->setFlash('The hours could not be added.', 'flash_failure');
 			}
 		}

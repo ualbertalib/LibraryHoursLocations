@@ -19,48 +19,35 @@
 
 // pull from main library website header
 //$uhead = file_get_contents('http://www.library.ubc.ca/home/includefiles/header.html');
-$uhead = file_get_contents('http://gates.library.ubc.ca/_ubc_clf/header.html');
+
+//$uhead = file_get_contents('http://gates.library.ubc.ca/_ubc_clf/header.html');
+
+//$uhead = file_get_contents( dir_name(__FILE__) . '/../../hours_portal/header.html');
+
+$uhead = file_get_contents( dirname(__FILE__). '/UofAHeader.inc.php');
 
 //need this id to win specificity wars with the UBC CLF
-$uhead=str_replace('<body>','<body id="hours_locations">',$uhead);
+//$uhead=str_replace('<body>','<body id="hours_locations">',$uhead);
 
-$ga='
-<script type="text/javascript">
-    /* Google */
-    var _gaq = _gaq || [];
-    _gaq.push(["_setAccount", "UA-231366-5"]);
-    _gaq.push(["_setDomainName", ".ubc.ca"]);
-    _gaq.push(["_trackPageview"]);
-    (function() {
-        var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
-        ga.src = ("https: " == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
-        var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
-    })();
-</script>
-';
-$insert = '<link rel="stylesheet" type="text/css" href="http://ltk.library.ubc.ca/css/jquery-ui.css"/>';
-$insert .= $this->Html->css('cake.ubc');
-$insert .= $ga;
-$insert .= '<script type="text/javascript" src="http://ltk.library.ubc.ca/js/jquery-ui.min.js"></script>';
-$insert .= $scripts_for_layout;
+    $ga='';
+    $insert = "";
+    $insert = '<link rel="stylesheet" type="text/css" href="http://ltk.library.ubc.ca/css/jquery-ui.css"/>';
+    //$insert .= $this->Html->css('cake.ubc');
+    //$insert .= $ga;
+    //$insert .= '<script type="text/javascript" src="http://ltk.library.ubc.ca/js/jquery-ui.min.js"></script>';
+    //$insert .= $scripts_for_layout;
 
-$uhead = str_replace('</head>',$insert.'</head>', $uhead);
+    //$uhead = str_replace('</head>',$insert.'</head>', $uhead);
 
-//Google stuff, not wanted
-$uhead = preg_replace('~<script[^>]*jsapi[^>]*></script>~','',$uhead);
+    //Google stuff, not wanted
+    //$uhead = preg_replace('~<script[^>]*jsapi[^>]*></script>~','',$uhead);
 
-$page_title = 'Hours and Locations Admin: UBC Library';
+$page_title = 'Hours and Locations Admin: University of Alberta Library';
 if(isset($title_for_layout) && !empty($title_for_layout)){
     $page_title = $title_for_layout . ': ' . $page_title;
 }
 
-$uhead='<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="description" content="UBC Library hours and locations administration"/>
-<title>'.$page_title.'</title>
-'.$uhead;
+// $uhead='<title>'.$page_title.'</title>'.$uhead;
 if(!isset($noecho)){
     echo $uhead;
 }
@@ -111,12 +98,11 @@ if(!isset($noecho)){
 				</div>
 		</div>
 		<?php 
-			if(isset($location_name) && !empty($location_name)) {
+                    if(isset($location_name) && !empty($location_name)) {
 		?>				
-		<div>			
-				<div class="twelve columns row" style="font-style:italic;">
-					<?php echo "Admin tool for <strong>" . $location_name . "</strong>"; ?>
-				</div>
+		<div><div class="twelve columns row" style="font-style:italic;">
+			<?php echo "Admin tool for <strong>" . $location_name . "</strong>"; ?>
+                     </div>
 		</div>
 		<?php 
 			} 
@@ -129,28 +115,22 @@ if(!isset($noecho)){
 			<?php echo $content_for_layout; ?>
 
 		</div>
-        </div> <!--container    --><?php
+        </div> <!-- container --><?php
 // include library footer
 
-$ufoot = file_get_contents('http://www.library.ubc.ca/home/includefiles/footer.html');
-$patterns = array(
-    '~<!---*~', // not xml
-    '~---*>~',
-    '~<!-- Google Analytics.*?<!-- End UBC~mis' // just adds errors; reinserted below
-);
-$replacements = array(
-    '<!--',
-    '-->',
-    '<!-- End UBC'
-);
-$ufoot = preg_replace($patterns, $replacements, $ufoot);
-$ufoot = preg_replace('~<!-- Ask Us Tab-->.*?<\/script>.*?<\/script>~ms', '', $ufoot);
+//$ufoot = file_get_contents('http://www.library.ubc.ca/home/includefiles/footer.html');
+
+$ufoot = file_get_contents( dirname(__FILE__). '/UofAFooter.inc.php');
+        
+//$patterns = array('~<!---*~', '~---*>~', '~<!-- Google Analytics.*?<!-- End UBC~mis' );
+
+//$replacements = array(   '<!--', '-->',  '<!-- End UBC' );
+//$ufoot = preg_replace($patterns, $replacements, $ufoot);
+//$ufoot = preg_replace('~<!-- Ask Us Tab-->.*?<\/script>.*?<\/script>~ms', '', $ufoot);
 
 if (!empty($_SERVER['HTTPS'])) {
-    $ufoot = str_replace('src="http:', 'src="/fr.php?http:', $ufoot);
+    // $ufoot = str_replace('src="http:', 'src="/fr.php?http:', $ufoot);
 }
-echo '
-    '.$ufoot;
+echo $ufoot;
+
 echo $this->element('sql_dump'); ?>
-</body>
-</html>

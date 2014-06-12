@@ -4,15 +4,57 @@
 */
 
 session_start();
-require_once(dirname(__FILE__).'/../../config');
-require_once(LIB . '/db.inc.php');
-include_once(LIB . '/utility.inc.php');
+require_once(dirname(__FILE__).'/app/config/database.php');
 
-global $staffdb;
+$db = new DATABASE_CONFIG();
+
+  
+
+
+  // set values to local variables, getting hostname from dbfinder
+  $dsn = 'mysql:host='.$db->default['host'].';dbname='.$db->default['database'];
+
+  // connect to database for selecting
+  try {
+    
+    $dbh = new PDO($dsn, $db->default['login'], $db->default['password']);
+    
+    //add attribute to convert empty strings to null
+    $dbh->setAttribute(PDO::ATTR_ORACLE_NULLS, PDO::NULL_EMPTY_STRING);
+    
+    /*** echo a message saying we have connected ***/
+    //echo 'Connected to database';
+    
+  } catch(PDOException $e) {
+    
+    echo $e->getMessage();
+    
+  }
+  
+  
+//require_once(LIB . '/db.inc.php');
+//include_once(LIB . '/utility.inc.php');
+
+//global $staffdb;
+
+/* @param string $sql SQL query
+* @param mixed $bind Bind variables
+* @return array
+*/
+function getArray($sql, $bind=false, $ignoreError=false) {
+$stmt = $this->_query($sql, $bind, $ignoreError);
+return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 
 $alldays = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday');
 
-$hour_date_range_id = $_GET['daterangeid'];
+//$hour_date_range_id = $_GET['daterangeid'];
+
+$hour_date_range_id = filter_input(INPUT_GET, 'daterangeid', FILTER_VALIDATE_INT);
+
+
 /*
 if(!isset($_GET['categoryid']) || empty($_GET['categoryid'])) {
        $hour_category_id = 1;
@@ -30,7 +72,15 @@ $sql = "SELECT `begin_date`,`end_date`,`hour_category_id`, `hour_categories`.`ca
 		FROM `hour_date_ranges` 
 		JOIN `hour_categories` ON (`hour_categories`.`id` = `hour_date_ranges`.`hour_category_id`)
 		WHERE `hour_date_ranges`.`id` = $hour_date_range_id";
-$range = $staffdb->getArray($sql);
+
+//$range = $staffdb->getArray($sql);
+
+$stmt = $dbh->prepare($sql);
+$stmt->execute();
+
+$range = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 if($range) {
        $begin_str = $range[0]['begin_date'];
        $end_str = $range[0]['end_date'];

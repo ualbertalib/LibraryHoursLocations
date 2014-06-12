@@ -36,7 +36,14 @@
         <input type="hidden" name="month" value="9" /> 
         <input type="hidden" name="category" value="1" /> 
         <input type="hidden" name="version" value="full" /> 
-        <input type="submit" value="Fall/Winter Hours" class="button" /> 
+        <input type="submit" value="Fall" class="button" /> 
+      </form> 
+      
+      <form action="<?php echo $print_url; ?>" method="post"> 
+        <input type="hidden" name="month" value="1" /> 
+        <input type="hidden" name="category" value="1" /> 
+        <input type="hidden" name="version" value="full" /> 
+        <input type="submit" value="Winter Hours" class="button" /> 
       </form> 
        
       <form action="<?php echo $print_url; ?>" method="post"> 
@@ -91,9 +98,16 @@
         <input type="hidden" name="month" value="9" /> 
         <input type="hidden" name="category" value="1" /> 
         <input type="hidden" name="version" value="bookmark" /> 
-        <input type="submit" value="Fall/Winter Hours" class="button" /> 
+        <input type="submit" value="Fall Hours" class="button" /> 
       </form> 
-       
+      
+       <form action="<?php echo $print_url; ?>" method="post"> 
+        <input type="hidden" name="month" value="1" /> 
+        <input type="hidden" name="category" value="1" /> 
+        <input type="hidden" name="version" value="bookmark" /> 
+        <input type="submit" value="Winter Hours" class="button" /> 
+      </form> 
+      
       <form action="<?php echo $print_url; ?>" method="post"> 
         <input type="hidden" name="month" value="12,1" /> 
         <input type="hidden" name="category" value="5" /> 

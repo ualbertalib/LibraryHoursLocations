@@ -15,6 +15,12 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+/*
 require DIRECTORY_SEPARATOR . 'home' . DIRECTORY_SEPARATOR . 'jdearles' . DIRECTORY_SEPARATOR . 'ltk' . DIRECTORY_SEPARATOR . 'trunk' . 
 DIRECTORY_SEPARATOR . 'www' . DIRECTORY_SEPARATOR . 'staffdirectory' . DIRECTORY_SEPARATOR . 'hdadmin' . DIRECTORY_SEPARATOR . 'app' . 
+DIRECTORY_SEPARATOR . 'webroot' . DIRECTORY_SEPARATOR . 'index.php'; */
+
+//Jeremy's code
+require DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'www' . DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . 'hours.library.ualberta.ca' . 
+DIRECTORY_SEPARATOR . 'docroot' . DIRECTORY_SEPARATOR .  'hours_admin' . DIRECTORY_SEPARATOR . 'app' . 
 DIRECTORY_SEPARATOR . 'webroot' . DIRECTORY_SEPARATOR . 'index.php';

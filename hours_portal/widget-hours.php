@@ -562,7 +562,7 @@ if ($display == 'table') {
   </tbody>
 </table>
 
-<p><strong>See Also:</strong> <a href="http://hours.library.ubc.ca/#view-'.$URLname.'">Hours Monthly View</a></p>';
+<p><strong>See Also:</strong> <a href="http://hours.library.ualberta.ca/#view-'.$URLname.'">Hours Monthly View</a></p>';
 
 } else if ($display == 'text') {
   
