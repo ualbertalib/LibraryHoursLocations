@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL ^ E_NOTICE);
 require_once('functions.php');
 
 
@@ -8,14 +9,10 @@ require_once('functions.php');
 
 // grab submitted values (which locations/hours, what display)
 $location1 = isset($_GET['location1']) ? sanitize($_GET['location1']) : 2;
-$type1 = isset($_GET['type1']) ? sanitize($_GET['type1']) : 2;
-$location2 = isset($_GET['location2']) ? sanitize($_GET['location2']) : 2;
-$type2 = isset($_GET['type2']) ? sanitize($_GET['type2']) : 3;
-$location3 = isset($_GET['location3']) ? sanitize($_GET['location3']) : '';
-$type3 = isset($_GET['type3']) ? sanitize($_GET['type3']) : 2;
+$type1 = isset($_GET['type1']) ? sanitize($_GET['type1']) : 1;
+
 $display = isset($_GET['display']) ? sanitize($_GET['display']) : 'table';
 $shorttable = isset($_GET['shorttable']) ? sanitize($_GET['shorttable']) : '';
-
 
 // send widget as javascript
 header('content-type:application/x-javascript');
@@ -79,9 +76,9 @@ if ($display == 'table') {
     
     $caption = '<caption>This Week ';
     
-    if (!$location2) {
+    
       $caption .= '<br />';
-    }//closes if
+    
     
     $caption .= '('.date('F j, Y', strtotime($thismon)).')</caption>';
     
@@ -101,187 +98,13 @@ hourswidget += '<th>HOURS</th>';
 
 hourswidget += '<th>';
 
-<?php
-  // for library hours in column 1
-  if ($type1 == 2) {
-    
-    // exceptions for IKBLC widgets
-    switch ($location1) {
-    
-      case 6:
-      $heading = 'IKBLC Building';
-      break;
-      
-      case 7:
-      $heading = 'Music, Art &amp;<br /> Architecture Library';
-      break;
-      
-      case 11:
-      $heading = 'Chapman<br />Learning Commons';
-      break;
-      
-      default:
-      $heading = '<span class="nowrap">Open Hours</span>';
-      break;
-    
-    }//closes switch
-?>
-
-hourswidget += '<?= $heading; ?>';
-
-<?php
-  // for reference hours in column 1
-  } else if ($type1 == 3) {
-    
-    // exception for Koerner
-    switch ($location1) {
-    
-      case 2:
-      $heading = 'Research Commons<br />&amp; Reference';
-      break;
-      
-      default:
-      $heading = 'Reference Hours';
-      break;
-      
-    }//closes switch
-?>
-
-hourswidget += '<?= $heading; ?>';
-
-<?php    
-  }//closes if-elseif  
-?>
 
 hourswidget += '</th>'; 
 
-<?php 
-  // when a second column has been indicated
-  if ($location2) {
-?>
 
-hourswidget += '<th>';
 
-<?php
-    // for library hours in column 2
-    if ($type2 == 2) {
-    
-      // exceptions for IKBLC widgets
-      switch ($location2) {
-      
-        case 6:
-        $heading = 'IKBLC Building';
-        break;
-        
-        case 7:
-        $heading = 'Music, Art &amp;<br /> Architecture Library';
-        break;
-        
-        case 11:
-        $heading = 'Chapman<br />Learning Commons';
-        break;
-        
-        default:
-        $heading = 'Open Hours';
-        break;
-      
-      }//closes switch
-?>  
+//hourswidget += '<th id="1">';
 
-hourswidget += '<?= $heading; ?>';
-
-<?php      
-    // for reference hours in column 2
-    } else if ($type2 == 3) {
-      
-      // exception for Koerner
-      switch ($location2) {
-      
-        case 2:
-        $heading = 'Research Commons<br />&amp; Reference';
-        break;
-        
-        default:
-        $heading = 'Reference Hours';
-        break;
-      
-      }//closes switch
-?>
-
-hourswidget += '<?= $heading; ?>';
-
-<?php      
-    }//closes if-elseif
-?>
-
-hourswidget += '</th>';
-
-<?php   
-  }//closes if
- 
-  // when a third column has been indicated
-  if ($location3) {
-?>
-
-hourswidget += '<th>';
-
-<?php
-    // for library hours in column 3
-    if ($type3 == 2) {
-    
-      // exceptions for IKBLC widgets
-      switch ($location3) {
-      
-        case 6:
-        $heading = 'IKBLC Building';
-        break;
-        
-        case 7:
-        $heading = 'Music, Art &amp;<br /> Architecture Library';
-        break;
-        
-        case 11:
-        $heading = 'Chapman<br />Learning Commons';
-        break;
-        
-        default:
-        $heading = 'Open Hours';
-        break;
-      
-      }//closes switch
-?>
-
-hourswidget += '<?= $heading; ?>';
-
-<?php    
-    // for reference hours in column 3
-    } else if ($type3 == 3) {
-      
-      // exception for Koerner
-      switch ($location3) {
-      
-        case 2:
-        $heading = 'Research Commons<br />&amp; Reference';
-        break;
-        
-        default:
-        $heading = 'Reference Hours';
-        break;
-      
-      }//closes switch
-?>
-
-hourswidget += '<?= $heading; ?>';
-
-<?php      
-    }//closes if-elseif
-?>
-
-hourswidget += '</th>';
-
-<?php
-  }//closes if
-?>
 
 hourswidget += '</tr>';
 
@@ -379,8 +202,18 @@ hourswidget += '</tr>';
     // grab hours based on date, location and library/reference type
     // returns: OPEN_TIME, CLOSE_TIME, IS_CLOSED, TYPE, CATEGORY
     $column1 = getHoursByDate($ymd, $location1, $type1);
-    $column2 = getHoursByDate($ymd, $location2, $type2);
-    $column3 = getHoursByDate($ymd, $location3, $type3);
+   
+   //echo "column1: {$ymd} . location1: $location1 . type1: $type1 \n";
+   //print_r($column1);
+   
+   
+  //  $column2 = getHoursByDate($ymd, $location2, $type2);
+   //echo "column2: {$ymd} . location1: $location2 . type1: $type2 \n";
+    //print_r($column2);
+   
+   // $column3 = getHoursByDate($ymd, $location3, $type3);
+    //echo "column3: {$ymd} . location3: $location3 . type1: $type3 \n";
+    //print_r($column3);
    
     // start row display with appropriate tr tag (sets up alternating rows)
     if ($alt == false) {
@@ -466,94 +299,15 @@ row += '<?= displayTime($column1[0]['open_time']); ?> - <?= displayTime($column1
     } else {
 ?>
       
-row += 'N/A</td>';
+row += '<td>N/A</td>';
 
 <?php      
     }//closes if-else
     
-    // for indicated second location
-    if ($location2) {
-?>
 
-row += '<td>';
-
-<?php 
-      // for second column returns
-      if ($column1 && $column2) {
-          
-        // display library hours as closed, 24 hrs or a range (and reference desk displays as closed if library is closed)
-        if ($column2[0]['is_closed'] == 1 || ($location1 == $location2 && $column1[0]['type'] == 2 && $column2[0]['type'] == 3 && $column1[0]['is_closed'] == 1) ) {
-?>
-
-row += 'Closed</td>';
-
-<?php
-        } else if ($column2[0]['open_time'] == $column2[0]['close_time'] && $column2[0]['is_closed'] == 0) {
-?>
-
-row += 'Open 24 Hrs</td>';
-
-<?php
-        } else {
-?>
-
-row += '<?= displayTime($column2[0]['open_time']); ?> - <?= displayTime($column2[0]['close_time']); ?></td>';
-
-<?php
-        }//closes if-elseif-else
-      
-      // for no return
-      } else {
-?>
-
-row += 'N/A</td>';
-
-<?php
-      }//closes if-else
-    
-    }//closes if
     
     // for indicated third location
-    if ($location3) {
-?>
-
-row += '<td>';
-
-<?php
-      // for third column returns
-      if ($column3) {
-        
-        // display library hours as closed, 24 hrs or a range
-        if ($column3[0]['is_closed'] == 1) {
-?>
-
-row += 'Closed</td>';
-
-<?php
-        } else if ($column3[0]['open_time'] == $column3[0]['close_time'] && $column3[0]['is_closed'] == 0) {
-?>
-
-row += 'Open 24 Hrs</td>';
-
-<?php
-        } else {
-?>
-
-row += '<?= displayTime($column3[0]['open_time']); ?> - <?= displayTime($column3[0]['close_time']); ?></td>';
-
-<?php
-        }//closes if-elseif-else
-        
-      // for no return 
-      } else {
-?>
-
-row += 'N/A</td>';
-
-<?php 
-      }//closes if-else
-      
-    }//closes if
+   
 ?>
 
 row += '</tr>';
@@ -608,7 +362,7 @@ hourswidget += '</tr>';
   }//closes if
 ?>
 
-hourswidget += '</tbody></table><p><strong>See Also:</strong> <a href="http://hours.library.ubc.ca/#view-<?= $URLname; ?>">Hours Monthly View</a></p>';
+hourswidget += '</tbody></table><p><strong>See Also:</strong> <a href="http://hours.library.ualberta.ca/#view-<?= $URLname; ?>">Hours Monthly View</a></p>';
 
 <?php
 } else if ($display == 'text') {
@@ -624,6 +378,9 @@ hourswidget += '</tbody></table><p><strong>See Also:</strong> <a href="http://ho
     // grab hours based on date and location (library hours)
     // returns: OPEN_TIME, CLOSE_TIME, IS_CLOSED, TYPE, CATEGORY
     $dailyhours = getHoursByDate($ymd[$i], $location1, $type1);
+    
+    //print_r($dailyhours);
+    
     array_push($weeklyhours, $dailyhours);
     
   }//closes for
@@ -638,10 +395,25 @@ hourswidget = '<div class="hours-widget"><h2>Hours This Week</h2>';
   // display week's hours, collapsing where appropriate
   for ($i = 0; $i < 7; $i++) {
     
+    //  echo 'test' . $weeklyhours[$i][0]['open_time'];
     // variables to compare the next values
-    $next_open = isset($weeklyhours[$i+1][0]['open_time']) ? $weeklyhours[$i+1][0]['open_time'] : '0';
-    $next_close = isset($weeklyhours[$i+1][0]['close_time']) ? $weeklyhours[$i+1][0]['close_time'] : '0';
-    $next_closed = isset($weeklyhours[$i+1][0]['is_closed']) ? $weeklyhours[$i+1][0]['is_closed'] : '0';
+ 
+    //  echo $weeklyhours[$i][0]['open_time'];
+          $next_open = isset($weeklyhours[$i+1][0]['open_time']) ? $weeklyhours[$i+1][0]['open_time'] : '0';
+          $next_close = isset($weeklyhours[$i+1][0]['close_time']) ? $weeklyhours[$i+1][0]['close_time'] : '0';
+          $next_closed = isset($weeklyhours[$i+1][0]['is_closed']) ? $weeklyhours[$i+1][0]['is_closed'] : '0';
+            if (! isset($weeklyhours[$i][0]['open_time'])) {
+                $next_open="N/A";
+                $current_open = "N/A";
+            }
+            if (! isset($weeklyhours[$i][0]['close_time'])){
+                $next_close="N/A";
+            }
+             if (! isset($weeklyhours[$i][0]['is_closed'])){
+                $next_closed="N/A";
+            }
+           
+  
     
     // if the next set of hours is the same, set the range start date, change match to true, break the loop
     if ($weeklyhours[$i][0]['open_time'] == $next_open && $weeklyhours[$i][0]['close_time'] == $next_close && $weeklyhours[$i][0]['is_closed'] == $next_closed && $match == false) {
@@ -688,12 +460,18 @@ hourswidget += '</span> ';
 hourswidget += 'Closed';
 
 <?php
+  }else if ($current_open){
+          //javascript
+          echo "hourswidget += 'N/A';";
+          
       } else if ($weeklyhours[$i][0]['is_closed'] == 0 && $weeklyhours[$i][0]['open_time'] == $weeklyhours[$i][0]['close_time']) {
 ?>
 
 hourswidget += 'Open 24 Hours';
 
 <?php
+    
+          
       } else {
 ?>
 
@@ -722,6 +500,7 @@ hourswidget += '</div>';
   // grab hours based on date and location
   // returns: OPEN_TIME, CLOSE_TIME, IS_CLOSED, TYPE, CATEGORY
   $today = getHoursByDate($currentdate, $location1, $type1);
+    
 ?>
 
 hourswidget = '<div class="hours-widget"><p><strong>Today\'s Hours:</strong> &nbsp;';

@@ -179,10 +179,11 @@ class HourLocationsController extends AppController {
 	}
 	
 	function widget() {
-		if (isset($this->data['HourLocation']['widget_note'])) {       
+		if (isset($this->data['HourLocation']['widget_note'])) {  
+                  
 			if ($this->HourLocation->save($this->data)) {                                
 				$this->Session->setFlash("Hours widget note updated.", 'flash_success');
-			} else {
+			} else {                            
 				$this->Session->setFlash("Hours widget note could not be updated.", 'flash_failure');
 			}
 		}

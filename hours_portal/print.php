@@ -6,8 +6,8 @@ include('includes/head.inc.php');
 ?>
 
 <ul class="breadcrumb expand">
-  <li><a href="http://www.library.ubc.ca" title="UBC Library">Libray Home</a> <span class="divider">/</span></li>
-  <li><a href="http://hours.library.ubc.ca" title="UBC Library Hours and Locations">Hours &amp; Locations</a> <span class="divider">/</span></li>
+  <li><a href="http://www.library.ualberta.ca" title="University of Alberta Library">Libray Home</a> <span class="divider">/</span></li>
+  <li><a href="http://hours.library.ualberta.ca" title="U of A Library Hours and Locations">Hours &amp; Locations</a> <span class="divider">/</span></li>
   <li>Print Signage &amp; Bookmarks</li>
 </ul>
 
@@ -56,7 +56,14 @@ include('includes/head.inc.php');
         <input type="hidden" name="month" value="9" />
         <input type="hidden" name="category" value="1" />
         <input type="hidden" name="version" value="full" />
-        <input type="submit" value="Fall/Winter Hours" class="button" />
+        <input type="submit" value="Fall Hours" class="button" />
+      </form>
+      
+      <form action="print-hours.php" method="post">
+        <input type="hidden" name="month" value="1" />
+        <input type="hidden" name="category" value="1" />
+        <input type="hidden" name="version" value="full" />
+        <input type="submit" value="Winter Hours" class="button" />
       </form>
       
       <form action="print-hours.php" method="post">
@@ -111,7 +118,14 @@ include('includes/head.inc.php');
         <input type="hidden" name="month" value="9" />
         <input type="hidden" name="category" value="1" />
         <input type="hidden" name="version" value="bookmark" />
-        <input type="submit" value="Fall/Winter Hours" class="button" />
+        <input type="submit" value="Fall Hours" class="button" />
+      </form>
+      
+        <form action="print-hours.php" method="post">
+        <input type="hidden" name="month" value="1" />
+        <input type="hidden" name="category" value="1" />
+        <input type="hidden" name="version" value="bookmark" />
+        <input type="submit" value="Winter Hours" class="button" />
       </form>
       
       <form action="print-hours.php" method="post">

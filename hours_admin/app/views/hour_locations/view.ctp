@@ -1,4 +1,5 @@
 <div class="locations view twelve columns nest">
+    
 <div class="first eight columns">
 	<h2><?php echo $hourLocation['HourLocation']['name'] . ' Details'; ?></h2>
 </div>

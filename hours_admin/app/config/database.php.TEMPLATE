@@ -76,11 +76,12 @@ class DATABASE_CONFIG {
 	var $default = array(
 		'driver' => 'mysql',
 		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'hourslocations',
-		'password' => 'password',
-		'database' => 'hourslocations',
+		'host' => 'myhost.com',
+		'login' => '',
+		'password' => '',
+		'database' => 'hours_locations',
 		'prefix' => '',
+        'encoding' => 'utf8' 
 	);
 
 	var $test = array(
@@ -91,5 +92,6 @@ class DATABASE_CONFIG {
 		'password' => 'password',
 		'database' => 'hourslocations-test',
 		'prefix' => 'test',
+                'encoding' => 'utf8' 
 	);
 }

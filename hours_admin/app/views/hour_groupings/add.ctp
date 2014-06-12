@@ -145,8 +145,8 @@
         //lookup date range id and create list of days of week in the range
         //hide any days of week by div id that are not in range         
         var ajaxdata={
-                //url:"<?php echo SCRIPT_URL; ?>/hours_date_range_lookup.php",
-                url:"http://kemano.library.ubc.ca/~jdearles/ltk/staffdirectory/hours_date_range_lookup.php",
+                url:"<?php echo ADMIN_URL; ?>/hours_date_range_lookup.php",
+               // url:"http://kemano.library.ubc.ca/~jdearles/ltk/staffdirectory/hours_date_range_lookup.php",
                 dataType:'jsonp',
                 data:{
                     daterangeid: daterangeid,
@@ -283,7 +283,8 @@
     $('input[id*="CloseTime"], input[id*="OpenTime"]').live("keydown.autocomplete", function() {
     	$(this).autocomplete({
         source: function(request, response) {
-            url = "http://kemano.library.ubc.ca/~jdearles/ltk/staffdirectory/hours_autocomplete.php?term="+request.term;
+            url = "<?php echo ADMIN_URL; ?>/hours_autocomplete.php?term="+request.term;
+           // url = "http://kemano.library.ubc.ca/~jdearles/ltk/staffdirectory/hours_autocomplete.php?term="+request.term;
             $.getJSON(url + '&callback=?', function(data) {
                 console.log(data);
                 response(data);
@@ -326,7 +327,8 @@
             
             $('input[id*="CloseTime"], input[id*="OpenTime"]').autocomplete({
 	            source: function(request, response) {
-	                url = "http://kemano.library.ubc.ca/~jdearles/ltk/staffdirectory/hours_autocomplete.php?term="+request.term;
+	                 url = "<?php echo ADMIN_URL; ?>/hours_autocomplete.php?term="+request.term;
+                        //url = "http://kemano.library.ubc.ca/~jdearles/ltk/staffdirectory/hours_autocomplete.php?term="+request.term;
 	                $.getJSON(url + '&callback=?', function(data) {
 	                    console.log(data);
 	                    response(data);  

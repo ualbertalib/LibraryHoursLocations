@@ -64,7 +64,7 @@ class HourLocation extends AppModel {
 			'className' => 'HourGrouping',
 			'foreignKey' => 'hour_location_id',
 			'dependent' => true
-		)		
+		)
 	);
 
 	var $belongsTo = array(

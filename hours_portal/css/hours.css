@@ -124,7 +124,7 @@
   background-color: #fff;
 }
   #locations-table .slide-out dt {
-    padding:15px 0 15px 12px;
+    padding:10px 0 15px 12px;
   }  
   /* sublevel applies to interior locations e.g. IKBLC locations */
   #locations-table .sublevel dt {
@@ -600,23 +600,19 @@ Calendar Colour Palette
 }
 
     /* ADD/DELETE LINE HERE TO ADD/DELETE LOCATION */                              
-    .oldie #slide-content #asian .library-img      { background:url('../img/asian-library.jpg') no-repeat 8px 8px; }
-    .oldie #slide-content #biomedical .library-img { background:url('../img/biomedical-library.jpg') no-repeat 8px 8px; }
-    .oldie #slide-content #davidlam .library-img   { background:url('../img/david-library.jpg') no-repeat 8px 8px; }
-    .oldie #slide-content #education .library-img  { background:url('../img/education-library.jpg') no-repeat 8px 8px; }
-    .oldie #slide-content #hamber .library-img     { background:url('../img/hamber-library.jpg') no-repeat 8px 8px; }
-    .oldie #slide-content #ikblc .library-img,
-    .oldie #slide-content #library .library-img,
-    .oldie #slide-content #chapman .library-img,
-    .oldie #slide-content #rbsc .library-img,
-    .oldie #slide-content #archives .library-img   { background:url('../img/irving-library.jpg') no-repeat 8px 8px; }
+    .oldie #slide-content #cameron .library-img      { background:url('//www.library.ualberta.ca/2012assets/cameron-big.jpg') no-repeat 8px 8px; }
+    .oldie #slide-content #rutherford .library-img { background:url('//www.library.ualberta.ca/2012assets/rutherford-large.jpg') no-repeat 8px 8px; }
+    .oldie #slide-content #jws .library-img   { background:url('//www.library.ualberta.ca/2012assets/scott-large.jpg') no-repeat 8px 8px; }
+    .oldie #slide-content #education .library-img  { background:url('//www.library.ualberta.ca/2012assets/coutts-big.jpg') no-repeat 8px 8px; }
+    .oldie #slide-content #business .library-img     { background:url('//www.library.ualberta.ca/2012assets/business-big.jpg') no-repeat 8px 8px; }
+    .oldie #slide-content #stjoe .library-img ,
     .oldie #slide-content #koerner .library-img    { background:url('../img/koerner-library.jpg') no-repeat 8px 8px; }
     .oldie #slide-content #law .library-img        { background:url('../img/law-library.jpg') no-repeat 8px 8px; }
-    .oldie #slide-content #music .library-img      { background:url('../img/music-library.jpg') no-repeat 8px 8px; }
-    .oldie #slide-content #okanagan .library-img   { background:url('../img/okanagan-library.jpg') no-repeat 8px 8px; }
-    .oldie #slide-content #stpauls .library-img    { background:url('../img/st-library.jpg') no-repeat 8px 8px; }
-    .oldie #slide-content #woodward .library-img   { background:url('../img/woodward-library.jpg') no-repeat 8px 8px; }
-    .oldie #slide-content #xwi7xwa .library-img    { background:url('../img/xwi7xwa-library.jpg') no-repeat 8px 8px; }
+    
+    .oldie #slide-content #bsj .library-img      { background:url('//www.library.ualberta.ca/2012assets/bsj-large.jpg') no-repeat 8px 8px; }
+    .oldie #slide-content #augustana .library-img   { background:url('../img/okanagan-library.jpg') no-repeat 8px 8px; }
+    
+     .oldie #slide-content #library .library-img,
 
 #slide-content address {
   font-size:13px;
@@ -711,20 +707,21 @@ Calendar Colour Palette
 @media (min-width: 61.25em) { /* 980 / 16 */
   
     /* ADD/DELETE LINE HERE TO ADD/DELETE LOCATION */                              
-    #slide-content #asian .library-img      { background:url('../img/asian-library.jpg') no-repeat 8px 8px; }
-    #slide-content #biomedical .library-img { background:url('../img/biomedical-library.jpg') no-repeat 8px 8px; }
-    #slide-content #davidlam .library-img   { background:url('../img/david-library.jpg') no-repeat 8px 8px; }
-    #slide-content #education .library-img  { background:url('../img/education-library.jpg') no-repeat 8px 8px; }
-    #slide-content #ikblc .library-img,
+    #slide-content #cameron .library-img      { background:url('//www.library.ualberta.ca/2012assets/cameron-big.jpg') no-repeat 8px 8px; }
+    #slide-content #rutherford .library-img { background:url('//www.library.ualberta.ca/2012assets/rutherford-large.jpg') no-repeat 8px 8px; }
+    #slide-content #jws .library-img   { background:url('//www.library.ualberta.ca/2012assets/scott-large.jpg') no-repeat 8px 8px; }
+    #slide-content #education .library-img  { background:url('//www.library.ualberta.ca/2012assets/coutts-big.jpg') no-repeat 8px 8px; }
+    
+    
     #slide-content #library .library-img,
-    #slide-content #chapman .library-img,
-    #slide-content #rbsc .library-img,
-    #slide-content #archives .library-img   { background:url('../img/irving-library.jpg') no-repeat 8px 8px; }
-    #slide-content #koerner .library-img    { background:url('../img/koerner-library.jpg') no-repeat 8px 8px; }
-    #slide-content #law .library-img        { background:url('../img/law-library.jpg') no-repeat 8px 8px; }
-    #slide-content #okanagan .library-img   { background:url('../img/okanagan-library.jpg') no-repeat 8px 8px; }
-    #slide-content #woodward .library-img   { background:url('../img/woodward-library.jpg') no-repeat 8px 8px; }
-    #slide-content #xwi7xwa .library-img    { background:url('../img/xwi7xwa-library.jpg') no-repeat 8px 8px; }
+    
+
+    #slide-content #business .library-img   { background:url('//www.library.ualberta.ca/2012assets/business-big.jpg') no-repeat 8px 8px; }
+    #slide-content #stjoe .library-img {background: none;}  , 
+    #slide-content #law .library-img        { background:url('//www.library.ualberta.ca/2012assets/law-big.jpg') no-repeat 8px 8px; }
+    #slide-content #bsj .library-img   { background:url('//www.library.ualberta.ca/2012assets/bsj-large.jpg') no-repeat 8px 8px; }
+    #slide-content #augustana .library-img   { background:url('//www.library.ualberta.ca/2012assets/aug_big.jpeg') no-repeat 8px 8px; }
+    
   
 }/*end 61.25em*/
 

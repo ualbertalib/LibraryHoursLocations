@@ -1,8 +1,10 @@
 <?php
-$clffooter = file_get_contents('http://clf.library.ubc.ca/7.0.2/library-footer.html');
+//$clffooter = file_get_contents('http://clf.library.ubc.ca/7.0.2/library-footer.html');
+$clffooter = file_get_contents(dirname(__FILE__) . '/UofAFooter.inc.php');
 
 $insert = '';
 
+/*
 if (isset($admin)&&$admin) {
   
   $insert .= '
@@ -51,7 +53,7 @@ var mceData={
 </script>
 ';
 
-}
+} */
 
 if (basename($_SERVER["SCRIPT_NAME"]) != "print.php") {
 
@@ -64,6 +66,7 @@ if (basename($_SERVER["SCRIPT_NAME"]) != "print.php") {
 
 }
 
+/*
 if ($_SERVER['SERVER_NAME'] != "kemano.library.ubc.ca" && $_SERVER['SERVER_NAME'] != "hours-dev.library.ubc.ca") {
 
   $insert .= '
@@ -80,7 +83,7 @@ if ($_SERVER['SERVER_NAME'] != "kemano.library.ubc.ca" && $_SERVER['SERVER_NAME'
 </script>
 ';
 
-}
+} */
 
 $clffooter = str_replace('</body>', $insert.'</body>', $clffooter);
 

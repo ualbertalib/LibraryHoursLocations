@@ -1,6 +1,9 @@
 <IfModule mod_rewrite.c>
    RewriteEngine on
    #RewriteBase    /hours_admin/
+   RewriteRule ^hours_date_range_lookup\.php$ $0 [L]
+   RewriteRule ^hours_autocomplete\.php$ $0 [L]
+
    RewriteRule    ^$ app/webroot/    [L]
    RewriteRule    (.*) app/webroot/$1 [L]
 </IfModule>

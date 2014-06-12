@@ -211,7 +211,8 @@
             
             $('input[id*="CloseTime"], input[id*="OpenTime"]').autocomplete({
 	            source: function(request, response) {
-	                url = "http://kemano.library.ubc.ca/~jdearles/ltk/staffdirectory/hours_autocomplete.php?term="+request.term;
+                        url = "<?php echo ADMIN_URL; ?>/hours_autocomplete.php?term="+request.term;
+	                //url = "http://kemano.library.ubc.ca/~jdearles/ltk/staffdirectory/hours_autocomplete.php?term="+request.term;
 	                $.getJSON(url + '&callback=?', function(data) {
 	                    console.log(data);
 	                    response(data);

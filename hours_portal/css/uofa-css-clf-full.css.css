@@ -1,0 +1,44 @@
+/* 
+    Document   : uofa-css-clf-full.css
+    Created on : 28-Feb-2014, 11:55:06 AM
+    Author     : Jeremy Hennig <jhennig@ualberta.ca>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.row-fluid:before, .row-fluid:after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+.row-fluid:before, .row-fluid:after
+
+.row-fluid:before, .row-fluid:after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+
+.row-fluid:after {
+    clear: both;
+}
+
+.row-fluid:before, .row-fluid:after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+
+.row-fluid:after {
+    clear: both;
+}
+
+.row-fluid:before, .row-fluid:after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+
+.row-fluid {
+    width: 100%;
+}
