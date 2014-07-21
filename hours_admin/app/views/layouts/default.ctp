@@ -133,4 +133,7 @@ if (!empty($_SERVER['HTTPS'])) {
 }
 echo $ufoot;
 
-echo $this->element('sql_dump'); ?>
+//for debugging
+//echo $this->element('sql_dump'); 
+
+?>
