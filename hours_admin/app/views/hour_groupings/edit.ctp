@@ -165,6 +165,7 @@
                     daterangeid: daterangeid,
                     sortby: sortby
                 },
+				type: 'get',
                 async: false,
                 success:
                         function(data){
@@ -188,11 +189,12 @@
 									}	
                                 }
                                 return true;
-                },
-                type:'get'
-        };
-        jQuery.ajax(ajaxdata);
-    }
+							}
+						}
+        
+			};
+		jQuery.ajax(ajaxdata);
+	}
     
     $(document).ready(function() {
             $('.is_closed').each(function() {
