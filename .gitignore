@@ -1,4 +1,7 @@
 /nbproject/private/
 hours_admin/app/config/database.php
 hours_portal/conf/db.conf
-hours_admin/app/tmp/**
+hours_admin/app/tmp/cache/models
+hours_admin/app/tmp/cache/persistent
+hours_admin/app/tmp/logs/debug.log
+hours_admin/app/tmp/logs/error.log
