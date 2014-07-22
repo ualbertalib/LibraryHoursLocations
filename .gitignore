@@ -1,4 +1,4 @@
 /nbproject/private/
 hours_admin/app/config/database.php
 hours_portal/conf/db.conf
-hours_admin/app/tmp/*
+hours_admin/app/tmp/**
