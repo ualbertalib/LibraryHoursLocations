@@ -93,9 +93,7 @@ if ($requestMonth*1 < 10) {
                 
                 <p class="theurl"><a href="<?= $url ?>" class="external"><?= $url ?></a></p>
                 
-                <div class="quiet">
-                  <?= $description; ?>
-                </div>
+               
               
               </section><!-- closes bio -->
               
@@ -112,14 +110,19 @@ if ($requestMonth*1 < 10) {
               </section><!-- closes calendar wrapper -->
               
               <?php } else if ($nameid == "music") { ?>
-              
-              <p class="message note"><strong>Music services at this location have changed.</strong> Please refer to <a href="http://barber.library.ubc.ca/">Music, Art and Architecture Library</a>. Contact information for this location is provided below.</p>
+                          
               
               <?php } else { ?>
               
-              <p class="message note"><strong>Hospital services at this location have changed.</strong> Please refer to <a href="http://www.library.ubc.ca/woodward/">Woodward Library</a> or <a href="http://www.library.ubc.ca/bmb/">Biomedical Branch Library</a>. You may also view <a href="http://www.library.ubc.ca/life/about/refhours.html">reference hours</a> for these locations. Contact information for Woodward is provided below.</p>
               
               <?php } ?>
+
+              <section class="bio">
+                 <div class="quiet">
+                  <?= $description; ?>
+                </div>
+
+              </section>
               
               <section class="contact">
               

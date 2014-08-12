@@ -15,7 +15,7 @@
 		<title>University of Alberta Libraries</title>
 	
 <!-- CLF Stylesheets -->
-  <link href="https://cdn.ubc.ca/clf/7.0.2/css/ubc-clf-full.min.css" rel="stylesheet">
+  <link href="//hours.library.ualberta.ca/css/ubc-clf-full.min.css" rel="stylesheet">
   <!-- <link href="https://clf.library.ubc.ca/7.0.2/colorbox/colorbox.css" type="text/css" media="screen" rel="stylesheet" /> -->
   <link href="//hours.library.ualberta.ca/assets/colorbox/colorbox.css" type="text/css" media="screen" rel="stylesheet" />
   

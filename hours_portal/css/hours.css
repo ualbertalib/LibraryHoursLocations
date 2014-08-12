@@ -319,7 +319,7 @@
   #slide-content .bio h1 {
     clear: both;
     margin-bottom:5px;
-    width:85%;
+    width:88%;
     line-height:100%;
   }
   /* h3 = location building */
@@ -611,7 +611,7 @@ Calendar Colour Palette
     
     .oldie #slide-content #bsj .library-img      { background:url('//www.library.ualberta.ca/2012assets/bsj-large.jpg') no-repeat 8px 8px; }
     .oldie #slide-content #augustana .library-img   { background:url('../img/okanagan-library.jpg') no-repeat 8px 8px; }
-    
+.oldie #slide-content #bard .library-img      { background:url('//www.library.ualberta.ca/2012assets/bard-large.jpg') no-repeat 8px 8px; }    
      .oldie #slide-content #library .library-img,
 
 #slide-content address {
@@ -720,6 +720,7 @@ Calendar Colour Palette
     #slide-content #stjoe .library-img {background: none;}  , 
     #slide-content #law .library-img        { background:url('//www.library.ualberta.ca/2012assets/law-big.jpg') no-repeat 8px 8px; }
     #slide-content #bsj .library-img   { background:url('//www.library.ualberta.ca/2012assets/bsj-large.jpg') no-repeat 8px 8px; }
+    #slide-content #bard .library-img   { background:url('//www.library.ualberta.ca/2012assets/bard-large.jpg') no-repeat 8px 8px; }
     #slide-content #augustana .library-img   { background:url('//www.library.ualberta.ca/2012assets/aug_big.jpeg') no-repeat 8px 8px; }
     
   

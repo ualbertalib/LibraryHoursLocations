@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
-
   // force page reload when navigation drop-down menu used
+  
   function forcePageReload(url) {
     window.location.assign(url);
     window.location.reload(true);
@@ -30,7 +30,7 @@ $(document).ready(function(){
   //var divsArray = new Array('asian', 'biomedical', 'davidlam', 'education', 'ikblc', 'library', 'chapman', 'rbsc', 'archives', 'koerner', 'law', 'okanagan', 'woodward', 'xwi7xwa');
   var divsArray = new Array('cameron','cameronSD','cameronKC', 'rutherford','rutherfordSS' ,'library', 'brucepeel' ,'jws', 'education', 'law', 
                                 'business' , 'stjoe',                                 
-                                'bsj', 'augustana');
+                                'bsj', 'augustana', 'bard');
   
   
   // the function to open the slide content
@@ -367,6 +367,8 @@ $(document).ready(function(){
     var latlngBSJ = new google.maps.LatLng(53.52177, -113.46897);
     
     var latlngAugustana = new google.maps.LatLng(53.01169, -112.82334);
+
+    var latlngBard = new google.maps.LatLng(53.5162359, -113.4204311);
     
     var latlngBusiness = new google.maps.LatLng(53.52741, -113.52145);
     var latlngStJoe = new google.maps.LatLng(53.52446, -113.52457);
@@ -386,13 +388,17 @@ $(document).ready(function(){
     var okContainer = document.createElement('DIV');
     var okControl = new customControl(okContainer, 'Reset to Faculty Saint Jean', 'BSJ', latlngBSJ, 16);
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(okContainer);
+
+    var okContainer = document.createElement('DIV');
+    var okControl = new customControl(okContainer, 'Reset to BARD', 'BARD', latlngBard, 16);
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(okContainer);
     
     var offContainer = document.createElement('DIV');
     var offControl = new customControl(offContainer, 'Reset to U of A - Augustana', 'Augustana', latlngAugustana, 17);
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(offContainer);
     
     var campusContainer = document.createElement('DIV');
-    var campusControl = new customControl(campusContainer, 'Reset to U of A North', 'U of A', latlngDefault, 15);
+    var campusControl = new customControl(campusContainer, 'Reset to U of A North', 'North Campus', latlngDefault, 15);
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(campusContainer);
     
     
@@ -426,6 +432,9 @@ $(document).ready(function(){
     
     var stJoe = newMarker(latlngStJoe, "St. Joseph's College", "St. Joseph's College");
     markersArray.push(stJoe);
+
+    var bard = newMarker(latlngBard, "Book and Record Depository", "BARD");
+    markersArray.push(bard);
     
    
     /*
@@ -442,8 +451,9 @@ $(document).ready(function(){
     // SET MARKER LISTENERS
     
     // variables to use in for loop  <-- ADD/DELETE HERE TO ADD/DELETE LOCATION
+    // should also match database
     var markersCount = markersArray.length;
-    var markersSelectedChoices = new Array('cameron', 'rutherford', 'jws', 'education', 'law', 'bsj', 'augustana', 'business', 'stjoe');
+    var markersSelectedChoices = new Array('cameron', 'rutherford', 'jws', 'education', 'law', 'bsj', 'augustana', 'business', 'stjoe', 'bard');
     
     for (i = 0; i < markersCount; i++) {
       
@@ -553,7 +563,8 @@ $(document).ready(function(){
       }, function() {
       tableMouseout(5); }
     );//closes hover - 
-    
+
+   
     
    
     
@@ -574,6 +585,12 @@ $(document).ready(function(){
       }, function() {
       tableMouseout(8); }
     );//closes hover - woodward
+
+     $('.bard').hoverIntent(function() {
+      tableMouseover(latlngBard, 15, 5);
+      }, function() {
+      tableMouseout(9); }
+    );
     
    
     
@@ -616,6 +633,10 @@ $(document).ready(function(){
     $('.bsj').click(function() {
       tableMouseover(latlngBSJ, 15, 5);
     });//closes click
+
+     $('.bard').click(function() {
+      tableMouseover(latlngBard, 15, 5);
+    });//closes click
     
     $('.augustana').click(function() {
       tableMouseover(latlngAugustana, 15, 6);
@@ -641,6 +662,8 @@ $(document).ready(function(){
         tableMouseover(latlngAugustana, 13, -1);
       } else if (window.location.hash == "#view-bsj") {
         tableMouseover(latlngBSJ, 16, -1);
+      } else if (window.location.hash == "#view-bard") {
+        tableMouseover(latlngBard, 16, -1);
       } else {
         tableMouseover(latlngDefault, 15, -1);
       }//closes if-elseif-else
@@ -711,4 +734,4 @@ $(document).ready(function(){
   //});//closes click
   
   
-});//closes jQuery
+});//closes jQuery  

@@ -33,7 +33,15 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 0);
+	
+
+	if(stristr(getenv('HTTP_HOST'), '.dev')){
+    	Configure::write('debug', 1);
+	}else{
+	    Configure::write('debug', 0);
+	} 
+
+	
 
 /**
  * CakePHP Log Level:
@@ -244,7 +252,7 @@
  * If you are on PHP 5.3 uncomment this line and correct your server timezone
  * to fix the date & time related errors.
  */
-	//date_default_timezone_set('UTC');
+	date_default_timezone_set('America/Denver');
 
 /**
  *
@@ -300,3 +308,5 @@
  *
  */
 	Cache::config('default', array('engine' => 'File'));
+
+

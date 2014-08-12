@@ -32,14 +32,32 @@
  * When using custom settings be sure to use the DS and do not add a trailing DS.
  */
 
+
+
+
 /**
  * The full path to the directory which holds "app", WITHOUT a trailing DS.
  *
  */
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+	
 	if (!defined('ROOT')) {
+
 		//define('ROOT', DS . 'hours_locations');
-            define('ROOT', DS . 'var/www/sites/hours.library.ualberta.ca/docroot/hours_admin');
+		if(stristr(getenv('HTTP_HOST'), '.dev')){
+
+            define('ROOT', DS . '/media/sf_virtualshare/hours.library.ualberta.ca/docroot/hours_admin');
+         }else{
+         	
+			define('ROOT', DS . 'var/www/sites/hours.library.ualberta.ca/docroot/hours_admin');         	
+         }
+
 	}
+
+
        
 /**
  * The actual directory name for the "app".
@@ -55,7 +73,11 @@
  */
 	if (!defined('CAKE_CORE_INCLUDE_PATH')) {
         //define('CAKE_CORE_INCLUDE_PATH', DS.'usr'.DS.'local'.DS.'lib');
-            define('CAKE_CORE_INCLUDE_PATH', DS.'var'.DS.'www'.DS.'sites'.DS.'hours.library.ualberta.ca'.DS.'cakephp-1.3.17');
+        if(stristr(getenv('HTTP_HOST'), '.dev')){
+            define('CAKE_CORE_INCLUDE_PATH', DS.'var'.DS.'www'.DS.'html/myshare'.DS.'hours.library.ualberta.ca'.DS.'cakephp-1.3.20');
+        }else{
+			define('CAKE_CORE_INCLUDE_PATH', DS.'var'.DS.'www'.DS.'sites'.DS.'hours.library.ualberta.ca'.DS.'cakephp-1.3.17');        	
+        }    
 	}
 
 
@@ -65,7 +87,13 @@
  */
 
     if (!defined('PUBLIC_URL')) {
-		define('PUBLIC_URL', 'http://hours.library.ualberta.ca/hours_portal');
+		
+		if(stristr(getenv('HTTP_HOST'), '.dev')){
+			define('PUBLIC_URL', 'http://hours.dev');
+		}else{		
+			define('PUBLIC_URL', 'http://hours.library.ualberta.ca');
+		}	
+
 	}
 	
 
@@ -75,7 +103,11 @@
  */
 
     if (!defined('ADMIN_URL')) {
-		define('ADMIN_URL', 'http://hours.library.ualberta.ca/hours_admin');
+    	if(stristr(getenv('HTTP_HOST'), '.dev')){
+			define('ADMIN_URL', 'http://hoursadmin.dev');
+		}else{	
+			define('ADMIN_URL', 'http://hoursadmin.library.ualberta.ca');
+		}
 	}	
 	
 /**
@@ -84,7 +116,11 @@
  */
 
     if (!defined('SCRIPT_URL')) {
-		define('SCRIPT_URL', 'http://hours.library.ualberta.ca/hours_admin');
+    	if(stristr(getenv('HTTP_HOST'), '.dev')){
+    		define('SCRIPT_URL', 'http://hoursadmin.dev');
+    	}else{
+			define('SCRIPT_URL', 'http://hours.library.ualberta.ca');
+		}
 	}		
 
 
@@ -112,7 +148,7 @@
 	        
         }
         
-	
+      
         if (!include(CORE_PATH . 'cake' . DS . 'bootstrap.php')) {
 		trigger_error("CakePHP core could not be found.  Check the value of CAKE_CORE_INCLUDE_PATH in APP/webroot/index.php.  It should point to the directory containing your " . DS . "cake core directory and your " . DS . "vendors root directory.", E_USER_ERROR);
 	}
@@ -128,5 +164,3 @@
 	}
         
         
-
-      

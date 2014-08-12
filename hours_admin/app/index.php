@@ -21,6 +21,13 @@ DIRECTORY_SEPARATOR . 'www' . DIRECTORY_SEPARATOR . 'staffdirectory' . DIRECTORY
 DIRECTORY_SEPARATOR . 'webroot' . DIRECTORY_SEPARATOR . 'index.php'; */
 
 //Jeremy's code
+
+
+if(stristr(getenv('HTTP_HOST'), '.dev')){
+
+require "/media/sf_virtualshare/hours.library.ualberta.ca/docroot/hours_admin/app/webroot/index.php";
+}else{
 require DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'www' . DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . 'hours.library.ualberta.ca' . 
 DIRECTORY_SEPARATOR . 'docroot' . DIRECTORY_SEPARATOR .  'hours_admin' . DIRECTORY_SEPARATOR . 'app' . 
 DIRECTORY_SEPARATOR . 'webroot' . DIRECTORY_SEPARATOR . 'index.php';
+}

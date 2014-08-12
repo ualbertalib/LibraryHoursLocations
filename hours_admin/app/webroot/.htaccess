@@ -1,6 +1,7 @@
 AuthType Basic
 AuthName "Library Hours and Locations Administration"
-AuthUserFile /var/www/sites/hours.library.ualberta.ca/.htpasswd
+AuthUserFile /var/www/html/myshare/hours.library.ualberta.ca/.htpasswd
+#AuthUserFile /var/www/sites/hours.library.ualberta.ca/.htpasswd
 Require valid-user
 
 <IfModule mod_rewrite.c>

@@ -22,7 +22,7 @@ hours_admin SECTION
 Edit hours_admin/index.php
 
 - it's fairly self exlplanatory just modify the ROOT section to point to the hours_admin directory
-and the CAKE_CORE_INCLUDE_PATH to point to the cakephp-1.3.17 directory which is usually located above the webroot
+and the CAKE_CORE_INCLUDE_PATH to point to the cakephp-1.3.17 directory which is usually located just above the webroot
 
 
 EDIT
@@ -32,9 +32,10 @@ EDIT
 hours_admin/app/webroot/index.php
 
 IF PHP 5.3 - EDIT
-in /app/config/core.php uncomment the date_default_timezone_set line
-
+in /app/config/core.php uncomment the date_default_timezone_set line and modify to the current timezone
 Edit 
 /hours_admin/app/config/database.php with the proper database credentials
 
 
+To add locations to the map see:
+/hours_admin/app/webroot/hours-portal-notes.doc
