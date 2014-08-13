@@ -209,17 +209,15 @@ $blank = date('w', $first_day);  // find out what day of the week the first day 
               <?php
               // reference URLs not all the same as database-saved, site URLs <-- ADD/DELETE HERE TO ADD/DELETE LOCATION (IF DIFFERENT REF URL NEEDED)
               if ($nameID === 'koerner') {
-                $refurl = 'http://koerner.library.ubc.ca/koerner-library/hours/';
-              }	else if ($nameID === 'ikblc' || $nameID === 'archives' || $nameID === 'chapman' || $nameID === 'okanagan') {
-                $refurl = null;
+                $refurl = null;             
               }	else if ($nameID === 'law') {
-                $refurl = 'http://law.library.ubc.ca/refstaff/';
+                $refurl = null;
               }//closes if-elseif
               
               if (isset($refurl)) {
               ?>
               
-              <p><strong>See also:</strong> <a href="<?= $refurl; ?>">Reference Help Hours</a></p>
+              
               
               <?php
               }//closes if
@@ -227,11 +225,6 @@ $blank = date('w', $first_day);  // find out what day of the week the first day 
               
             </section><!-- closes calendar -->
             
-            <?php
-            // BMB has standing hours note
-            if ($nameID === 'biomedical') {
-              echo '<p class="message note bmb"><strong>Note:</strong> Library access is limited to building pass-holders after 7pm Monday through Friday and all day Saturday and Sunday.</p>';
-            }//closes if
-            ?>
+            
             
           </section><!-- closes hours -->

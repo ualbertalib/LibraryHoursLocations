@@ -70,6 +70,7 @@ if ($requestMonth*1 < 10) {
             $address = getAddress($name_id[$i]);
             $phone = getPhone($name_id[$i]);
             $accessurl = getAccessURL($name_id[$i]);
+            $email = getEmail($name_id[$i]);
             $currentdate = date('Y-m-d');
             $currenttime = date('H:i:s');
             ?>
@@ -133,7 +134,7 @@ if ($requestMonth*1 < 10) {
                   <h5>Address</h5>
                   
                   <address>
-                    <a href="http://maps.google.com/maps?q=<?= $map ?>+(<?= urlencode($name) ?>)&z=16&ll=<?= $map ?>&iwloc=A" title="View on Google Maps" class="external"><?= $address ?></a>
+                    <?= $address ?>
                   </address>
                   
                   <?php if ($accessurl != '') { ?>
@@ -144,10 +145,18 @@ if ($requestMonth*1 < 10) {
                   
                 </div>
                 
+                <?php if ($phone != '') { ?>
                 <h5>Phone</h5>
                 <p class="visible-desktop"><?= $phone ?></p>
                 <p class="hidden-desktop"><a href="tel:1+<?= $phone ?>"><?= $phone ?></a></p>
-                
+                <?php  } ?>
+  
+                 <?php if ($email != '') { ?>
+                  <h5>Email</h5>
+                  <p class="visible-desktop"><?= $email ?></p>
+                  <p class="hidden-desktop"><a href="tel:1+<?= $phone ?>"><?= $email ?></a></p>
+                <?php  } ?>
+
                 <div class="controls visible-phone">
                   <p><a class="button green show-locations map-view">&laquo; Map Overview</a></p>
                 </div>

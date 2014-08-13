@@ -551,14 +551,35 @@ function getPhone($name_id) {
 	
 	$sql = "SELECT phone
 				  FROM hour_locations
-				  WHERE login='$name_id'";
+				  WHERE login=:name_id";
 
-  $stmt=$dbh->prepare($sql);
+  $stmt=$dbh->prepare($sql);  
+  $stmt->bindParam(':name_id',$name_id, PDO::PARAM_STR );
   $stmt->execute();
   $row=$stmt->fetch(PDO::FETCH_ASSOC);
   $phone=$row['phone'];
 
 	return $phone;
+
+}//closes function
+
+// get the phone number based on name ID
+function getEmail($name_id) {
+  
+  global $dbh;
+  
+  $sql = "SELECT email
+          FROM hour_locations
+          WHERE login=:name_id";
+
+  $stmt=$dbh->prepare($sql);
+  $stmt->bindParam(':name_id',$name_id, PDO::PARAM_STR );
+  $stmt->execute();
+
+  $row=$stmt->fetch(PDO::FETCH_ASSOC);
+  $phone=$row['email'];
+
+  return $phone;
 
 }//closes function
 

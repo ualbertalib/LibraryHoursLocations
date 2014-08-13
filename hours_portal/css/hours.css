@@ -601,7 +601,10 @@ Calendar Colour Palette
 
     /* ADD/DELETE LINE HERE TO ADD/DELETE LOCATION */                              
     .oldie #slide-content #cameron .library-img      { background:url('//www.library.ualberta.ca/2012assets/cameron-big.jpg') no-repeat 8px 8px; }
-    .oldie #slide-content #rutherford .library-img { background:url('//www.library.ualberta.ca/2012assets/rutherford-large.jpg') no-repeat 8px 8px; }
+.oldie #slide-content #cameronSD .library-img      { background:url('//www.library.ualberta.ca/2012assets/cameron-big.jpg') no-repeat 8px 8px; }
+.oldie #slide-content #cameronKC .library-img      { background:url('//www.library.ualberta.ca/2012assets/cameron-big.jpg') no-repeat 8px 8px; }    
+.oldie #slide-content #rutherford .library-img { background:url('//www.library.ualberta.ca/2012assets/rutherford-large.jpg') no-repeat 8px 8px; }
+.oldie #slide-content #rutherfordSS .library-img { background:url('//www.library.ualberta.ca/2012assets/rutherford-large.jpg') no-repeat 8px 8px; }
     .oldie #slide-content #jws .library-img   { background:url('//www.library.ualberta.ca/2012assets/scott-large.jpg') no-repeat 8px 8px; }
     .oldie #slide-content #education .library-img  { background:url('//www.library.ualberta.ca/2012assets/coutts-big.jpg') no-repeat 8px 8px; }
     .oldie #slide-content #business .library-img     { background:url('//www.library.ualberta.ca/2012assets/business-big.jpg') no-repeat 8px 8px; }
@@ -612,7 +615,12 @@ Calendar Colour Palette
     .oldie #slide-content #bsj .library-img      { background:url('//www.library.ualberta.ca/2012assets/bsj-large.jpg') no-repeat 8px 8px; }
     .oldie #slide-content #augustana .library-img   { background:url('../img/okanagan-library.jpg') no-repeat 8px 8px; }
 .oldie #slide-content #bard .library-img      { background:url('//www.library.ualberta.ca/2012assets/bard-large.jpg') no-repeat 8px 8px; }    
-     .oldie #slide-content #library .library-img,
+.oldie #slide-content #brucepeel .library-img      { background:url('//www.library.ualberta.ca/specialcollections/images/HP_Reading_Room_240.jpg') no-repeat 8px 8px; }
+
+.oldie #slide-content #stjoe .library-img      { background:url('//www.library.ualberta.ca/2012assets/stjoes-big.jpg') no-repeat 8px 8px; }
+
+
+ .oldie #slide-content #library .library-img,
 
 #slide-content address {
   font-size:13px;

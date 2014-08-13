@@ -12,12 +12,13 @@
 
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th style="width: 40%;" class="sm" ><?php echo $this->Paginator->sort('Location','HourLocation.name');?></th>
+			<th style="width: 28%;" class="sm" ><?php echo $this->Paginator->sort('Location','HourLocation.name');?></th>
 			<?php if($_SERVER['REMOTE_USER'] == 'hours') { ?>
 			<th style="width: 15%; text-align: left;"><?php echo $this->Paginator->sort('Display on Portal','HourLocation.display');?></th>
 			<th><?php echo $this->Paginator->sort('URL','HourLocation.url');?></th>
 			<?php } ?>
 			<th><?php echo $this->Paginator->sort('Phone','HourLocation.phone');?></th>			
+			<th><?php echo $this->Paginator->sort('Email','HourLocation.email');?></th>			
 	</tr>	
 	<?php
 	$i = 0;
@@ -44,6 +45,7 @@
         <td><?php echo $this->Html->link($location['HourLocation']['url'], array('action' => 'edit', $location['HourLocation']['id']));  ?></td>
         <?php } ?>
         <td><?php echo $this->Html->link($location['HourLocation']['phone'], array('action' => 'edit', $location['HourLocation']['id']));  ?></td>
+         <td><?php echo $this->Html->link($location['HourLocation']['email'], array('action' => 'edit', $location['HourLocation']['id']));  ?></td>
 	</tr>
 <?php endforeach; ?>
 	</table>

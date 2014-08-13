@@ -60,7 +60,12 @@
 		// open to all hours admin users
 		echo $this->Form->input('description', array('type'=>'textarea','rows'=>'3','cols'=>'60'));
 		echo $this->Form->input('address', array('type'=>'textarea','rows'=>'3','cols'=>'60'));
+
+		echo '<div class="clear"></div><br><br>';
 		echo $this->Form->input('phone');		
+		
+		echo $this->Form->input('email',array('label'=>'Email','empty'=>true));
+
 		echo $this->Form->input('hours_notes',array('label'=>'Building Construction/Emergency Closure Notices','type'=>'textarea','rows'=>'2','cols'=>'60'));
 		echo $this->Form->input('widget_note',array('type'=>'textarea','rows'=>'2','cols'=>'60'));
 		// restrict to superadmin user only

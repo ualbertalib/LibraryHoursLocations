@@ -28,6 +28,9 @@ class HourLocation extends AppModel {
 				'required' => false,
 			),
 		),
+		'email' => array('rule'=>'email',
+				'message' => 'Please enter in a valid email',
+				'allowEmpty' => true),
 		/*'service_point_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
