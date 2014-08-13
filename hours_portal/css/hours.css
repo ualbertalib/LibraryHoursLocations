@@ -610,7 +610,7 @@ Calendar Colour Palette
     .oldie #slide-content #business .library-img     { background:url('//www.library.ualberta.ca/2012assets/business-big.jpg') no-repeat 8px 8px; }
     .oldie #slide-content #stjoe .library-img {background:url('//www.library.ualberta.ca/2012assets/stjoes-big.jpg') no-repeat 8px 8px;},
     .oldie #slide-content #koerner .library-img    { background:url('../img/koerner-library.jpg') no-repeat 8px 8px; }
-    .oldie #slide-content #law .library-img        { background:url('../img/law-library.jpg') no-repeat 8px 8px; }
+    .oldie #slide-content #law .library-img        { background:url('//www.library.ualberta.ca/2012assets/law-big.jpg') no-repeat 8px 8px; }
     
     .oldie #slide-content #bsj .library-img      { background:url('//www.library.ualberta.ca/2012assets/bsj-large.jpg') no-repeat 8px 8px; }
     .oldie #slide-content #augustana .library-img   { background:url('../img/okanagan-library.jpg') no-repeat 8px 8px; }
@@ -724,7 +724,7 @@ Calendar Colour Palette
     
     
     #slide-content #library .library-img,
-    
+   #slide-content #law .library-img   { background:url('//www.library.ualberta.ca/2012assets/law-big.jpg') no-repeat 8px 8px; } 
 
     #slide-content #business .library-img   { background:url('//www.library.ualberta.ca/2012assets/business-big.jpg') no-repeat 8px 8px; }
     #slide-content #stjoe .library-img {background:url('//www.library.ualberta.ca/2012assets/stjoes-big.jpg') no-repeat 8px 8px;}  , 
