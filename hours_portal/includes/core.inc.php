@@ -177,14 +177,8 @@ if ($requestMonth*1 < 10) {
 
   <div class="admin">
     
-    <?php
-    // footer links depend on dev/prod server
-    if ($_SERVER['SERVER_NAME'] != "kemano.library.ubc.ca" && $_SERVER['SERVER_NAME'] != "hours-dev.library.ubc.ca") { ?>
-    <a href="http://hours.library.ualberta.ca">Staff Admin Login</a><br />
-    <?php } else { ?>
-    <a href="http://hours.library.ualberta.ca">Dev Admin Login</a><br />
-    <?php } ?>
-    <a href="print.php">Signage and Bookmarks</a>
+    
+
    
   </div><!-- closes admin -->
 
