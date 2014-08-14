@@ -102,13 +102,13 @@ if ($requestMonth*1 < 10) {
               
               <?php if ($nameid != "hamber" && $nameid != "stpauls" && $nameid != "music") { ?>
               
-              <section id="calendar_<?= $nameid ?>" class="calendar_wrapper"> 
-                
-                <?php $location_id = $id;
-                include('includes/calendar.inc.php');
-                ?>
-                
-              </section><!-- closes calendar wrapper -->
+                  <section id="calendar_<?= $nameid ?>" class="calendar_wrapper"> 
+                    
+                    <?php $location_id = $id;
+                    include('includes/calendar.inc.php');
+                    ?>
+                    
+                  </section><!-- closes calendar wrapper -->
               
               <?php } else if ($nameid == "music") { ?>
                           

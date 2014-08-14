@@ -3,6 +3,21 @@ class HourLocation extends AppModel {
 	var $name = 'HourLocation';
 	var $displayField = 'name';
 	var $order = 'name';
+
+	function beforeValidate(){
+
+			//foreach ($this->data as $key => $value) {
+			//    $this->data[$key] = trim($value);
+			//	}
+
+			if($this->data['HourLocation']['email'] != ""){
+		        $this->data['HourLocation']['email'] = trim($this->data['HourLocation']['email']);
+		    }
+			
+			return true;
+	}
+
+	
 	var $validate = array(
 		'id' => array(
 			'numeric' => array(

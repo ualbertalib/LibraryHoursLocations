@@ -30,7 +30,7 @@ $(document).ready(function(){
   //var divsArray = new Array('asian', 'biomedical', 'davidlam', 'education', 'ikblc', 'library', 'chapman', 'rbsc', 'archives', 'koerner', 'law', 'okanagan', 'woodward', 'xwi7xwa');
   var divsArray = new Array('cameron','cameronSD','cameronKC', 'rutherford','rutherfordSS' ,'library', 'brucepeel' ,'jws', 'education', 'law', 
                                 'business' , 'stjoe',                                 
-                                'bsj', 'augustana', 'bard');
+                                'bsj', 'augustana', 'bard', 'fsa','ill','chat');
   
   
   // the function to open the slide content
