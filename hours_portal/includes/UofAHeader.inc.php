@@ -55,20 +55,18 @@
   
   <script src="https://www.google.com/jsapi?key=ABQIAAAAoRs91XgpKw60K4liNrOHoBStNMhZCa0lqZKLUDgzjZGRsKl38xSnSmVmaulnWVdBLItzW4KsddHCzA" type="text/javascript"></script>
  -->
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-<!--
-<script type="text/javascript">
+  ga('create', 'UA-55183776-1', 'auto');
+  ga('send', 'pageview');
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-7539303-11']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script> -->
+</script>
+<!-- End Google Analytics -->
 </head>
 <body>
   <div class="container">
@@ -88,7 +86,7 @@
         <a href="http://www.ualberta.ca"  class="ualogo"><img src="http://www.library.ualberta.ca/2012assets/ua.png"/></a>
       </div>
     <div class="two columns">
-         <h2 class="show-on-phones"><a href="http://www.library.ualberta.ca/">Libraries</a> - <a href="/askus" class="askmobile">Ask Us</a> - <a  href="/francais" class="askmobile">fran&ccedil;aise</a> </h2>
+         <h2 class="show-on-phones"><a href="http://www.library.ualberta.ca/">Libraries</a> - <a href="http://www.library.ualberta.ca/askus" class="askmobile">Ask Us</a> - <a  href="http://www.library.ualberta.ca/francais" class="askmobile">fran&ccedil;aise</a> </h2>
       </div>
       <div class="eight columns">
         <ul class="top-nav hide-on-phones">
@@ -105,7 +103,7 @@
     <div class="row green hide-on-phones">
       <div class="twelve columns ">
         <div class="four columns">
-	  <h1><a href="/">Libraries</a></h1>
+	  <h1><a href="http://www.library.ualberta.ca/">Libraries</a></h1>
 	</div>
 	<div class="eight columns">
 	  <ul class="home-nav">
@@ -127,7 +125,7 @@
          <li><a href="http://www.library.ualberta.ca/aboutus">Libraries</a></li>	
          <li><a href="https://www.library.ualberta.ca/myaccount/">My Account</a></li>
          <li><a href="http://www.library.ualberta.ca/services">Services</a></li>
-         <li><a href="http://www.library.ualberta.ca/hours" id="last">Hours</a></li>
+         <li><a href="http://hours.library.ualberta.ca/" id="last">Hours</a></li>
        </ul>	
      </div>
        <div class="row top-margin">
