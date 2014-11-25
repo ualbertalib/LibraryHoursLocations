@@ -30,7 +30,7 @@ $(document).ready(function(){
   //var divsArray = new Array('asian', 'biomedical', 'davidlam', 'education', 'ikblc', 'library', 'chapman', 'rbsc', 'archives', 'koerner', 'law', 'okanagan', 'woodward', 'xwi7xwa');
   var divsArray = new Array('cameron','cameronSD','cameronKC', 'rutherford','rutherfordSS' ,'library', 'brucepeel' ,'jws', 'education', 'law', 
                                 'business' , 'stjoe',                                 
-                                'bsj', 'augustana', 'bard', 'fsa','ill','chat');
+                                'bsj', 'augustana','augustana24', 'bard', 'fsa','ill','chat');
   
   
   // the function to open the slide content
@@ -572,7 +572,12 @@ $(document).ready(function(){
       tableMouseover(latlngAugustana, 16, 6);
       }, function() {
       tableMouseout(6); }
-    );//closes hover - okanagan
+    );
+     $('.augustana24').hoverIntent(function() {
+      tableMouseover(latlngAugustana, 16, 6);
+      }, function() {
+      tableMouseout(6); }
+    );
     
      $('.business').hoverIntent(function() {
       tableMouseover(latlngDefault, 15, 7);
@@ -641,6 +646,9 @@ $(document).ready(function(){
     $('.augustana').click(function() {
       tableMouseover(latlngAugustana, 15, 6);
     });//closes click
+    $('.augustana24').click(function() {
+      tableMouseover(latlngAugustana, 15, 6);
+    });//closes click
     
     $('.business').click(function() {
       tableMouseover(latlngDefault, 15, 7);
@@ -658,7 +666,7 @@ $(document).ready(function(){
     $('.return-to-map').click(function() {
 
       // determine view to reset to
-      if (window.location.hash == "#view-augustana") {
+      if (window.location.hash == "#view-augustana" || window.location.hash == "#view-augustana24") {
         tableMouseover(latlngAugustana, 13, -1);
       } else if (window.location.hash == "#view-bsj") {
         tableMouseover(latlngBSJ, 16, -1);

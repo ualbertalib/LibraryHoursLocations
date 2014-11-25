@@ -1,7 +1,11 @@
 <?php 
 //$clfheader = file_get_contents('http://clf.library.ubc.ca/7.0.2/library-header.html');
 
-$clfheader = file_get_contents(dirname(__FILE__) . '/UofAHeader.inc.php');
+if (getLanguage() =='en'){
+	$clfheader = file_get_contents(dirname(__FILE__) . '/UofAHeader.inc.php');
+}else{
+	$clfheader = file_get_contents(dirname(__FILE__) . '/UofAHeaderFrench.inc.php');
+}
  
 
 $start = strpos($clfheader, '<!-- JavaScript -->');
@@ -37,7 +41,7 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
 
 $insert .= '
 <title>Hours and Locations | University of Alberta</title>
-<link rel="stylesheet" type="text/css" href="//hours.library.ualberta.ca/css/hours.css" />
+<link rel="stylesheet" type="text/css" href="/css/hours.css" />
 ';
 
 $clfheader = str_replace('</head>', $insert.'</head>', $clfheader);

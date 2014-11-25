@@ -1,6 +1,11 @@
 <?php
-//$clffooter = file_get_contents('http://clf.library.ubc.ca/7.0.2/library-footer.html');
-$clffooter = file_get_contents(dirname(__FILE__) . '/UofAFooter.inc.php');
+
+if (getLanguage() =='en'){
+    $clffooter = file_get_contents(dirname(__FILE__) . '/UofAFooter.inc.php');
+}else{
+    $clffooter = file_get_contents(dirname(__FILE__) . '/UofAFooterFrench.inc.php');
+}
+
 
 $insert = '';
 

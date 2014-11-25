@@ -25,17 +25,27 @@
 			echo '</div>';
 			echo '<div class="two columns">';
 			echo $this->Form->input('HourGrouping.hour_type_id',array('label'=>'Type','div'=>false));
+            echo "<div style=\"width: 100%; margin: 20px 0px 0px 20%; font-size: 16px; \"><label style=\"display: inline;\" for=\"allClosed\">All Closed</label> 
+                <input type=checkbox id=\"allClosed\" name=\"allClosed\"></div>";
 	        echo '</div><div style="clear:both;"></div>';
 			echo '<div class="first twelve columns nest row">';
-			echo '<div class="first five columns">';
-			echo $this->Form->input('HourGrouping.hour_date_range_id',array('empty'=>true,'options'=>$date_range_options));
+			echo '<div class="eight columns">';
+			     echo $this->Form->input('HourGrouping.hour_date_range_id',array('empty'=>true,'options'=>$date_range_options));
+           
 			echo '</div>';
+            echo '<div class="one columns">';
+
+               
+            echo "</div>";
+
 			echo '<div id="categoryDisplay" class="five columns" style="display:none;"><label for="HourGroupingHourCategoryId">Category</label><span class="hours-category"></span><span class="hours-category-name"></span></div>'; // filled in by AJAX
 			echo '</div>'; // end first twelve columns nest row                               
 			echo $this->Form->input('HourGrouping.hour_category_id',array('type'=>'hidden','value'=>1,'div'=>false));
 	?>
 	<div style="height:10px;">&nbsp;</div>
 	<div id="hourDays">
+  
+</div>
 	<?php						
 		foreach($days as $key => $day) {
 	?>	
@@ -347,6 +357,28 @@
         		update_days($('#HourGroupingHourDateRangeId').val(), categoryid);
         	}
     });
+
+
+            $('#allClosed').click(function(e){
+                if(this.checked){
+                    $(".is_closed").each(function(){
+                        if($(this).attr('id').indexOf('IsTbd') == -1){ //ignore the isTBD checkboxes
+                            this.checked=true;  
+                            //$(this).trigger("click");
+                            setOpenCloseTime($(this));                      
+                            $(".is_tbd").prop("checked", false);
+                        }
+                    })   
+
+                }else{
+                    $(".is_closed").each(function(){
+                        if($(this).attr('id').indexOf('IsTbd') == -1){ //ignore the isTBD checkboxes
+                            this.checked=false; 
+                            //$(this).trigger("click");
+                        }
+                    })    
+                }
+            });
     
     // from http://www.blograndom.com/blog/2011/04/jquery-find-next-element-in-dom-by-selector/
     (function( $ ){
@@ -367,5 +399,19 @@
         }
     };
     })( jQuery );
+
+
+        function setOpenCloseTime(element){
+
+            if(element.attr('id').indexOf('IsClosed') != -1) {
+                var substr_end = element.attr('id').indexOf('IsClosed');
+            } else if (element.attr('id').indexOf('IsTbd') != -1) {
+                var substr_end = element.attr('id').indexOf('IsTbd');
+            }   
+            var idstart = element.attr('id').substr(0,substr_end);
+            $("#"+idstart+"OpenTime").val("0:00");
+            $("#"+idstart+"CloseTime").val("0:00"); 
+
+    }
     
 </script>

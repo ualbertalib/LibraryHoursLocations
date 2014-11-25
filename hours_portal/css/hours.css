@@ -66,7 +66,10 @@
     max-width:100%;
   }
 
-
+#hours-header > h1 {
+	font-size: 4em;
+  font-family: Georgia, serif
+}
 /*** OVERALL LOCATIONS TABLE STYLES (LEFT SIDE) ***/
 
 
@@ -84,11 +87,11 @@
   border-radius:5px 5px 0 0;
 }
   #locations-table dt,
-  #locations dd {
+  #locations dd, time {
     line-height:130%;
   }
   /* dts are location names */
-  #locations-table dt {
+  #locations-table dt, #locations-table time {
     float:left;
     width:75%;
     font-size:12px;
@@ -97,7 +100,7 @@
     border-right:1px solid #ccc;
   }
   /* dds are statuses */
-  #locations-table dd {
+  #locations-table dd, #locations-table time  {
     padding-top:4px;
     color:black;
     font-size:11px;
@@ -123,17 +126,17 @@
   cursor:pointer;
   background-color: #fff;
 }
-  #locations-table .slide-out dt {
+  #locations-table .slide-out dt, #locations-table .slide-out time {
     padding:10px 0 15px 12px;
   }  
   /* sublevel applies to interior locations e.g. IKBLC locations */
-  #locations-table .sublevel dt {
+  #locations-table .sublevel dt, #locations-table .sublevel time {
     font-weight:normal;
   }
   /* right side arrow image */
   #locations-table .slide-out img {
     position:absolute;
-    margin-top:-14px;
+    margin-top:-10px;
     left:100%;
     z-index:100;
     display:none;
@@ -149,7 +152,7 @@
 
 /* headers class is for top bar "location" (dt) and today/time column (dd) */
 #locations-table .headers dt, 
-#locations-table .headers dd {
+#locations-table .headers dd, #locations-table .headers time {
   font-size:11px;
   font-weight:normal;
   color:#fff;
@@ -179,7 +182,7 @@
 .ie7 #locations-table .headers {
   display:block;
 }
-  .ie7 #locations-table .headers dt,
+  .ie7 #locations-table .headers dt,   .ie7 #locations-table .headers time,
   .ie7 #locations-table .headers dd {
     padding:0;
   }
@@ -407,10 +410,12 @@
     #slide-content button.prev-month {
       float:left;
       border-right:1px solid #fff;
+      text-shadow: none;
     }
     #slide-content button.next-month {
       float:right;
       border-left:1px solid #fff;
+      text-shadow: none;
     }
 
 /* section for actual calendar */
@@ -457,14 +462,14 @@
     padding:5px 0 5px 27px;
     margin-bottom:15px;
   }
-    #slide-content .hours-table dt {
+    #slide-content .hours-table dt, #slide-content .hours-table time {
       font-weight:normal;
       float:left;
       width:100px;
       clear:both;
       line-height:18px;
     }
-    #slide-content .hours-table dd {
+    #slide-content .hours-table dd,  #slide-content .hours-table time {
       line-height:18px;
     }
 
@@ -613,7 +618,8 @@ Calendar Colour Palette
     .oldie #slide-content #law .library-img        { background:url('//www.library.ualberta.ca/2012assets/law-big.jpg') no-repeat 8px 8px; }
     
     .oldie #slide-content #bsj .library-img      { background:url('//www.library.ualberta.ca/2012assets/bsj-large.jpg') no-repeat 8px 8px; }
-    .oldie #slide-content #augustana .library-img   { background:url('../img/okanagan-library.jpg') no-repeat 8px 8px; }
+    .oldie #slide-content #augustana .library-img   { background:url('//www.library.ualberta.ca/2012assets/aug_big.jpeg') no-repeat 8px 8px; }
+    .oldie #slide-content #augustana24 .library-img   { background:url('//www.library.ualberta.ca/2012assets/aug_big.jpeg') no-repeat 8px 8px; }
 .oldie #slide-content #bard .library-img      { background:url('//www.library.ualberta.ca/2012assets/bard-large.jpg') no-repeat 8px 8px; }    
 .oldie #slide-content #brucepeel .library-img      { background:url('//www.library.ualberta.ca/specialcollections/images/HP_Reading_Room_240.jpg') no-repeat 8px 8px; }
 
@@ -732,6 +738,7 @@ Calendar Colour Palette
     #slide-content #bsj .library-img   { background:url('//www.library.ualberta.ca/2012assets/bsj-large.jpg') no-repeat 8px 8px; }
     #slide-content #bard .library-img   { background:url('//www.library.ualberta.ca/2012assets/bard-large.jpg') no-repeat 8px 8px; }
     #slide-content #augustana .library-img   { background:url('//www.library.ualberta.ca/2012assets/aug_big.jpeg') no-repeat 8px 8px; }
+    #slide-content #augustana24 .library-img   { background:url('//www.library.ualberta.ca/2012assets/aug_big.jpeg') no-repeat 8px 8px; }
     #slide-content #bard .library-img   { background:url('//www.library.ualberta.ca/2012assets/bard-large.jpg') no-repeat 8px 8px; }
     #slide-content #brucepeel .library-img   { background:url('//www.library.ualberta.ca/specialcollections/images/HP_Reading_Room_240.jpg') no-repeat 8px 8px; }
 
@@ -1023,10 +1030,31 @@ Calendar Colour Palette
   #locations-table .biomedical dt,
   #locations-table .stpauls dt {
     padding-top: 7px;
-    padding-bottom: 7px;
+    padding-bottom: 7px;  
   }
+ 
+#hours-header{
+  font-size: 1.5em;
+}  
   
 }/*end 344px*/
+
+
+ul.breadcrumb > li{
+  margin-left: 2px;
+}
+
+.warning.message.hours-note {
+  font-size: 18px;
+  color: black;
+   border: solid 1px #900;
+          background-color: #FF6565;
+}
+
+section.hours section.hours-table span dl.regular dd, 
+section.hours section.hours-table span dl.holiday dd{
+  font-weight: 400;
+}
 
 /* setting viewport in CSS as well as HTML to deal with IEMobile 10 bug */
 @-webkit-viewport{width:device-width}

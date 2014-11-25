@@ -1,7 +1,20 @@
 <?php
+//need to start a session because this page is called directly via ajax. the $_SESSION['language'] variable is set
+// in index.php. Using sessions was the easiest way to keep the language as french for dates and other tasks
+session_start();
+
+if ($_SESSION['language']=='fr'){
+  setlocale(LC_ALL, 'fr_FR'); 
+}else{
+  setlocale(LC_ALL, 'en_CA'); 
+}
+
 // pull in functions file, which includes dbConnect file
 $directory = dirname(dirname(__FILE__));
 require_once($directory.'/functions.php');
+
+
+
 
 // default if no location, year, month selected
 if (empty($location_id)) {
@@ -37,14 +50,16 @@ $day = 1*date('d', $date);
 $month = 1*date('m', $date);					
 $year = date('Y', $date);
 $first_day = mktime(0,0,0, $month, 1, $year);  // generate the first day of the month
-$title = date('F', $first_day);  // get the month name 
-$blank = date('w', $first_day);  // find out what day of the week the first day of the month falls on 
-?>
+$title = utf8_encode(strftime('%B', $first_day));  // get the month name 
+$blank = strftime('%w', $first_day);  // find out what day of the week the first day of the month falls on 
 
-          <section class="hours">
+/* schema.org stuff
+itemscope itemtype="http://schema.org/Library" */
+?>
+          <section class="hours" >
             
-            <button class="prev-month" value="<?= $location_id ?>">&lt; Prev</button>
-            <button class="next-month" value="<?= $location_id ?>">Next &gt;</button>
+            <button class="prev-month" value="<?= $location_id ?>">&lt; <?php echo langConvert('Prev'); ?></button>
+            <button class="next-month" value="<?= $location_id ?>"><?php echo langConvert('Next'); ?> &gt;</button>
             
             <span class="monthheading"><?= $title.' '.$year ?></span>
             
@@ -151,7 +166,9 @@ $blank = date('w', $first_day);  // find out what day of the week the first day 
                         break;
                         
                         case 2:
+                        //New: Make intersession (category 2) the same as exception (category 7)
                         $calendarday = (date("Y-m-d") == $year_month_day) ? '<td class="intersession today"><strong>'.$day_num.'</strong>' : '<td class="intersession">'.$day_num.'</td>';
+                        //$calendarday = (date("Y-m-d") == $year_month_day) ? '<td class="intersession today"><strong>'.$day_num.'</strong>' : '<td class="intersession">'.$day_num.'</td>';
                         break;
                         
                         case 1:

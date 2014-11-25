@@ -21,7 +21,7 @@ if(file_exists($config_file)) {
   fclose($fp);
 
   // set values to local variables, getting hostname from dbfinder
-  $dsn = 'mysql:host='.$config_values['DBHOST'].';dbname='.$config_values['DBNAME'];
+  $dsn = 'mysql:host='.$config_values['DBHOST'].';dbname='.$config_values['DBNAME'] . ';charset=utf8';
 
   // connect to database for selecting
   try {

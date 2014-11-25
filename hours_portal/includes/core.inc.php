@@ -1,4 +1,6 @@
 <?php
+
+
 // pull in functions file, which includes dbConnect file
 $directory = dirname(dirname(__FILE__));
 require_once($directory.'/functions.php');
@@ -19,15 +21,42 @@ if ($requestMonth*1 < 10) {
 }
 ?>
 
+<style>
+  #hours-header > h1{
+    font-family: Georgia, serif; 
+    font-size: 42px;
+  }
+
+@media only screen 
+and (max-width : 320px) {
+ {
+    #hours-header > h1{  
+    font-size: 18px;
+  } 
+}
+
+
+</style>
+
 <ul class="breadcrumb expand">
-  <li><a href="http://www.library.ualberta.ca" title="UofA Library">Library Home</a> <span class="divider">/</span></li>
-  <li>Hours &amp; Locations</li>
+  <li><a href="http://www.library.ualberta.ca" title="UofA Library"><?php echo langConvert('Library Home'); ?></a> <span class="divider">/</span></li>
+  <?php
+   echo "<li>". langConvert('hours & locations') . "</li>";
+     
+  ?>
+
 </ul>
+
 
 <div class="grid">
 
   <header id="hours-header">
-    <h1><a href="" title="Hours and Locations"><img src="img/hours-locations-header.gif" title="Hours and Locations" /></a></h1>
+    <!--<h1><a href="" title="Hours and Locations"><img src="img/hours-locations-header.gif" title="Hours and Locations" /></a></h1>-->
+    <?php
+   
+        echo "<h1>" . langConvert('hours & locations') . "</h1>";
+   
+    ?>
   </header>
   
   <div class="row-fluid">
@@ -76,7 +105,7 @@ if ($requestMonth*1 < 10) {
             ?>
             
             <a name="view-<?= $nameid ?>"></a>
-            <div id="<?= $nameid ?>" class="branch">
+            <div id="<?= $nameid ?>" class="branch" itemscope itemtype="http://schema.org/Library">
             
               <div class="controls visible-phone">
                 <p class="status"><?= displayCurrentStatus($currentdate, $currenttime, $id); ?></p>
@@ -88,8 +117,8 @@ if ($requestMonth*1 < 10) {
               <section class="bio">
                 
                 <header>
-                  <h1><a href="<?= $url; ?>"><?= $name; ?></a></h1>
-                  <h3><?= $building; ?></h3>
+                  <h1><a  href="<?= $url; ?>"><?= $name; ?></a></h1>
+                  <h3 >at <span itemprop="name"><?= getBuilding($name_id[$i]) ?></span></h3>
                 </header>
                 
                 <p class="theurl"><a href="<?= $url ?>" class="external"><?= $url ?></a></p>

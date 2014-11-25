@@ -42,9 +42,17 @@
 			if($this->data['HourGrouping']['hour_type_id'] != 3) {
 			echo '<div class="first twelve columns nest row">';
 			echo '<div class="first five columns"><label for="HourGroupingHourDateRangeId">Date Range</label>'. date("F d, Y",strtotime($this->data['HourDateRange']['begin_date']))." - ".date("F d, Y",strtotime($this->data['HourDateRange']['end_date'])).", ".$this->data['HourDateRange']['description']."</div>";
-			echo '<div class="five columns"><label for="HourGroupingHourCategoryId">Category</label><span class="hours-category ';  if ($this->data['HourCategory']['category'] == 'Summer Alternate') { echo 'summer-alternate'; } else { echo strtolower($this->data['HourCategory']['category']); } echo '"></span> '.$this->data['HourCategory']['category']."</div>";
-			echo '</div>'; // end first twelve columns nest row
+			echo '<div class="five columns">
+					<label for="HourGroupingHourCategoryId">Category</label><span class="hours-category ';  
+						if ($this->data['HourCategory']['category'] == 'Summer Alternate') { echo 'summer-alternate'; } 
+						else { echo strtolower($this->data['HourCategory']['category']); } echo '">'.$this->data['HourCategory']['category'].'</span> ';
+					
+					echo '<div style="float: left; margin: 0 0 10px 40px; font-size: 16px; "><label style="display: inline;" for="allClosed">Check All</label> <input type=checkbox id="allClosed" name="allClosed"></div>';
+				echo "</div>";
+
+				echo '</div>'; // end first twelve columns nest row
 			}
+
 		} else {
 			// hidden values for branch login form
 			echo $this->Form->input('HourGrouping.hour_location_id',array('type'=>'hidden'));
@@ -64,7 +72,8 @@
 				echo $this->Form->input('HourDay.'.$key.'.id',array('type'=>'hidden'));
 				echo $this->Form->input('HourDay.'.$key.'.modified_by',array('type'=>'hidden','value'=>$_SERVER['REMOTE_USER']));
  				echo $this->Form->input('HourDay.'.$key.'.modified_timestamp',array('type'=>'hidden','value'=>date('Y-m-d H:i:s')));
-				if($this->data['HourGrouping']['hour_category_id'] == 5 || $this->data['HourGrouping']['hour_category_id'] == 7) {					
+ 				//Newly created treat intercession (category 2) the same as exception (category 7)
+				if($this->data['HourGrouping']['hour_category_id'] == 5 || $this->data['HourGrouping']['hour_category_id'] == 7  || $this->data['HourGrouping']['hour_category_id'] == 2) {					
 					echo '<span id="'.$weekdays[$key].'_text">'.$shortdays[$key].", ".date("m/d/Y",strtotime($this->data['HourDay'][$key]['day_of_week'])).'</span>';
 				} else {
 					echo '<span id="'.$weekdays[$key].'_text">'.$day.'</span>';
@@ -126,18 +135,23 @@
 
 <script>
     $('.is_closed').click(function() {
+    	//alert('clicked');
         if($(this).attr('checked')) {
-            if($(this).attr('id').indexOf('IsClosed') != -1) {
-        		var substr_end = $(this).attr('id').indexOf('IsClosed');
-        	} else if ($(this).attr('id').indexOf('IsTbd') != -1) {
-        		var substr_end = $(this).attr('id').indexOf('IsTbd');
-        	}	
-            var idstart = $(this).attr('id').substr(0,substr_end);
-            $("#"+idstart+"OpenTime").val("0:00");
-            $("#"+idstart+"CloseTime").val("0:00");
-            
+                setOpenCloseTime($(this)) ;
         }
     });
+
+    function setOpenCloseTime(element){
+
+			if(element.attr('id').indexOf('IsClosed') != -1) {
+        		var substr_end = element.attr('id').indexOf('IsClosed');
+        	} else if (element.attr('id').indexOf('IsTbd') != -1) {
+        		var substr_end = element.attr('id').indexOf('IsTbd');
+        	}	
+            var idstart = element.attr('id').substr(0,substr_end);
+            $("#"+idstart+"OpenTime").val("0:00");
+            $("#"+idstart+"CloseTime").val("0:00"); 
+    }
     
 /*
     $('#HourGroupingHourCategoryId').change(function() {   		
@@ -170,7 +184,11 @@
                 success:
                         function(data){
                         	$('#HourGroupingHourCategoryId').val(data.categoryid);
-                            if(data.categoryid == 5 || data.categoryid == 7) {
+                        	/**
+                        	 * Newly updated treat intersession (category id = 2) the same as exception (7)
+                        	 * @type {[type]}
+                        	 */
+                            if(data.categoryid == 5 || data.categoryid == 7 || data.categoryid == 2) {
                                 // loop over data.days and hide days in the list
                                 for(var i in data.daysout) {
                                 	$('#'+data.daysout[i]).hide();
@@ -186,7 +204,7 @@
 										//alert("change text and value");
 										$('#'+data.daysin[j]+'_text').text(data.daysin[j]);
 	                                	$('#HourDay'+j+'DayOfWeek').val(data.daysin[j]);
-									}	
+									}
                                 }
                                 return true;
 							}
@@ -208,6 +226,26 @@
 		            $("#"+idstart+"OpenTime").val("0:00");
 		            $("#"+idstart+"CloseTime").val("0:00");
                 }    
+            });
+
+            $('#allClosed').click(function(e){
+            	if(this.checked){
+            		$(".is_closed").each(function(){
+            			if($(this).attr('id').indexOf('IsTbd') == -1){ //ignore the isTBD checkboxes
+            				this.checked=true;	
+            				//$(this).trigger("click");
+            				setOpenCloseTime($(this));            			
+            			}
+            		})   
+
+            	}else{
+            		$(".is_closed").each(function(){
+            			if($(this).attr('id').indexOf('IsTbd') == -1){ //ignore the isTBD checkboxes
+            				this.checked=false;	
+            				//$(this).trigger("click");
+            			}
+            		})    
+            	}
             });
             
             

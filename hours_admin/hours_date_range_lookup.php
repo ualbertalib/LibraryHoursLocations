@@ -2,7 +2,9 @@
 /*
 * Return days of week NOT occuring during the date range specified by the incoming date range id
 */
-
+date_default_timezone_set('America/Denver');
+error_reporting(E_ALL);
+ini_set('display_errors',1);
 session_start();
 require_once(dirname(__FILE__).'/app/config/database.php');
 
@@ -30,7 +32,7 @@ $db = new DATABASE_CONFIG();
     echo $e->getMessage();
     
   }
-  
+
   
 //require_once(LIB . '/db.inc.php');
 //include_once(LIB . '/utility.inc.php');
@@ -90,15 +92,19 @@ $category_id = $range[0]['hour_category_id'];
 if($range[0]['category'] == 'Summer Alternate') { 
 	$category = 'summer-alternate'; 
 } else {
-*/
+*/  
 $category = $range[0]['category'];
 $begin = new DateTime($begin_str);
 $end = new DateTime($end_str);
 $daysin = array();
 $datesin = array();
+
+/**
+ * This code determines how many Open - Closed textboxes there will be when entering in open/closed hours.
+ */
 while($begin <= $end) {
        $daysin[] = date('l', $begin->format('U'));
-       if($category_id == 5 || $category_id == 7) {
+       if($category_id == 5 || $category_id == 7 || $category_id == 2) {
                $datesin[] = $begin->format('Y-m-d');
        }
        $begin->modify('+1 day');

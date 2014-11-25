@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="https://www.library.ualberta.ca/favicon.ico">
 
 	
-		<title>University of Alberta Libraries</title>
+		<title>University of Alberta Libraries French Version</title>
 	
 <!-- CLF Stylesheets -->
   <link href="//hours.library.ualberta.ca/css/ubc-clf-full.min.css" rel="stylesheet">
@@ -73,47 +73,46 @@
 <body>
   <div class="container">
 	<div class="row show-on-phones">
-       <ul class="phone-nav twelve columns">
-         <li><a href="http://www.library.ualberta.ca/databases">Databases</a></li>
-         <li><a href="http://www.library.ualberta.ca/ejournals">Journals</a></li>
-         <li><a href="http://www.library.ualberta.ca/browse">Subjects</a></li>
-         <li><a href="http://www.library.ualberta.ca/aboutus">Libraries</a></li>	
-         <li><a href="https://www.library.ualberta.ca/myaccount/">My Account</a></li>
-         <li><a href="http://www.library.ualberta.ca/services">Services</a></li>
-         <li><a href="http://www.library.ualberta.ca/hours" class="last">Hours</a></li>
-       </ul>	
+      <ul class="phone-nav twelve columns">
+         <li><a href="http://www.library.ualberta.ca/databases_fr" id="first">Bases de données</a></li>
+         <li><a href="http://www.library.ualberta.ca/ejournals_fr">Périodiques</a></li>
+         <li><a href="http://guides.library.ualberta.ca/pageaccueil">Sujets</a></li>
+         <li><a href="http://www.library.ualberta.ca/aboutus_fr">Bibliothèques</a></li> 
+         <li><a href="https://www.library.ualberta.ca/myaccount_fr/">Mon dossier</a></li>
+         <li><a href="http://www.library.ualberta.ca/services_fr">Services</a></li>
+         <li><a href="http://www.library.ualberta.ca/hours_fr" id="last">Heures</a></li>
+       </ul>  
      </div>
     <div class="row">
       <div class="two columns">
         <a href="http://www.ualberta.ca"  class="ualogo"><img src="http://www.library.ualberta.ca/2012assets/ua.png"/></a>
       </div>
     <div class="two columns">
-         <h2 class="show-on-phones"><a href="http://www.library.ualberta.ca/">Libraries</a> - <a href="/askus" class="askmobile">Ask Us</a> - <a  href="/francais" class="askmobile">fran&ccedil;aise</a> </h2>
+         <h2 class="show-on-phones"><a href="http://www.library.ualberta.ca/francais/">Bibliothèques</a> - <a href="/askus_fr" class="askmobile">Question?</a> - <a  href="/" class="askmobile">English</a> </h2>
       </div>
       <div class="eight columns">
-        <ul class="top-nav hide-on-phones">
-	  <li><a href="http://webapps.srv.ualberta.ca/search/">Find a Person</a></li>
-	  <li><a href="https://www.myonecard.ualberta.ca/">ONEcard</a></li>
-	  <li><a href="https://www.beartracks.ualberta.ca/">Bear Tracks</a></li>
-	  <li><a href="http://www.campusmap.ualberta.ca/">Maps</a></li>
-	  <li><a href="http://apps.ualberta.ca/">Email &amp; Apps</a></li>
-	  <li><a href="https://eclass.srv.ualberta.ca/portal/">eClass</a></li>
-	   <li><a href="http://www.ualberta.ca" id="last">UofA</a></li>
+       <ul class="top-nav hide-on-phones">
+    <li><a href="http://webapps.srv.ualberta.ca/search/">Trouver une personne</a></li>
+    <li><a href="https://www.myonecard.ualberta.ca/">ONEcard</a></li>
+    <li><a href="https://www.beartracks.ualberta.ca/">Bear Tracks</a></li>
+    <li><a href="http://www.campusmap.ualberta.ca/">Cartes</a></li>
+    <li><a href="http://apps.ualberta.ca/">Apps@UAlberta</a></li>
+    <li><a href="https://eclass.srv.ualberta.ca/portal/" id="last">eClass</a></li>
         </ul>
       </div>
     </div>
     <div class="row green hide-on-phones">
       <div class="twelve columns ">
         <div class="four columns">
-	  <h1><a href="/">Libraries</a></h1>
+	  <h1><a href="/">Bibliothèques</a></h1>
 	</div>
 	<div class="eight columns">
 	  <ul class="home-nav">
                     <li class="ask"><a href="/askus">Ask Us</a>
-                        <p class="sub-ask-menu"><a href="/askus/chatref.html">chat</a> - <a href="http://www.library.ualberta.ca/askus/">text</a> - <a href="http://www.library.ualberta.ca/ereference/email/">email</a> - <a href="http://www.library.ualberta.ca/askus/">phone</a></p>
+                        <p class="sub-ask-menu"><a href="/askus/chatref.html">chat</a> - <a href="http://www.library.ualberta.ca/askus_fr/">texto</a> - <a href="http://www.library.ualberta.ca/ereference//ereference_fr">courriel</a> - <a href="http://www.library.ualberta.ca/askus_fr/">téléphone</a></p>
                     </li>
                     <li>
-                    <li><a  href="francais"  class="french">Version fran&ccedil;aise</a></li>
+                    <li><a  href="/"  class="french">English Version</a></li>
 		    </li>
                </ul>
              </div>
@@ -121,13 +120,13 @@
          </div>
      <div class="row">
        <ul class="main-nav twelve columns hide-on-phones">
-         <li><a href="http://www.library.ualberta.ca/databases" id="first">Databases</a></li>
-         <li><a href="http://www.library.ualberta.ca/ejournals">Journals</a></li>
-         <li><a href="http://www.library.ualberta.ca/browse">Subjects</a></li>
-         <li><a href="http://www.library.ualberta.ca/aboutus">Libraries</a></li>	
-         <li><a href="https://www.library.ualberta.ca/myaccount/">My Account</a></li>
-         <li><a href="http://www.library.ualberta.ca/services">Services</a></li>
-         <li><a href="http://www.library.ualberta.ca/hours" id="last">Hours</a></li>
+         <li><a href="http://www.library.ualberta.ca/databases_fr" id="first">Bases de données</a></li>
+         <li><a href="http://www.library.ualberta.ca/ejournals_fr">Périodiques</a></li>
+         <li><a href="http://guides.library.ualberta.ca/pageaccueil">Sujets</a></li>
+         <li><a href="http://www.library.ualberta.ca//aboutus_fr">Bibliothèques</a></li>	
+         <li><a href="https://www.library.ualberta.ca/myaccount_fr/">Mon dossier</a></li>
+         <li><a href="http://www.library.ualberta.ca/services_fr">Services</a></li>
+         
        </ul>	
      </div>
        <div class="row top-margin">

@@ -2,9 +2,51 @@
 // pull in dbConnect file
 $directory = (dirname(__FILE__));
 require_once($directory.'/dbConnect.php');
-
+require_once('includes/helpers.inc.php');
 
 //**** HOURS PORTAL NON-QUERY FUNCTIONS ****
+
+/**
+ * returns an array of various words in either english or french depending what is set in the $_SESSION['Language'] variable
+ * @return [type] [description]
+ */
+function langConvert($key){
+
+    $key = strtolower($key);
+   if ($_SESSION['language'] &&  $_SESSION['language'] == 'fr'){          
+          $word['library home']='Page d\'accueil';
+          $word['hours & locations'] = 'Heures &amp; Localisations';
+          $word['open']='Ouvert';
+          $word['closed']='Fermé';
+          $word['prev'] = 'Précédent';
+          $word['next'] = 'Suivant';
+          $word['location'] = 'Localisation';
+          $word['hours unavailable']= "Horaire indisponible";      
+          $word['no hours currently listed for this month'] = 'Pas d\'horaire affiché pour le moment';
+          $word['until'] = "jusqu'à";
+          $word['n/a'] = 'N/D';
+          $word['currently'] = 'actuellement';
+          $word['today'] = 'Aujourd\'hui';
+          
+      }else{
+          $word['library home']='Library Home';
+          $word['hours & locations'] = 'Hours &amp; Locations';
+          $word['open']='Open';
+          $word['closed']='Closed';
+          $word['prev'] = 'Prev';
+          $word['next'] = 'Next';
+          $word['location'] = 'Location';
+          $word['hours unavailable']= "Hours Unavailable";        
+          $word['no hours currently listed for this month'] = 'No hours currently listed for this month';
+          $word['until'] = 'until';
+          $word['n/a'] = 'N/A';
+          $word['currently'] = 'currently';
+          $word['today'] = 'Today';
+          
+      }
+
+  return $word[$key];
+}
 
 
 // remove zero minutes from open/close times
@@ -16,9 +58,16 @@ function displayTime($time) {
   if (date('i', $time) != "00") {
     $trimtime .= date(':ia', $time);
   } else {
-    $trimtime .= date('a', $time);
+    //$trimtime .= date('a', $time);
+    $trimtime .= strftime('%p', $time);
   }//closes if-else
-  
+
+
+  if ($_SESSION['language']=='fr'){
+    $trimtime = strftime('%Hh%M%P', $time);  
+    }else{
+   // $trimtime = strftime('%l:%M%P', $time);
+  }
   return $trimtime;
   
 }//closes function
@@ -88,7 +137,6 @@ function displayLocationsStatus($branchID = null) {
   
   // variable to store code string
   $locationstable = '<dl id="locations-table">
-
       <span class="headers">
         <dt>Location</dt>
         <dd>Today</dd>
@@ -222,6 +270,7 @@ function displayLocationsStatusHomepage($branchID = null) {
 }//closes function
 
 
+
 // retrieve and display the current status in span tags based on a date, time and (required) branch id
 function displayCurrentStatus($ymd, $time, $branchID) {
   
@@ -283,6 +332,8 @@ function displayCurrentStatus($ymd, $time, $branchID) {
   $prevstatus = $prevsth->execute();
   $prevresults = $prevsth->fetchAll();
 
+
+
   // close time default is today's close time
   $close_time = $results[0]['close_time'];
   
@@ -304,7 +355,7 @@ function displayCurrentStatus($ymd, $time, $branchID) {
   //if no hours were found
   if (!$results) {
     
-    $currentstatus .= '<span class="closed">N/A</span> currently';
+    $currentstatus .= '<span class="closed">' . langConvert('N/A') . '</span> ' . langConvert('currently');
   
   } else {
 
@@ -313,20 +364,20 @@ function displayCurrentStatus($ymd, $time, $branchID) {
     
       // for closing hours before midnight (uses displayTime function to trim zero minutes)
       if ( ($results[0]['is_closed'] == 1) || ($results[0]['open_time'] > $time || $close_time <= $time) ) {
-        $currentstatus .= '<span class="closed">Closed</span> currently';
+        $currentstatus .= '<span class="closed">' . langConvert('Closed'). "</span> " . langConvert('currently');
       } else {
-        $currentstatus .= '<span class="open">Open</span> until '.displayTime($close_time);
+        $currentstatus .= '<span class="open">' . langConvert('Open'). '</span> '. langConvert('until') . ' ' . displayTime($close_time);
       }//closes if-else
       
     // for TBD time  
     } else if ($results[0]['is_tbd'] == 1) {
 
-      $currentstatus .= '<span class="closed">N/A</span> currently';
+      $currentstatus .= '<span class="closed">' . langConvert('N/A') . '</span> ' . langConvert('currently');
     
     // for 24-hour time  
     } else if ($close_time == $results[0]['open_time'] && $results[0]['is_closed'] == 0) {
     
-      $currentstatus .= '<span class="open">Open</span> 24 hrs';
+      $currentstatus .= '<span class="open">' . langConvert('Open'). '</span> 24 hrs';
     
     } else {
     
@@ -334,7 +385,7 @@ function displayCurrentStatus($ymd, $time, $branchID) {
       if ( ($results[0]['is_closed'] == 1) || ($close_time <= $time && $results[0]['open_time'] > $time) ) {
         $currentstatus .= '<span class="closed">Closed</span> currently';
       } else {
-        $currentstatus .= '<span class="open">Open</span> until '.displayTime($close_time);
+        $currentstatus .= '<span class="open">' . langConvert('Open'). '</span>' . langConvert('until') . ' '.displayTime($close_time);
       }//closes if-else
     
     }//closes if-elseif-else
@@ -473,8 +524,8 @@ function getName($name_id){
   $row=$stmt->fetch(PDO::FETCH_ASSOC);
   $name=$row['name'];
 				
-	// Xwi7xwa needs special characters that are not part of the Georgia set and need to be faked with <u> tags
-	return ($name == "X̱wi7x̱wa Library") ? "<u>X</u>wi7<u>x</u>wa Library" : $name;
+	
+	return  $name;
 
 }//closes function
 
@@ -721,7 +772,7 @@ function displayHoursByMonth($month, $year, $branchID = null) {
   
   $sql = "SELECT hour_days.day_of_week, hour_days.open_time, hour_days.close_time, hour_days.is_closed, hour_days.is_tbd,
                  hour_groupings.hour_category_id,
-                 hour_categories.category,
+                 hour_categories.category,hour_categories.category_fr,
                  hour_date_ranges.begin_date, hour_date_ranges.end_date
           FROM hour_days
           JOIN hour_groupings
@@ -774,7 +825,7 @@ function displayHoursByMonth($month, $year, $branchID = null) {
   
   // matching hours set to false
   $match = false;
-  
+  $schemaOpenHoursRange="";
   // variable to store code string
   $hours = '';
   
@@ -782,15 +833,29 @@ function displayHoursByMonth($month, $year, $branchID = null) {
   if (!$results) {
     
     $hours .= '
-              <h6>Hours Unavailable</h6>
-              <p>No hours currently listed for this month.</p>';
+              <h6>' . langConvert('Hours Unavailable'). '</h6>
+              <p>' . langConvert('No hours currently listed for this month'). '.</p>';
   
   } else {
-    
+
+   
+
     // display hours by category, collapsing where appropriate
     for ($i = 0; $i < $count; $i++) {
-      
-      // variables to compare the next/prev values
+//echo "Loop $i";
+
+    /**
+     * Quick patch to replace the category with the french category
+     */
+     if ($_SESSION['language'] && $results[$i]['category_fr']!='' &&  $_SESSION['language'] == 'fr'){
+         //  $results[$i]['category'] = ($results[$i]['category_fr']); 
+           $category[$i]  = ($results[$i]['category_fr']);     
+       }else{
+          $category[$i] = $results[$i]['category'];          
+       }
+       $cssClass[$i] = str_replace('hours', '', strtolower($results[$i]['category']));
+    
+      // variables to compare the next/prev values 
       $next_open = isset($results[$i+1]['open_time']) ? $results[$i+1]['open_time'] : '0';
       $next_close = isset($results[$i+1]['close_time']) ? $results[$i+1]['close_time'] : '0';
       $next_closed = isset($results[$i+1]['is_closed']) ? $results[$i+1]['is_closed'] : '';
@@ -800,24 +865,49 @@ function displayHoursByMonth($month, $year, $branchID = null) {
       // show color block and heading when category is new
       if ($results[$i]['hour_category_id'] != $prev_category) {   
         $hours .= '
-              <h6><span class="hours-category '; if ($results[$i]['hour_category_id'] == 4) { $hours .= 'summer-alternate'; } else { $hours .= strtolower($results[$i]['category']); } $hours .= '"></span>';
+              <h6><span class="hours-category '; 
+              //create the color box legend
+              $hours .= $cssClass[$i] . "\"></span>";
+        //if ($results[$i]['hour_category_id'] == 4) { $hours .= 'summer-alternate'; } else { $hours .= 'holiday'; } $hours .= '"></span>';
+      //  if ($results[$i]['hour_category_id'] == 4 || $results[$i]['hour_category_id'] == 3) { 
+        //    $hours .= 'Summer Hours'; 
+       //   } else { 
+            $hours .= $category[$i] .' '; 
+      //  }
         
-        if ($results[$i]['hour_category_id'] == 4 || $results[$i]['hour_category_id'] == 3) { $hours .= 'Summer Hours'; } else { $hours .= $results[$i]['category'].' Hours'; }
-        
-        if ($results[$i]['hour_category_id'] != 5 && $results[$i]['hour_category_id'] != 7) { $hours .= ' ('.date('M j', strtotime($results[$i]['begin_date'])).'-'.date('M j', strtotime($results[$i]['end_date'])).')'; } $hours .= '</h6>
-              <dl class="'; if ($results[$i]['hour_category_id'] == 4) { $hours .= 'summer-alternate'; } else { $hours .= strtolower($results[$i]['category']); } $hours .= '">';
+        /**
+         * New - jeremy -  modify so that intersession(category 2) is treated the same as exception (category 7).
+         */
+        if ($results[$i]['hour_category_id'] != 5 && $results[$i]['hour_category_id'] != 7 && $results[$i]['hour_category_id'] != 2) { 
+                $hours .= ' ('.date('M j', strtotime($results[$i]['begin_date'])).'-'.date('M j', strtotime($results[$i]['end_date'])).')'; 
+          } 
+            $hours .= '</h6>
+              <dl itemprop="openingHoursSpecification" itemscope class="'; 
+        if ($results[$i]['hour_category_id'] == 4) { 
+              $hours .= 'summer-alternate'; } 
+        else { 
+            $hours .= $cssClass[$i]; 
+      } 
+
+              $hours .= '">';
       }//closes if
       
       // if the next set of hours is the same (and the same category), set the range start date, change match to true, break the loop
       if ($results[$i]['open_time'] == $next_open && $results[$i]['close_time'] == $next_close && $results[$i]['is_closed'] == $next_closed && $match == false && $results[$i]['hour_category_id'] == $next_category) {
         
+        /**
+         * New - jeremy -  modify so that intersession(category 2) is treated the same as exception (category 7).
+         */
         // exception/holiday hours display as dates, regular hours display as days
-        if ($results[$i]['hour_category_id'] == 5 || $results[$i]['hour_category_id'] == 7) {
+        if ($results[$i]['hour_category_id'] == 5 || $results[$i]['hour_category_id'] == 7 || $results[$i]['hour_category_id'] == 2) {
           $start_range = date('M j', strtotime($results[$i]['day_of_week']));
+           $schemaStartRange = $results[$i]['day_of_week'];
         } else {
           $start_range = date('D', strtotime($results[$i]['day_of_week']));
+
+          $schemaOpenHoursRange .= substr( date('D', strtotime($results[$i]['day_of_week']) ),0,2).'-';
         }//closes if-else
-        
+      
         $match = true;
         continue;
       
@@ -830,51 +920,69 @@ function displayHoursByMonth($month, $year, $branchID = null) {
       } else {
         
         $hours .= '
-                <dt>';
+                <time itemprop="openingHours">';
         
         // when a range has been set, display it
         if ($match == true) {
         
-          $hours .= $start_range;
-          
-          // exception/holiday hours display as dates, regular hours display as days
-          if ($results[$i]['hour_category_id'] == 5 || $results[$i]['hour_category_id'] == 7) {
-            if ($results[$i]['begin_date'] == $results[$i]['end_date']) {
-              $hours .= ' &amp '.date('j', strtotime($results[$i]['day_of_week']));
-            } else {
-              $hours .= '-'.date('j', strtotime($results[$i]['day_of_week']));
-            }//closes if-else
-          } else {
-            $hours .= '-'.date('D', strtotime($results[$i]['day_of_week']));
-          }//closes if-else
-        
-        // otherwise, just display the current date
+                  $hours .= $start_range;
+
+                  
+
+                  // exception/holiday hours display as dates, regular hours display as days
+                  if ($results[$i]['hour_category_id'] == 5 || $results[$i]['hour_category_id'] == 7  || $results[$i]['hour_category_id'] == 2) {
+                    if ($results[$i]['begin_date'] == $results[$i]['end_date']) {
+                      $hours .= ' &amp '.date('j', strtotime($results[$i]['day_of_week']));
+                      $schemaDayRange[] = date('j', strtotime($results[$i]['day_of_week']));
+                    } else {
+                      $hours .= '-'.date('j', strtotime($results[$i]['day_of_week']));
+                      $schemaDayRange[] =  $schemaStartRange . '-' . date('j', strtotime($results[$i]['day_of_week']));
+                    }//closes if-else
+                  } else {
+                       $hours .= '-'.date('D', strtotime($results[$i]['day_of_week']));
+                      //Add Schema.org data
+                      $schemaOpenHoursRange .= substr( date('D', strtotime($results[$i]['day_of_week']) ),0,2);
+                      $schemaDayRange[] = $schemaOpenHoursRange;
+                  
+                  }//closes if-else
+                
+                // otherwise, just display the current date
         } else {
         
           // exception/holiday hours display as dates, regular hours display as days
-          if ($results[$i]['hour_category_id'] == 5 || $results[$i]['hour_category_id'] == 7) {
+          if ($results[$i]['hour_category_id'] == 5 || $results[$i]['hour_category_id'] == 7 || $results[$i]['hour_category_id'] == 2) {
             $hours .= date('M j', strtotime($results[$i]['day_of_week']));
           } else {
-            $hours .= date('l', strtotime($results[$i]['day_of_week']));
+             $hours .= date('l', strtotime($results[$i]['day_of_week']));
+             $schemaOpenHoursRange .= substr( date('D', strtotime($results[$i]['day_of_week']) ),0,2);
+             $schemaDayRange[] = $schemaOpenHoursRange;
+
           }//closes if-else
         
         }//closes if-else
-        
-        $hours .= '</dt><dd>';
-        
+
+       
+       // $hours .= "</dt><dd>";
+       $hours .= "</time><dd>";
+         $schemaOpenHoursRange = "";
         // now display the hours (uses displayTime function to trim zero minutes)
         if ($results[$i]['is_tbd'] == 1) {
           $hours .= 'TBD';
+            $schemaTimeRange[] = 'TBD';
         } else if ($results[$i]['is_closed'] == 1) {
-          $hours .= 'Closed';
+          $hours .= langConvert('Closed');
+          $schemaTimeRange[] = langConvert('Closed');
         } else if ($results[$i]['is_closed'] == 0 && $results[$i]['open_time'] == $results[$i]['close_time']) {
-          $hours .= 'Open 24 Hours';
+          $hours .= langConvert('Open 24 Hours');
+           $schemaTimeRange[]= langConvert('Open 24 Hours');
         } else {
           $hours .= displayTime($results[$i]['open_time']).' - '.displayTime($results[$i]['close_time']);
+           $schemaTimeRange[]=  $results[$i]['open_time'] . '-' .  $results[$i]['close_time'];
+
         }//closes if-else
         
         $hours .= '</dd>';
-        
+
         // close dl, when next category is new
         if ($results[$i]['hour_category_id'] != $next_category) {
           $hours .= '
@@ -890,11 +998,63 @@ function displayHoursByMonth($month, $year, $branchID = null) {
     }//closes for
     
   }//closes if-else
+//echo  $sql;
+//echo $hours;
+//echo "\n------------------\n";
+//$hours = '<?xml version="1.0" encoding="ISO-8859-1"<calendar>'.$hours . '</calendar>';
+//echo $hours;
+
+ $replace = '<time itemprop="openingHours" datetime="'. $schemaDayRange[0] .'"';
+$subCount = substr_count($hours,'<time itemprop="openingHours"');
+//$hours2 = str_replace("<dt itemprop=\"openingHours\">", $replace , $hours,1);
+$hours2 = $hours;
+for($i=0; $i<$subCount; $i++){
+
+$replace = '<time itemprop="openingHours" datetime="'. $schemaDayRange[$i] . ' ' . $schemaTimeRange[$i]  .'"';
+$hours2 = str_replace_nth('<time itemprop="openingHours"', $replace,$hours2,$i);
+}
+$hours =  "<span itemscope itemtype=\"http://schema.org/Library\">$hours2</span>";
+return $hours;
+exit();
+//substr($hours)
+
+//str_replace(search, replace, subject)
+
+/*
+
+echo $hours;
+
+$xml = new SimpleXMLElement(trim($hours));
+$dom = dom_import_simplexml($xml);
+$domDL = getElementsByTagName('dl');
+$dom->dl->setAttribute('datetime',$schemaDayRange[0]);
+
+var_dump($xml);
+
+$children = $xml->children();
+$dt=$xml->xpath('/calendar/dl/dt')->addAttribute('datetime',$schemaDayRange[0]);
+
+echo "\n---------------------\n\n";
+var_dump($dt);
+//->addAttribute('datetime',$schemaDayRange[0])
+echo $xml->dl[0];
+*/
+  exit();
+
+
   
   return $hours;
   
 }//closes function
 
+function str_replace_nth($search, $replace, $subject, $nth)
+{
+    $found = preg_match_all('/'.preg_quote($search).'/', $subject, $matches, PREG_OFFSET_CAPTURE);
+    if (false !== $found && $found > $nth) {    
+        return substr_replace($subject, $replace, $matches[0][$nth][1], strlen($search));
+    }
+    return $subject;
+}
 
 //**** Print ****//
 
