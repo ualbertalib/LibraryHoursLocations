@@ -118,7 +118,7 @@ and (max-width : 320px) {
                 
                 <header>
                   <h1><a  href="<?= $url; ?>"><?= $name; ?></a></h1>
-                  <h3 >at <span itemprop="name"><?= getBuilding($name_id[$i]) ?></span></h3>
+                  <h3><span itemprop="name"><?= getBuilding($name_id[$i], "at ") ?></span></h3>
                 </header>
                 
                 <p class="theurl"><a href="<?= $url ?>" class="external"><?= $url ?></a></p>
