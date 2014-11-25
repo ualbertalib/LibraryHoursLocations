@@ -41,7 +41,7 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
 
 $insert .= '
 <title>Hours and Locations | University of Alberta</title>
-<link rel="stylesheet" type="text/css" href="/css/hours.css" />
+<link rel="stylesheet" type="text/css" href="./css/hours.css" />
 ';
 
 $clfheader = str_replace('</head>', $insert.'</head>', $clfheader);
