@@ -182,8 +182,8 @@ and (max-width : 320px) {
   
                  <?php if ($email != '') { ?>
                     <h5><?php echo langConvert('Email'); ?></h5>
-                  <p class="visible-desktop"><?= $email ?></p>
-                  <p class="hidden-desktop"><a href="tel:1+<?= $phone ?>"><?= $email ?></a></p>
+                    <p class="visible-desktop"><?= $email ?></p>
+                    <p class="hidden-desktop"><a href="tel:1+<?= $phone ?>"><?= $email ?></a></p>
                 <?php  } ?>
 
                 <div class="controls visible-phone">
