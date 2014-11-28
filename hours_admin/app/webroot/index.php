@@ -76,7 +76,7 @@ ini_set('display_errors', 1);
         if(stristr(getenv('HTTP_HOST'), '.dev')){
             define('CAKE_CORE_INCLUDE_PATH', DS.'var'.DS.'www'.DS.'html/myshare'.DS.'hours.library.ualberta.ca'.DS.'cakephp-1.3.20');
         }else{
-			define('CAKE_CORE_INCLUDE_PATH', DS.'var'.DS.'www'.DS.'sites'.DS.'hours.library.ualberta.ca'.DS.'cakephp-1.3.17');        	
+			define('CAKE_CORE_INCLUDE_PATH', DS.'var'.DS.'www'.DS.'sites'.DS.'hours.library.ualberta.ca'.DS.'cakephp-1.3.20');        	
         }    
 	}
 

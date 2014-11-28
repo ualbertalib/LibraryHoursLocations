@@ -25,36 +25,15 @@
 	<link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/normalize.css" media="all"/>  
 	<link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/foundation.css" media="all"/>
 	<link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/app.css" media="all"/>  
-        <!-- override otherwise circle bullets appear in footer-->
-        <style> .content ul li {list-style-type: none;} </style>
+  <!-- override otherwise circle bullets appear in footer-->
+  <style> .content ul li {list-style-type: none;} </style>
 	
 
-<!-- 
-<script src="http://www.library.ualberta.ca/jquery/jquery-1.7.1.min.js" type="text/javascript"></script>
--->
-
- <!-- JavaScript -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script> -->
- <!-- <script src="http://clf.library.ubc.ca/7.0.2/js/jquery-1.7.2.min.js"></script> -->
  
 <script src="//www.library.ualberta.ca/jquery/jquery-1.7.1.min.js" type="text/javascript"></script>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript"></script>
-  <!-- <script src="https://clf.library.ubc.ca/7.0.2/colorbox/jquery.colorbox.js" type="text/javascript"></script> -->
-  <script src="//hours.library.ualberta.ca/assets/colorbox/jquery.colorbox_1.3.7.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript"></script>
+<script src="//hours.library.ualberta.ca/assets/colorbox/jquery.colorbox_1.3.7.js" type="text/javascript"></script>
   
-  
-  <!-- Not sure what modernizr is needed for so commented out JH
-  <script src="https://clf.library.ubc.ca/7.0.2/modernizr/modernizr.js" type="text/javascript"></script> -->
-  <script src="//hours.library.ualberta.ca/assets/modernizr.js" type="text/javascript"></script> 
-  
-  <!-- Not sure what these JS libraries are used for so commenting out. JH -->
-  <!--  
-  <script src="https://cdn.ubc.ca/clf/7.0.2/js/ubc-clf.min.js"></script>
-  <script src="https://clf.library.ubc.ca/7.0.2/js/library-ui.js" type="text/javascript"></script>
-  
-  <script src="https://www.google.com/jsapi?key=ABQIAAAAoRs91XgpKw60K4liNrOHoBStNMhZCa0lqZKLUDgzjZGRsKl38xSnSmVmaulnWVdBLItzW4KsddHCzA" type="text/javascript"></script>
- -->
 
 <!--
 <script type="text/javascript">

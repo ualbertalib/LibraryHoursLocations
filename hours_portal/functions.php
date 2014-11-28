@@ -27,6 +27,7 @@ function langConvert($key){
           $word['n/a'] = 'N/D';
           $word['currently'] = 'actuellement';
           $word['today'] = 'Aujourd\'hui';
+          $word['open 24 hours'] = 'Ouvert 24h/24';
           
       }else{
           $word['library home']='Library Home';
@@ -42,6 +43,7 @@ function langConvert($key){
           $word['n/a'] = 'N/A';
           $word['currently'] = 'currently';
           $word['today'] = 'Today';
+          $word['open 24 hours'] = 'Open 24 Hours';
           
       }
 
@@ -227,7 +229,7 @@ function displayLocationsStatusHomepage($branchID = null) {
   for ($i = 0; $i < $count; $i++) {
     
     $id = $results[$i]['login'];
-    $url = 'http://hours.library.ubc.ca/#view-'.$results[$i]['login'];
+    $url = 'http://hours.library.ualberta.ca/#view-'.$results[$i]['login'];
     
     // start the display with appropriate span tag (inserts alternating rows)
     if ($alt == false && $results[$i]['parent'] == NULL) {
@@ -265,7 +267,7 @@ function displayLocationsStatusHomepage($branchID = null) {
   $locationstable .= '</dl>';
   
   // deal with apostrophe in St. Paul's
-  return str_replace("'", "\'", $locationstable);
+  return $locationstable;
   
 }//closes function
 
@@ -338,12 +340,14 @@ function displayCurrentStatus($ymd, $time, $branchID) {
   $close_time = $results[0]['close_time'];
   
   // if the previous close time falls between 12-4am, current day is not open 24 hours and current time is prior to today's opening, change close time to previous day's close time
-  if ( (0 < $prevresults[0]['close_time'] && $prevresults[0]['close_time'] < 4) && ($results[0]['open_time'] != $results[0]['close_time'] && $results[0]['is_closed'] != 1) && $time < $results[0]['open_time'] ) {
+  if ( (0 < $prevresults[0]['close_time'] && $prevresults[0]['close_time'] < 4) && ($results[0]['open_time'] != $results[0]['close_time'] && $results[0]['is_closed'] != 1) 
+        && $time < $results[0]['open_time'] ) {
  
     $close_time = $prevresults[0]['close_time'];
   
   // if previous day was closed or previous day's closing hours were in the afternoon and today's hours are after midnight and current time is prior to today's opening, change close time to midnight (to force "closed")
-  } else if ( ($prevresults[0]['is_closed'] == 1 || ( ((12 < $prevresults[0]['close_time'] && $prevresults[0]['close_time'] < 24) || $prevresults[0]['close_time'] == 0) && (0 < $results[0]['close_time'] && $results[0]['close_time'] < 4) )) && $time < $results[0]['open_time']) {
+  } else if ( ($prevresults[0]['is_closed'] == 1 || ( ((12 < $prevresults[0]['close_time'] && $prevresults[0]['close_time'] < 24) || $prevresults[0]['close_time'] == 0) &&
+       (0 < $results[0]['close_time'] && $results[0]['close_time'] < 4) )) && $time < $results[0]['open_time']) {
     
     $close_time = '00:00:00';
     

@@ -43,9 +43,9 @@
 		 * If the URI is .dev then set proper development enviornment variable
 		 */
 		if(stristr(env('HTTP_HOST'), '.dev')){
-			define('CAKE_CORE_INCLUDE_PATH', '/media/sf_virtualshare/hours.library.ualberta.ca/docroot/hours_admin/' . 'cakephp-1.3.17');
+			define('CAKE_CORE_INCLUDE_PATH', '/media/sf_virtualshare/hours.library.ualberta.ca/docroot/hours_admin/' . 'cakephp-1.3.20');
         }else{
-            define('CAKE_CORE_INCLUDE_PATH', DS.'var'.DS.'www'.DS.'sites'.DS.'hours.library.ualberta.ca'.DS.'cakephp-1.3.17');
+            define('CAKE_CORE_INCLUDE_PATH', DS.'var'.DS.'www'.DS.'sites'.DS.'hours.library.ualberta.ca'.DS.'cakephp-1.3.20');
         }
 	}
 
