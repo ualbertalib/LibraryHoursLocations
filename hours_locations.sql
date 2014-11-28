@@ -41,25 +41,25 @@ CREATE TABLE IF NOT EXISTS `divisions` (
 -- Table structure for table `hour_categories`
 --
 
-CREATE TABLE IF NOT EXISTS `hour_categories` (
+CREATE TABLE `hour_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category` varchar(30) NOT NULL,
   `description` text NOT NULL,
+  `category_fr` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8
 
 --
 -- Dumping data for table `hour_categories`
 --
 
-INSERT INTO `hour_categories` (`id`, `category`, `description`) VALUES
-(1, 'Regular', 'Includes:\r\n-Fall Term: Beginning of September - End of April'),
-(5, 'Holiday', 'Includes:\r\n- Thanksgiving: Oct\r\n- Remembrance Day: Nov\r\n- Christmas: December - January\r\n- Easter: April\r\n- Victoria Day: May \r\n- Canada Day: July 1\r\n- BC Day: Aug 1\r\n- Labour Day: Sept\r\n'),
-(6, 'Exam', 'Includes:\r\n- Mid April - End of April\r\n- Beginning of December - Mid December'),
-(7, 'Exception', 'Includes:\r\n- Days within another range that are different but not a holiday, exam, intercession, etc.'),
-(4, 'Summer Alternate', 'Includes:\r\n-Summer Term Alternate Hours'),
-(2, 'Intersession', 'Includes:\r\n-Intersession Spring: End of April - Beginning of May\r\n-Intersession Fall: Mid August - Beginning of September'),
-(3, 'Summer', 'Includes:\r\n-Summer Term: Beginning of May - Mid August');
+insert into `hour_categories` (`id`, `category`, `description`, `category_fr`) values('1','Regular Hours','Includes:\r\n-Fall Term: Beginning of September - End of April','Heures régulières');
+insert into `hour_categories` (`id`, `category`, `description`, `category_fr`) values('5','Holiday Hours','Includes:\r\n- Thanksgiving: Oct\r\n- Remembrance Day: Nov\r\n- Christmas: December - January\r\n- Easter: April\r\n- Victoria Day: May \r\n- Canada Day: July 1\r\n- BC Day: Aug 1\r\n- Labour Day: Sept\r\n','Jours fériés');
+insert into `hour_categories` (`id`, `category`, `description`, `category_fr`) values('6','Exam Hours','Includes:\r\n- Mid April - End of April\r\n- Beginning of December - Mid December','Session des examens');
+insert into `hour_categories` (`id`, `category`, `description`, `category_fr`) values('7','Exception Hours','Includes:\r\n- Days within another range that are different but not a holiday, exam, intercession, etc.','Exceptions');
+insert into `hour_categories` (`id`, `category`, `description`, `category_fr`) values('4','Summer Alternate Hours','Includes:\r\n-Summer Term Alternate Hours','Heures d\'été alternatives');
+insert into `hour_categories` (`id`, `category`, `description`, `category_fr`) values('2','Intersession Hours','Includes:\r\n-Intersession Spring: End of April - Beginning of May\r\n-Intersession Fall: Mid August - Beginning of September','Heures d\'intersession');
+insert into `hour_categories` (`id`, `category`, `description`, `category_fr`) values('3','Summer Hours','Includes:\r\n-Summer Term: Beginning of May - Mid August','Heures d\'été');
 
 -- --------------------------------------------------------
 
