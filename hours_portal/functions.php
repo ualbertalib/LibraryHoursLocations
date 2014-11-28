@@ -28,6 +28,11 @@ function langConvert($key){
           $word['currently'] = 'actuellement';
           $word['today'] = 'Aujourd\'hui';
           $word['open 24 hours'] = 'Ouvert 24h/24';
+          $word['phone'] = 'Téléphone';
+          $word['map overview'] = 'Aperçu de la carte';
+          $word['address'] = 'Adresse';
+          $word['at'] = 'Au';
+          $word['email'] = 'Courriel';
           
       }else{
           $word['library home']='Library Home';
@@ -44,6 +49,11 @@ function langConvert($key){
           $word['currently'] = 'currently';
           $word['today'] = 'Today';
           $word['open 24 hours'] = 'Open 24 Hours';
+          $word['phone'] = 'Phone';
+          $word['map overview'] = 'Map Overview';
+          $word['address'] = 'Address';
+          $word['at'] = 'At';
+          $word['email'] = 'Email';
           
       }
 

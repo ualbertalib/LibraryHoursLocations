@@ -160,7 +160,7 @@ and (max-width : 320px) {
                 
                 <div class="small-left">
                   
-                  <h5>Address</h5>
+                  <h5><?php echo langConvert('Address'); ?></h5>
                   
                   <address>
                     <?= $address ?>
@@ -175,13 +175,13 @@ and (max-width : 320px) {
                 </div>
                 
                 <?php if ($phone != '') { ?>
-                <h5>Phone</h5>
+                <h5><?php echo langConvert('Phone'); ?></h5>
                 <p class="visible-desktop"><?= $phone ?></p>
                 <p class="hidden-desktop"><a href="tel:1+<?= $phone ?>"><?= $phone ?></a></p>
                 <?php  } ?>
   
                  <?php if ($email != '') { ?>
-                  <h5>Email</h5>
+                    <h5><?php echo langConvert('Email'); ?></h5>
                   <p class="visible-desktop"><?= $email ?></p>
                   <p class="hidden-desktop"><a href="tel:1+<?= $phone ?>"><?= $email ?></a></p>
                 <?php  } ?>
