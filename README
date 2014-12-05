@@ -18,13 +18,13 @@ There is XML output available via the code in the hours_portal/xml directory tha
 
 --
 Installation:
-1) git clone https://github.com/ualbertalib/LibraryHoursLocations hours.library.ualberta.ca # presumably under /var/www/sites 
+1) Pull down this code: git clone git@github.com:ualbertalib/LibraryHoursLocations.git hours.library.ualberta.ca # presumably under /var/www/sites 
 2) cd hours.library.ualberta.ca
 3) Download cakephp-1.3.* 
-5) Copy httpd_conf/hours.library.ualberta.ca.conf /etc/httpd/conf.d/
-6) run hours.locations.sql to create database
-7) Edit DB credentials at docroot/hours_admin/app/config/database.php and docroot/hours_portal/conf/db.conf
-
+4) Copy httpd_conf/hours.library.ualberta.ca.conf /etc/httpd/conf.d/
+5) run hours.locations.sql to create database, if appropriate
+6) Edit DB credentials at docroot/hours_admin/app/config/database.php and docroot/hours_portal/conf/db.conf
+7) Set permissions, when appropriate: chown -R nobody:apache /var/www/sites/hours.library.ualberta.ca/
 
 Here is an example directory structure:
 
