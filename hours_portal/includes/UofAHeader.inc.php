@@ -89,8 +89,8 @@
   </div>
   <div class="eight columns">
     <ul class="home-nav">
-                    <li class="ask"><a href="/askus">Ask Us</a>
-                        <p class="sub-ask-menu"><a href="/askus/chatref.html">chat</a> - <a href="http://www.library.ualberta.ca/askus/">text</a> - <a href="http://www.library.ualberta.ca/ereference/email/">email</a> - <a href="http://www.library.ualberta.ca/askus/">phone</a></p>
+                    <li class="ask"><a href="http://www.library.ualberta.ca/askus">Ask Us</a>
+                        <p class="sub-ask-menu"><a href="http://www.library.ualberta.ca/askus/chatref.html">chat</a> - <a href="http://www.library.ualberta.ca/askus/">text</a> - <a href="http://www.library.ualberta.ca/ereference/email/">email</a> - <a href="http://www.library.ualberta.ca/askus/">phone</a></p>
                     </li>
                     <li>
                     <li><a  href="francais"  class="french">Version fran&ccedil;aise</a></li>

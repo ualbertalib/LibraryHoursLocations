@@ -68,7 +68,7 @@ function displayTime($time) {
   $trimtime = date('g', $time);
   
   if (date('i', $time) != "00") {
-    $trimtime .= date(':ia', $time);
+    $trimtime .= date(':iA', $time);
   } else {
     //$trimtime .= date('a', $time);
     $trimtime .= strftime('%p', $time);
@@ -76,7 +76,7 @@ function displayTime($time) {
 
 
   if ($_SESSION['language']=='fr'){
-    $trimtime = strftime('%Hh%M%P', $time);  
+    $trimtime = strftime('%Hh%M%p', $time);  
     }else{
    // $trimtime = strftime('%l:%M%P', $time);
   }

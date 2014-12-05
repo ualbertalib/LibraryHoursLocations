@@ -1052,9 +1052,12 @@ ul.breadcrumb > li{
 }
 
 section.hours section.hours-table span dl.regular dd, 
-section.hours section.hours-table span dl.holiday dd{
+section.hours section.hours-table span dl.holiday dd,
+section.hours section.hours-table span dl.intersession dd,
+section.hours section.hours-table span dl.exception dd{
   font-weight: 400;
 }
+
 
 /* setting viewport in CSS as well as HTML to deal with IEMobile 10 bug */
 @-webkit-viewport{width:device-width}
