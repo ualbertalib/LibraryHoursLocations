@@ -103,7 +103,7 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
          <li><a href="http://www.library.ualberta.ca/aboutus">Libraries</a></li>	
          <li><a href="https://www.library.ualberta.ca/myaccount/">My Account</a></li>
          <li><a href="http://www.library.ualberta.ca/services">Services</a></li>
-         <li><a href="http://www.library.ualberta.ca/hours" class="last">Hours</a></li>
+         <li><a href="http://hours.library.ualberta.ca" class="last">Hours</a></li>
        </ul>	
      </div>
     <div class="row">
@@ -111,7 +111,7 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
         <a href="http://www.ualberta.ca"  class="ualogo"><img src="http://www.library.ualberta.ca/2012assets/ua.png"/></a>
       </div>
     <div class="two columns">
-         <h2 class="show-on-phones"><a href="http://www.library.ualberta.ca/">Libraries</a> - <a href="/askus" class="askmobile">Ask Us</a> - <a  href="/francais" class="askmobile">fran&ccedil;aise</a> </h2>
+         <h2 class="show-on-phones"><a href="http://www.library.ualberta.ca/">Libraries</a> - <a href="http://www.library.ualberta.ca/askus" class="askmobile">Ask Us</a> - <a  href="http://www.library.ualberta.ca/francais" class="askmobile">fran&ccedil;aise</a> </h2>
       </div>
       <div class="eight columns">
         <ul class="top-nav hide-on-phones">
@@ -133,7 +133,7 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
 	<div class="eight columns">
 	  <ul class="home-nav">
                     <li class="ask"><a href="/askus">Ask Us</a>
-                        <p class="sub-ask-menu"><a href="/askus/chatref.html">chat</a> - <a href="http://www.library.ualberta.ca/askus/">text</a> - <a href="http://www.library.ualberta.ca/ereference/email/">email</a> - <a href="http://www.library.ualberta.ca/askus/">phone</a></p>
+                        <p class="sub-ask-menu"><a href="http://www.library.ualberta.ca/askus/chatref.html">chat</a> - <a href="http://www.library.ualberta.ca/askus/">text</a> - <a href="http://www.library.ualberta.ca/ereference/email/">email</a> - <a href="http://www.library.ualberta.ca/askus/">phone</a></p>
                     </li>
                     <li>
                     <li><a  href="francais"  class="french">Version fran&ccedil;aise</a></li>
