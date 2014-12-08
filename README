@@ -17,24 +17,21 @@ The admin site was built using CakePHP 1.3.
 There is XML output available via the code in the hours_portal/xml directory that is designed for use with CoolSign digital signage software.
 
 --
-Installation
-1) Download cakephp-1.3.* and place in hours.library.ualberta.ca directory
-2) mkdir docroot
-3) cd docroot
-4) git clone git@github.com:ualbertalib/LibraryHoursLocations.git
-5) virtual host for hours.library.ualberta.ca should have document root something like:
-	DocumentRoot "/var/www/html/hours.library.ualberta.ca/docroot/hours_portal"
-6) virtual host for hoursadmin.library.ualberta.ca should have document root something like
-	DocumentRoot "/var/www/html/hours.library.ualberta.ca/docroot/hours_admin"
-
-7) run hours.locations.sql to create database
-8) Edit DB credentials at hours_admin/app/config/database.php and hours_portal/conf/db.conf
-
+Installation:
+1) Pull down this code: git clone git@github.com:ualbertalib/LibraryHoursLocations.git hours.library.ualberta.ca # presumably under /var/www/sites 
+2) cd hours.library.ualberta.ca
+3) Download cakephp-1.3.* 
+4) Copy httpd_conf/hours.library.ualberta.ca.conf /etc/httpd/conf.d/
+5) run hours.locations.sql to create database, if appropriate
+6) Edit DB credentials at docroot/hours_admin/app/config/database.php and docroot/hours_portal/conf/db.conf
+7) Set permissions, when appropriate: chown -R nobody:apache /var/www/sites/hours.library.ualberta.ca/
 
 Here is an example directory structure:
 
 hours.library.ualberta.ca
 .
+└── README
+├── hours_locations.sql
 ├── cakephp-1.3.20
 │   ├── app
 │   ├── cake
@@ -46,35 +43,30 @@ hours.library.ualberta.ca
     ├── assets
     ├── documentation
     ├── hours_admin
-    ├── hours_locations.sql
     ├── hours_portal
     ├── index.html
-    └── README
-
-
-
 
 
 --
 hours_admin SECTION
 
-Edit hours_admin/index.php
+Edit docroot/hours_admin/index.php
 
 - it's fairly self exlplanatory just modify the ROOT section to point to the hours_admin directory
 and the CAKE_CORE_INCLUDE_PATH to point to the cakephp-1.3.* directory which is usually located just above the webroot
 
 
 EDIT
-hours_admin/app/index.php - configure 
+docroot/hours_admin/app/index.php - configure 
 
 EDIT
-hours_admin/app/webroot/index.php
+docroot/hours_admin/app/webroot/index.php
 
 IF PHP 5.3 - EDIT
-in /app/config/core.php uncomment the date_default_timezone_set line and modify to the current timezone
+in cakephp*/app/config/core.php uncomment the date_default_timezone_set line and modify to the current timezone
 Edit 
-/hours_admin/app/config/database.php with the proper database credentials
+docroot/hours_admin/app/config/database.php with the proper database credentials
 
 
 To add locations to the map see:
-/hours_admin/app/webroot/hours-portal-notes.doc
+docroot/hours_admin/app/webroot/hours-portal-notes.doc
