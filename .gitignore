@@ -1,5 +1,5 @@
 /nbproject/
-hours_admin/app/tmp/logs/debug.log
-hours_admin/app/tmp/logs/error.log
-hours_admin/app/config/database.php
-hours_portal/conf/db.conf
+docroot/hours_admin/app/tmp/logs/debug.log
+docroot/hours_admin/app/tmp/logs/error.log
+docroot/hours_admin/app/config/database.php
+docroot/hours_portal/conf/db.conf
