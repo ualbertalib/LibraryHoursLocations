@@ -44,8 +44,6 @@
 	?>
 	<div style="height:10px;">&nbsp;</div>
 	<div id="hourDays">
-  
-</div>
 	<?php						
 		foreach($days as $key => $day) {
 	?>	
@@ -144,9 +142,11 @@
     
     function update_days(daterangeid) {  
 	    //show all days in case some were previously hidden
+       console.log("dateRangeId: " + daterangeid);
         var days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
         for(day in days) {
                 $('#'+days[day]).show();
+                console.log("day in Days: " + day);
         }  
         //reset day of week text and values in case they were altered previously and remove days fields the exceed one week
         switch_days(days);
@@ -165,6 +165,7 @@
                 async: false,
                 success:
                         function(data){
+                            console.dir(data);
                                 // loop over data.daysout and hide days in the list
                                 for(var i in data.daysout) {
                                         $('#'+data.daysout[i]).hide();
@@ -173,6 +174,7 @@
                                     if(typeof data.datesin[j] != 'undefined') {
                                        	var day_plus_date = displayDate(data.datesin[j]);
                                     	$('#'+data.daysin[j]+'_text').text(day_plus_date);
+                                        
                                     	switch(data.daysin[j]) {                                
                                                 case 'Monday':
                                                         $('#HourDay0DayOfWeek').val(data.datesin[j]);
@@ -363,8 +365,7 @@
                 if(this.checked){
                     $(".is_closed").each(function(){
                         if($(this).attr('id').indexOf('IsTbd') == -1){ //ignore the isTBD checkboxes
-                            this.checked=true;  
-                            //$(this).trigger("click");
+                            this.checked=true;                           
                             setOpenCloseTime($(this));                      
                             $(".is_tbd").prop("checked", false);
                         }
@@ -374,7 +375,6 @@
                     $(".is_closed").each(function(){
                         if($(this).attr('id').indexOf('IsTbd') == -1){ //ignore the isTBD checkboxes
                             this.checked=false; 
-                            //$(this).trigger("click");
                         }
                     })    
                 }
