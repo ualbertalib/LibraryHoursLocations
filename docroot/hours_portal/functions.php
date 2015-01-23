@@ -187,7 +187,7 @@ function displayLocationsStatus($branchID = null) {
     
     } else {
       
-      $locationstable .= '&nbsp; &nbsp; '.$results[$i]['name'];
+      $locationstable .= $results[$i]['name'];
       
     }//closes if-else
     
@@ -264,7 +264,7 @@ function displayLocationsStatusHomepage($branchID = null) {
     
     } else {
       
-      $locationstable .= '&nbsp; &nbsp; '.$results[$i]['name'];
+      $locationstable .= $results[$i]['name'];
       
     }//closes if-else
     
