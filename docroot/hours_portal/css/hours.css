@@ -1059,6 +1059,10 @@ section.hours section.hours-table span dl.exception dd{
 }
 
 
+.sublevel dt{
+  text-indent: 20px;
+}
+
 /* setting viewport in CSS as well as HTML to deal with IEMobile 10 bug */
 @-webkit-viewport{width:device-width}
 @-moz-viewport{width:device-width}
