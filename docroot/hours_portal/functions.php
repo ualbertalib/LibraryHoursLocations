@@ -145,7 +145,7 @@ function displayLocationsStatusWidget($branchID = null) {
     // set the unique identifier as the login name (shorthanded library name)
     $id = $results[$i]['login'];
       
-      $locationstable .=  "<h3>" . $results[$i]['name'] . "<h3>";
+      $locationstable .=  "<h3>" . $results[$i]['name'] . "</h3>";
       
       
    
