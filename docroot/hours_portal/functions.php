@@ -138,15 +138,15 @@ function displayLocationsStatusWidget($branchID = null) {
   $results = $sth->fetchAll();
   $count = count($results);
   
-  // alternating rows start with false (white row first)
-  $alt = false;
+
    $locationstable = "";
   for ($i = 0; $i < $count; $i++) {
 
     // set the unique identifier as the login name (shorthanded library name)
     $id = $results[$i]['login'];
       
-      $locationstable .= $results[$i]['name'];
+      $locationstable .=  "<h3>" . $results[$i]['name'] . "<h3>";
+      
       
    
     $locationstable .= ' ' .displayCurrentStatus($currentdate, $currenttime, $results[$i]['id']);
