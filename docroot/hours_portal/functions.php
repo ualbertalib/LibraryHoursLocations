@@ -108,6 +108,58 @@ function sanitize($string) {
 
 }//closes function
 
+//**** HOURS PORTAL WIDGET ****//
+// retrieve and display locations and status in a dl based on (optional) branch id
+function displayLocationsStatusWidget($branchID = null) {
+  
+  global $dbh;
+  
+  if ($branchID == null) {
+    $hourlocation = "";
+  } else if ($branchID != null && is_numeric($branchID)) {
+    $hourlocation = "AND hour_locations.id = :branchID";
+  }//closes if-else
+  
+  $currentdate = date('Y-m-d');
+  $currenttime = date('H:i:s');
+
+  $sql = "SELECT hour_locations.id, hour_locations.name, hour_locations.parent_hour_location_id AS parent, hour_locations.login
+          FROM hour_locations
+          WHERE hour_locations.display = 1
+          $hourlocation
+          ORDER BY hour_locations.display_position";
+        
+  $sth = $dbh->prepare($sql);
+  if ( $hourlocation!= ""){
+    $sth->bindParam(':branchID',$branchID, PDO::PARAM_INT );
+  }
+
+  $status = $sth->execute();
+  $results = $sth->fetchAll();
+  $count = count($results);
+  
+  // alternating rows start with false (white row first)
+  $alt = false;
+   $locationstable = "";
+  for ($i = 0; $i < $count; $i++) {
+
+    // set the unique identifier as the login name (shorthanded library name)
+    $id = $results[$i]['login'];
+      
+      $locationstable .= $results[$i]['name'];
+      
+   
+    $locationstable .= ' ' .displayCurrentStatus($currentdate, $currenttime, $results[$i]['id']);
+
+  }//closes for
+  
+  
+  
+  return $locationstable;
+  
+}//closes function
+
+
 
 //**** HOURS PORTAL QUERY FUNCTIONS ****//
 
@@ -122,8 +174,8 @@ function displayLocationsStatus($branchID = null) {
   
   if ($branchID == null) {
     $hourlocation = "";
-  } else if ($branchID != null && is_int($branchID)) {
-    $hourlocation = "AND hour_locations.id = $branchID";
+  } else if ($branchID != null && is_numeric($branchID)) {
+    $hourlocation = "AND hour_locations.id = :branchID";
   }//closes if-else
   
   $currentdate = date('Y-m-d');
@@ -138,8 +190,13 @@ function displayLocationsStatus($branchID = null) {
           WHERE hour_locations.display = 1
           $hourlocation
           ORDER BY hour_locations.display_position";
+        
 
   $sth = $dbh->prepare($sql);
+  if ( $hourlocation!= ""){
+    $sth->bindParam(':branchID',$branchID, PDO::PARAM_INT );
+  }
+
   $status = $sth->execute();
   $results = $sth->fetchAll();
   $count = count($results);
@@ -399,7 +456,7 @@ function displayCurrentStatus($ymd, $time, $branchID) {
       if ( ($results[0]['is_closed'] == 1) || ($close_time <= $time && $results[0]['open_time'] > $time) ) {
         $currentstatus .= '<span class="closed">Closed</span> currently';
       } else {
-        $currentstatus .= '<span class="open">' . langConvert('Open'). '</span>' . langConvert('until') . ' '.displayTime($close_time);
+        $currentstatus .= '<span class="open">' . langConvert('Open'). '</span> ' . langConvert('until') . ' '.displayTime($close_time);
       }//closes if-else
     
     }//closes if-elseif-else
