@@ -5,8 +5,15 @@ require_once('functions.php');
 
           
 
-      $widget = displayLocationsStatusWidget($_GET['locationid']); 
+      $widget = displayLocationsStatusWidget(); 
 
-      echo $widget;
+
+      echo "function getHoursLocationStatus(id){ \n";
+      echo  "var location = " . trim($widget) . "\n";
+      echo "return location[id];
+      	}
+      ";
+      
+
  ?>
 

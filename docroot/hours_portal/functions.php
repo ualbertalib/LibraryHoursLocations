@@ -137,6 +137,7 @@ function displayLocationsStatusWidget($branchID = null) {
   $status = $sth->execute();
   $results = $sth->fetchAll();
   $count = count($results);
+
   
 
    $locationstable = "";
@@ -145,17 +146,20 @@ function displayLocationsStatusWidget($branchID = null) {
     // set the unique identifier as the login name (shorthanded library name)
     $id = $results[$i]['login'];
       
-      $locationstable .=  "<h3>" . $results[$i]['name'] . "</h3>";
+      $locationstable =  "<h3>" . $results[$i]['name'] . "</h3>";
       
-      
-   
-    $locationstable .= ' ' .displayCurrentStatus($currentdate, $currenttime, $results[$i]['id']);
+      $locationstable =   $locationstable . " " . addslashes(displayCurrentStatus($currentdate, $currenttime, $results[$i]['id']) );
+
+      $jsObject .= "{$results[$i]['id']}: \"{$locationstable}\" ";
+      if($count-1 > $i){
+        $jsObject .= ", ";
+      }
 
   }//closes for
   
+    $jsObject = "{" . $jsObject . "}";
   
-  
-  return $locationstable;
+  return ($jsObject);
   
 }//closes function
 
