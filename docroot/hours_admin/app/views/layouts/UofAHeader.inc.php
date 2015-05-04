@@ -11,9 +11,9 @@
 <meta name="viewport" content="width=device-width">
 <link rel="shortcut icon" href="https://www.library.ualberta.ca/favicon.ico">
 
-	
-		<title>University of Alberta Libraries</title>
-	
+  
+    <title>University of Alberta Libraries</title>
+  
 <!-- CLF Stylesheets 
   <link href="/css/ubc-clf-full.min.css.css" rel="stylesheet">  -->
   <!-- <link href="https://clf.library.ubc.ca/7.0.2/colorbox/colorbox.css" type="text/css" media="screen" rel="stylesheet" /> -->
@@ -22,9 +22,9 @@
   <!-- //hours.library.ualberta.ca/assets/css/jquery-ui.css
   <link href="https://clf.library.ubc.ca/7.0.2/css/unit.css" rel="stylesheet" /> -->
   
-	<link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/normalize.css" media="all"/>  
-	<link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/foundation.css" media="all"/>
-	<link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/app.css" media="all"/>  
+  <link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/normalize.css" media="all"/>  
+  <link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/foundation.css" media="all"/>
+  <link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/app.css" media="all"/>  
         <link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/jquery/ui/css/smoothness/jquery-ui-1.7.2.custom.css"/>
         <!-- override otherwise circle bullets appear in footer-->
         <style> .content ul li {list-style-type: none;} </style>
@@ -43,7 +43,7 @@
                div dl dd {margin-left: 20px; font-size: 14px;} 
                .row .seven.columns{ width: auto; };
         </style>
-	
+  
 
 <!-- 
 <script src="http://www.library.ualberta.ca/jquery/jquery-1.7.1.min.js" type="text/javascript"></script>
@@ -84,10 +84,10 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
         appendChild(msViewportStyle);
 }
 </script>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
  <script src="js/markerwithlabel_packed.js" type="text/javascript"></script>
 
-<!-- <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerwithlabel/src/markerwithlabel_packed.js"></script> -->
+<!-- <script src="//google-maps-utility-library-v3.googlecode.com/svn/trunk/markerwithlabel/src/markerwithlabel_packed.js"></script> -->
 
 <script src="js/jquery.hashchange.min.js" type="text/javascript"></script>
 <title>Hours and Locations | University of Alberta</title>
@@ -95,49 +95,49 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
 </head>
 <body>
   <div class="container">
-	<div class="row show-on-phones">
+  <div class="row show-on-phones">
        <ul class="phone-nav twelve columns">
          <li><a href="http://www.library.ualberta.ca//databases">Databases</a></li>
          <li><a href="http://www.library.ualberta.ca/ejournals">Journals</a></li>
          <li><a href="http://www.library.ualberta.ca/browse">Subjects</a></li>
-         <li><a href="http://www.library.ualberta.ca/aboutus">Libraries</a></li>	
+         <li><a href="http://www.library.ualberta.ca/aboutus">Libraries</a></li>  
          <li><a href="https://www.library.ualberta.ca/myaccount/">My Account</a></li>
          <li><a href="http://www.library.ualberta.ca/services">Services</a></li>
          <li><a href="http://hours.library.ualberta.ca" class="last">Hours</a></li>
-       </ul>	
+       </ul>  
      </div>
     <div class="row">
       <div class="two columns">
-        <a href="http://www.ualberta.ca"  class="ualogo"><img src="http://www.library.ualberta.ca/2012assets/ua.png"/></a>
+        <a href="http://www.ualberta.ca"  class="ualogo"><img src="//www.library.ualberta.ca/2012assets/ua.png"/></a>
       </div>
     <div class="two columns">
          <h2 class="show-on-phones"><a href="http://www.library.ualberta.ca/">Libraries</a> - <a href="http://www.library.ualberta.ca/askus" class="askmobile">Ask Us</a> - <a  href="http://www.library.ualberta.ca/francais" class="askmobile">fran&ccedil;aise</a> </h2>
       </div>
       <div class="eight columns">
         <ul class="top-nav hide-on-phones">
-	  <li><a href="http://webapps.srv.ualberta.ca/search/">Find a Person</a></li>
-	  <li><a href="https://www.myonecard.ualberta.ca/">ONEcard</a></li>
-	  <li><a href="https://www.beartracks.ualberta.ca/">Bear Tracks</a></li>
-	  <li><a href="http://www.campusmap.ualberta.ca/">Maps</a></li>
-	  <li><a href="http://apps.ualberta.ca/">Email &amp; Apps</a></li>
-	  <li><a href="https://eclass.srv.ualberta.ca/portal/">eClass</a></li>
-	   <li><a href="http://www.ualberta.ca" id="last">UofA</a></li>
+    <li><a href="http://webapps.srv.ualberta.ca/search/">Find a Person</a></li>
+    <li><a href="https://www.myonecard.ualberta.ca/">ONEcard</a></li>
+    <li><a href="https://www.beartracks.ualberta.ca/">Bear Tracks</a></li>
+    <li><a href="http://www.campusmap.ualberta.ca/">Maps</a></li>
+    <li><a href="http://apps.ualberta.ca/">Email &amp; Apps</a></li>
+    <li><a href="https://eclass.srv.ualberta.ca/portal/">eClass</a></li>
+     <li><a href="http://www.ualberta.ca" id="last">UofA</a></li>
         </ul>
       </div>
     </div>
     <div class="row green hide-on-phones">
       <div class="twelve columns ">
         <div class="four columns">
-	  <h1><a href="/">Libraries</a></h1>
-	</div>
-	<div class="eight columns">
-	  <ul class="home-nav">
+    <h1><a href="/">Libraries</a></h1>
+  </div>
+  <div class="eight columns">
+    <ul class="home-nav">
                     <li class="ask"><a href="/askus">Ask Us</a>
                         <p class="sub-ask-menu"><a href="http://www.library.ualberta.ca/askus/chatref.html">chat</a> - <a href="http://www.library.ualberta.ca/askus/">text</a> - <a href="http://www.library.ualberta.ca/ereference/email/">email</a> - <a href="http://www.library.ualberta.ca/askus/">phone</a></p>
                     </li>
                     <li>
                     <li><a  href="francais"  class="french">Version fran&ccedil;aise</a></li>
-		    </li>
+        </li>
                </ul>
              </div>
            </div>
@@ -147,15 +147,15 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
          <li><a href="http://www.library.ualberta.ca/databases" id="first">Databases</a></li>
          <li><a href="http://www.library.ualberta.ca/ejournals">Journals</a></li>
          <li><a href="http://www.library.ualberta.ca/browse">Subjects</a></li>
-         <li><a href="http://www.library.ualberta.ca/aboutus">Libraries</a></li>	
+         <li><a href="http://www.library.ualberta.ca/aboutus">Libraries</a></li>  
          <li><a href="https://www.library.ualberta.ca/myaccount/">My Account</a></li>
          <li><a href="http://www.library.ualberta.ca/services">Services</a></li>
          <li><a href="http://www.library.ualberta.ca/hours" id="last">Hours</a></li>
-       </ul>	
+       </ul>  
      </div>
        <div class="row top-margin">
              <!-- <div class="twelve columns">
              <div class="panel"> -->
              <div class="content expand">
                  <div class="row-fluid expand">
-			<!-- UofA Header END -->
+      <!-- UofA Header END -->

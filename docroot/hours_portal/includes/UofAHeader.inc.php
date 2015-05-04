@@ -22,9 +22,9 @@
   <!--
   <link href="https://clf.library.ubc.ca/7.0.2/css/unit.css" rel="stylesheet" /> -->
   
-  <link rel="stylesheet" type="text/css" href="http://www.library.ualberta.ca/2012assets/normalize.css" media="all"/>  
-  <link rel="stylesheet" type="text/css" href="http://www.library.ualberta.ca/2012assets/foundation.css" media="all"/>
-  <link rel="stylesheet" type="text/css" href="http://www.library.ualberta.ca/2012assets/app.css" media="all"/>  
+  <link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/normalize.css" media="all"/>  
+  <link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/foundation.css" media="all"/>
+  <link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/app.css" media="all"/>  
         <!-- override otherwise circle bullets appear in footer-->
         <style> .content ul li {list-style-type: none;} </style>
   
@@ -65,7 +65,7 @@
      </div>
     <div class="row">
       <div class="two columns">
-        <a href="http://www.ualberta.ca"  class="ualogo"><img src="http://www.library.ualberta.ca/2012assets/ua.png"/></a>
+        <a href="http://www.ualberta.ca"  class="ualogo"><img src="//www.library.ualberta.ca/2012assets/ua.png"/></a>
       </div>
     <div class="two columns">
          <h2 class="show-on-phones"><a href="http://www.library.ualberta.ca/">Libraries</a> - <a href="http://www.library.ualberta.ca/askus" class="askmobile">Ask Us</a> - <a  href="http://www.library.ualberta.ca/francais" class="askmobile">fran&ccedil;aise</a> </h2>

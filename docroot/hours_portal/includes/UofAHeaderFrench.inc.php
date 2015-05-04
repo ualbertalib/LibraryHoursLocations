@@ -64,19 +64,19 @@
      </div>
     <div class="row">
       <div class="two columns">
-        <a href="http://www.ualberta.ca"  class="ualogo"><img src="http://www.library.ualberta.ca/2012assets/ua.png"/></a>
+        <a href="http://www.ualberta.ca"  class="ualogo"><img src="//www.library.ualberta.ca/2012assets/ua.png"/></a>
       </div>
     <div class="two columns">
          <h2 class="show-on-phones"><a href="http://www.library.ualberta.ca/francais/">Bibliothèques</a> - <a href="/askus_fr" class="askmobile">Question?</a> - <a  href="/" class="askmobile">English</a> </h2>
       </div>
       <div class="eight columns">
        <ul class="top-nav hide-on-phones">
-    <li><a href="http://webapps.srv.ualberta.ca/search/">Trouver une personne</a></li>
-    <li><a href="https://www.myonecard.ualberta.ca/">ONEcard</a></li>
-    <li><a href="https://www.beartracks.ualberta.ca/">Bear Tracks</a></li>
-    <li><a href="http://www.campusmap.ualberta.ca/">Cartes</a></li>
-    <li><a href="http://apps.ualberta.ca/">Apps@UAlberta</a></li>
-    <li><a href="https://eclass.srv.ualberta.ca/portal/" id="last">eClass</a></li>
+          <li><a href="http://webapps.srv.ualberta.ca/search/">Trouver une personne</a></li>
+          <li><a href="https://www.myonecard.ualberta.ca/">ONEcard</a></li>
+          <li><a href="https://www.beartracks.ualberta.ca/">Bear Tracks</a></li>
+          <li><a href="http://www.campusmap.ualberta.ca/">Cartes</a></li>
+          <li><a href="http://apps.ualberta.ca/">Apps@UAlberta</a></li>
+          <li><a href="https://eclass.srv.ualberta.ca/portal/" id="last">eClass</a></li>
         </ul>
       </div>
     </div>

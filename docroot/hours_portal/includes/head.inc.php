@@ -31,10 +31,10 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
         appendChild(msViewportStyle);
 }
 </script>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
  <script src="js/markerwithlabel_packed.js" type="text/javascript"></script>
 
-<!-- <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerwithlabel/src/markerwithlabel_packed.js"></script> -->
+<!-- <script src="//google-maps-utility-library-v3.googlecode.com/svn/trunk/markerwithlabel/src/markerwithlabel_packed.js"></script> -->
 
 <script src="js/jquery.hashchange.min.js" type="text/javascript"></script>';
 }

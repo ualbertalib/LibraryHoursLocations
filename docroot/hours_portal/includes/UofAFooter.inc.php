@@ -32,7 +32,7 @@
     </div>
   </div>
 </div>
-    <script_DISABLED src="http://www.library.ualberta.ca/2012assets/foundation.js"></script>
-    <script_DISABLED src="http://www.library.ualberta.ca/2012assets/app.js"></script>
+    <script_DISABLED src="//www.library.ualberta.ca/2012assets/foundation.js"></script>
+    <script_DISABLED src="//www.library.ualberta.ca/2012assets/app.js"></script>
 </body>
 </html>
