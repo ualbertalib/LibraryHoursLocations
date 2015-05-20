@@ -439,7 +439,7 @@ function displayCurrentStatus($ymd, $time, $branchID) {
     
       // for closing hours before midnight (uses displayTime function to trim zero minutes)
       if ( ($results[0]['is_closed'] == 1) || ($results[0]['open_time'] > $time || $close_time <= $time) ) {
-        $currentstatus .= '<span class="closed">' . langConvert('Closed'). "</span> " . langConvert('currently');
+        $currentstatus .= '<span class="closed">' . langConvert('closed'). "</span> " . langConvert('currently');
       } else {
         $currentstatus .= '<span class="open">' . langConvert('Open'). '</span> '. langConvert('until') . ' ' . displayTime($close_time);
       }//closes if-else
@@ -458,7 +458,7 @@ function displayCurrentStatus($ymd, $time, $branchID) {
     
       // for closing hours on or after midnight (uses displayTime function to trim zero minutes)
       if ( ($results[0]['is_closed'] == 1) || ($close_time <= $time && $results[0]['open_time'] > $time) ) {
-        $currentstatus .= '<span class="closed">Closed</span> currently';
+        $currentstatus .= '<span class="closed">'.langConvert('closed').'</span>' . langConvert('currently');
       } else {
         $currentstatus .= '<span class="open">' . langConvert('Open'). '</span> ' . langConvert('until') . ' '.displayTime($close_time);
       }//closes if-else
