@@ -83,7 +83,7 @@ ini_set('display_errors', 1);
 
 /**
  * URL of public hours portal 
- *
+ * 
  */
 
     if (!defined('PUBLIC_URL')) {
@@ -91,7 +91,7 @@ ini_set('display_errors', 1);
 		if(stristr(getenv('HTTP_HOST'), '.dev')){
 			define('PUBLIC_URL', 'http://hours.dev');
 		}else{		
-			define('PUBLIC_URL', 'http://hours.library.ualberta.ca');
+			define('PUBLIC_URL', 'https://hours.library.ualberta.ca');
 		}	
 
 	}
@@ -106,7 +106,7 @@ ini_set('display_errors', 1);
     	if(stristr(getenv('HTTP_HOST'), '.dev')){
 			define('ADMIN_URL', 'http://hoursadmin.dev');
 		}else{	
-			define('ADMIN_URL', 'http://hoursadmin.library.ualberta.ca');
+			define('ADMIN_URL', 'https://hoursadmin.library.ualberta.ca');
 		}
 	}	
 	
