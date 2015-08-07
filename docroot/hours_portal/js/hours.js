@@ -30,7 +30,7 @@ $(document).ready(function(){
   //var divsArray = new Array('asian', 'biomedical', 'davidlam', 'education', 'ikblc', 'library', 'chapman', 'rbsc', 'archives', 'koerner', 'law', 'okanagan', 'woodward', 'xwi7xwa');
   var divsArray = new Array('cameron','cameronSD','cameronKC', 'rutherford','rutherfordSS' ,'library', 'brucepeel' ,'jws', 'education', 'law', 
                                 'business' , 'stjoe',                                 
-                                'bsj', 'augustana','augustana24', 'bard', 'fsa','ill','chat');
+                                'bsj', 'augustana','augustana24', 'bard', 'fsa','ill','chat','datalibrary');
   
   
   // the function to open the slide content
@@ -512,6 +512,12 @@ $(document).ready(function(){
       }, function() {
       tableMouseout(0); }
     );//closes hover  - asian
+
+    $('.datalibrary').hoverIntent(function() {
+      tableMouseover(latlngDefault, 15, 0);
+      }, function() {
+      tableMouseout(0); }
+    );//closes hover 
     
     $('.rutherford').hoverIntent(function() {
       tableMouseover(latlngDefault, 15, 1);
@@ -603,6 +609,7 @@ $(document).ready(function(){
      $('.cameron').click(function() {
       tableMouseover(latlngDefault, 15, 0);
      });//closes hover
+
     
     $('.rutherford').click(function() {
       tableMouseover(latlngDefault, 13, 1);
