@@ -22,16 +22,16 @@
   <!--
   <link href="https://clf.library.ubc.ca/7.0.2/css/unit.css" rel="stylesheet" /> -->
   
-  <link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/normalize.css" media="all"/>  
-  <link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/foundation.css" media="all"/>
-  <link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/app.css" media="all"/>  
+  <link rel="stylesheet" type="text/css" href="//web.library.ualberta.ca/2012assets/normalize.css" media="all"/>  
+  <link rel="stylesheet" type="text/css" href="//web.library.ualberta.ca/2012assets/foundation.css" media="all"/>
+  <link rel="stylesheet" type="text/css" href="//web.library.ualberta.ca/2012assets/app.css" media="all"/>  
         <!-- override otherwise circle bullets appear in footer-->
         <style> .content ul li {list-style-type: none;} </style>
   
 
  <!-- JavaScript -->
   
-<script src="//www.library.ualberta.ca/jquery/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="/assets/jquery-1.7.1.min.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript"></script>
 <script src="//hours.library.ualberta.ca/assets/colorbox/jquery.colorbox_1.3.7.js" type="text/javascript"></script>
 <script src="//hours.library.ualberta.ca/assets/modernizr.js" type="text/javascript"></script> 
@@ -54,21 +54,21 @@
   <div class="container">
   <div class="row show-on-phones">
        <ul class="phone-nav twelve columns">
-         <li><a href="http://www.library.ualberta.ca//databases">Databases</a></li>
-         <li><a href="http://www.library.ualberta.ca/ejournals">Journals</a></li>
-         <li><a href="http://www.library.ualberta.ca/browse">Subjects</a></li>
-         <li><a href="http://www.library.ualberta.ca/aboutus">Libraries</a></li>  
-         <li><a href="https://www.library.ualberta.ca/myaccount/">My Account</a></li>
-         <li><a href="http://www.library.ualberta.ca/services">Services</a></li>
-         <li><a href="http://www.library.ualberta.ca/hours" class="last">Hours</a></li>
+         <li><a href="https://www.library.ualberta.ca/databases">Databases</a></li>
+         <li><a href="https://www.library.ualberta.ca/ejournals">Journals</a></li>
+         <li><a href="https://search.library.ualberta.ca/#subjects-pane">Subjects</a></li>
+         <li><a href="https://www.library.ualberta.ca/aboutus">Libraries</a></li>  
+         <li><a href="https://search.library.ualberta.ca/#account-pane">My Account</a></li>
+         <li><a href="https://search.library.ualberta.ca/#services-pane">Services</a></li>
+         <li><a href="https://hours.library.ualberta.ca" class="last">Hours</a></li>
        </ul>  
      </div>
     <div class="row">
       <div class="two columns">
-        <a href="http://www.ualberta.ca"  class="ualogo"><img src="//www.library.ualberta.ca/2012assets/ua.png"/></a>
+        <a href="http://www.ualberta.ca"  class="ualogo"><img src="//web.library.ualberta.ca/2012assets/ua.png"/></a>
       </div>
     <div class="two columns">
-         <h2 class="show-on-phones"><a href="http://www.library.ualberta.ca/">Libraries</a> - <a href="http://www.library.ualberta.ca/askus" class="askmobile">Ask Us</a> - <a  href="http://www.library.ualberta.ca/francais" class="askmobile">fran&ccedil;aise</a> </h2>
+         <h2 class="show-on-phones"><a href="http://www.library.ualberta.ca/">Libraries</a> - <a href="https://search.library.ualberta.ca/ask-us" class="askmobile">Ask Us</a> - <a  href="http://www.library.ualberta.ca/francais" class="askmobile">fran&ccedil;aise</a> </h2>
       </div>
       <div class="eight columns">
         <ul class="top-nav hide-on-phones">
@@ -85,12 +85,12 @@
     <div class="row green hide-on-phones">
       <div class="twelve columns ">
         <div class="four columns">
-    <h1><a href="http://www.library.ualberta.ca/">Libraries</a></h1>
+    <h1><a href="https://www.library.ualberta.ca/">Libraries</a></h1>
   </div>
   <div class="eight columns">
     <ul class="home-nav">
-                    <li class="ask"><a href="http://www.library.ualberta.ca/askus">Ask Us</a>
-                        <p class="sub-ask-menu"><a href="http://www.library.ualberta.ca/askus/chatref.html">chat</a> - <a href="http://www.library.ualberta.ca/askus/">text</a> - <a href="http://www.library.ualberta.ca/ereference/email/">email</a> - <a href="http://www.library.ualberta.ca/askus/">phone</a></p>
+                    <li class="ask"><a href="https://search.library.ualberta.ca/ask-us">Ask Us</a>
+                        <p class="sub-ask-menu"><a href="https://search.library.ualberta.ca/ask-us">chat</a> - <a href="http://www.library.ualberta.ca/askus/">text</a> - <a href="http://www.library.ualberta.ca/ereference/email/">email</a> - <a href="http://www.library.ualberta.ca/askus/">phone</a></p>
                     </li>
                     <li>
                     <li><a  href="francais"  class="french">Version fran&ccedil;aise</a></li>
@@ -101,13 +101,13 @@
          </div>
      <div class="row">
        <ul class="main-nav twelve columns hide-on-phones">
-         <li><a href="http://www.library.ualberta.ca/databases" id="first">Databases</a></li>
-         <li><a href="http://www.library.ualberta.ca/ejournals">Journals</a></li>
-         <li><a href="http://www.library.ualberta.ca/browse">Subjects</a></li>
-         <li><a href="http://www.library.ualberta.ca/aboutus">Libraries</a></li>  
-         <li><a href="https://www.library.ualberta.ca/myaccount/">My Account</a></li>
-         <li><a href="http://www.library.ualberta.ca/services">Services</a></li>
-         <li><a href="http://hours.library.ualberta.ca/" id="last">Hours</a></li>
+         <li><a href="https://www.library.ualberta.ca/databases" id="first">Databases</a></li>
+         <li><a href="https://www.library.ualberta.ca/ejournals">Journals</a></li>
+         <li><a href="https://search.library.ualberta.ca/#subjects-pane">Subjects</a></li>
+         <li><a href="https://www.library.ualberta.ca/aboutus">Libraries</a></li>  
+         <li><a href="https://search.library.ualberta.ca/#account-pane">My Account</a></li>
+         <li><a href="https://search.library.ualberta.ca/#services-pane">Services</a></li>
+         <li><a href="https://hours.library.ualberta.ca/" id="last">Hours</a></li>
        </ul>  
      </div>
        <div class="row top-margin">
