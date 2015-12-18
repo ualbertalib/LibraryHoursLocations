@@ -64,7 +64,7 @@ and (max-width : 320px) {
     <div class="span5 left-side">
       
       <div class="switcher visible-phone">
-        <p><strong>See:</strong> <a class="switch-map"><img src="img/maps.png" /> Map View</a></p>
+        <p><strong>See:</strong> <a class="switch-map"><img src="/img/maps.png" /> Map View</a></p>
       </div>
       
       <?= displayLocationsStatus(); ?>

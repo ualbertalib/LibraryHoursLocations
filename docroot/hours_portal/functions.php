@@ -239,7 +239,7 @@ function displayLocationsStatus($branchID = null) {
     }//closes if-elseif
     
     // add image
-    $locationstable .= '<dt><img src="img/arrow.png" height="43" width="30" />';
+    $locationstable .= '<dt><img src="/img/arrow.png" height="43" width="30" />';
     
     // indent "hack" for sublevels (padding/margin breaks display)
     if ($results[$i]['parent'] == NULL) {

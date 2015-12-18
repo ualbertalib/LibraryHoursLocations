@@ -5,7 +5,7 @@
 <title>Hours and Locations | Signage &amp; Bookmarks</title>
 
 <link rel="icon" type="image/vnd.microsoft.icon" href="//www.library.ualberta.ca/favicon.ico" />
-<link href="css/print-hours.css" type="text/css" rel="stylesheet" media="all" />
+<link href="/css/print-hours.css" type="text/css" rel="stylesheet" media="all" />
 <!--[if IE]><style>.bookmark { margin-left: 3.8%; }</style><![endif]-->
 
 </head>

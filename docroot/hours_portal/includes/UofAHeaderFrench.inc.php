@@ -1,117 +1,144 @@
 <!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en">
-<!--<![endif]-->
-<meta charset="UTF-8">
-<head>
-<meta name="viewport" content="width=device-width">
-<link rel="shortcut icon" href="https://www.library.ualberta.ca/favicon.ico">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
+    
+    <!--[if IEMobile]>
+      <meta http-equiv="cleartype" content="on">
+    <![endif]-->
+    
+    
+    <title>University of Alberta Libraries</title>
+  
 
-	
-		<title>University of Alberta Libraries French Version</title>
-	
+
 <!-- CLF Stylesheets -->
-  <link href="//hours.library.ualberta.ca/css/ubc-clf-full.min.css" rel="stylesheet">
+  <link href="/css/ubc-clf-full.min.css" rel="stylesheet">
   <!-- <link href="https://clf.library.ubc.ca/7.0.2/colorbox/colorbox.css" type="text/css" media="screen" rel="stylesheet" /> -->
   <link href="//hours.library.ualberta.ca/assets/colorbox/colorbox.css" type="text/css" media="screen" rel="stylesheet" />
-  
-  <!--
-  <link href="https://clf.library.ubc.ca/7.0.2/css/unit.css" rel="stylesheet" /> -->
-  
-	<link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/normalize.css" media="all"/>  
-	<link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/foundation.css" media="all"/>
-	<link rel="stylesheet" type="text/css" href="//www.library.ualberta.ca/2012assets/app.css" media="all"/>  
-  <!-- override otherwise circle bullets appear in footer-->
-  <style> .content ul li {list-style-type: none;} </style>
-	
+  <!-- Bootstrap -->
+    <link href="https://web.library.ualberta.ca/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic|Abel">
+    <link rel="stylesheet" media="screen" href="https://web.library.ualberta.ca/css/ualib.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
- 
-<script src="//www.library.ualberta.ca/jquery/jquery-1.7.1.min.js" type="text/javascript"></script>
+ <!-- JavaScript -->
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript"></script>
 <script src="//hours.library.ualberta.ca/assets/colorbox/jquery.colorbox_1.3.7.js" type="text/javascript"></script>
+<script src="//hours.library.ualberta.ca/assets/modernizr.js" type="text/javascript"></script> 
   
+  
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-<!--
-<script type="text/javascript">
+  ga('create', 'UA-55183776-1', 'auto');
+  ga('send', 'pageview');
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-7539303-11']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script> -->
+</script>
+<!-- End Google Analytics -->
 </head>
-<body>
-  <div class="container">
-	<div class="row show-on-phones">
-      <ul class="phone-nav twelve columns">
-         <li><a href="http://www.library.ualberta.ca/databases_fr" id="first">Bases de données</a></li>
-         <li><a href="http://www.library.ualberta.ca/ejournals_fr">Périodiques</a></li>
-         <li><a href="http://guides.library.ualberta.ca/pageaccueil">Sujets</a></li>
-         <li><a href="http://www.library.ualberta.ca/aboutus_fr">Bibliothèques</a></li> 
-         <li><a href="https://www.library.ualberta.ca/myaccount_fr/">Mon dossier</a></li>
-         <li><a href="http://www.library.ualberta.ca/services_fr">Services</a></li>
-         <li><a href="http://www.library.ualberta.ca/hours_fr" id="last">Heures</a></li>
-       </ul>  
-     </div>
-    <div class="row">
-      <div class="two columns">
-        <a href="http://www.ualberta.ca"  class="ualogo"><img src="//www.library.ualberta.ca/2012assets/ua.png"/></a>
+ <body>
+    <div class="container-fluid hidden-xs"> <!-- UofA Blade -->
+      <div class="container">
+        <div class="row">
+          <ul class="nav navbar-nav">
+            <li><a href="https://myualberta.ualberta.ca/home/">My UAlberta</a></li>
+            <li><a href="http://webapps.srv.ualberta.ca/search/">Trouver une personne</a></li>
+            <li><a href="http://www.onecard.ualberta.ca/">ONEcard</a></li>
+            <li><a href="https://www.beartracks.ualberta.ca/">Bear Tracks</a></li>
+            <li><a href="http://www.campusmap.ualberta.ca/">Cartes</a></li>
+            <li><a href="https://weblogin.srv.ualberta.ca/">Email &amp; Apps</a></li>
+            <li><a href="https://eclass.srv.ualberta.ca/portal/">eClass</a></li>
+            <li class="last"><a href="http://www.library.ualberta.ca/">Libraries</a></li>
+          </ul>
+        </div> 
       </div>
-    <div class="two columns">
-         <h2 class="show-on-phones"><a href="http://www.library.ualberta.ca/francais/">Bibliothèques</a> - <a href="/askus_fr" class="askmobile">Question?</a> - <a  href="/" class="askmobile">English</a> </h2>
-      </div>
-      <div class="eight columns">
-       <ul class="top-nav hide-on-phones">
-          <li><a href="http://webapps.srv.ualberta.ca/search/">Trouver une personne</a></li>
-          <li><a href="https://www.myonecard.ualberta.ca/">ONEcard</a></li>
-          <li><a href="https://www.beartracks.ualberta.ca/">Bear Tracks</a></li>
-          <li><a href="http://www.campusmap.ualberta.ca/">Cartes</a></li>
-          <li><a href="http://apps.ualberta.ca/">Apps@UAlberta</a></li>
-          <li><a href="https://eclass.srv.ualberta.ca/portal/" id="last">eClass</a></li>
+    </div><!-- End UofA Blade -->
+    
+    <div class="container-fluid banner-container"><!-- Logo, banner, ask-us and mobile navigation -->
+      <div class="container banner">
+        <div class="row">
+          <div class="col-sm-6 col-xs-7">
+            <h1>
+              <a href="https://library.ualberta.ca">
+                <img src="https://web.library.ualberta.ca/images/ualib-logo-french.png" class="ua-logo" alt="Univerity of Alberta Libraries Logo">
+              </a>
+            </h1>
+          </div>
+          <div class="col-sm-6 col-xs-3 ask">
+            <a href="https://www.library.ualberta.ca/ask-us" class="ask-main">Ask Us</a>
+          </div>
+          <div class="col-xs-2 visible-xs">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <h2>menu</h2><!-- Mobile menu button -->
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button><!-- End mobile menu button -->
+          </div>
+        </div>
+      </div>        
+      <div id="navbar" class="col-xs-10 collapse" style="height: 0px;"><!-- Mobile menu -->
+        <ul>
+          <li class="active"><a href="https://www.library.ualberta.ca/francais">Search &amp; Home</a></li>         
+          <li> <a href="//www.library.ualberta.ca/francais/#services">Services</a></li>
+          <li><a href="//www.library.ualberta.ca/francais/#subjects-pane">Subjets</a></li>
+          <li><a href="https://www.library.ualberta.ca/#news-pane">News &amp; Events</a></li>
+          <li><a href="//www.library.ualberta.ca/francais/#research">Recherche</a></li>
+          <li><a href="https://www.library.ualberta.ca/myaccount/">Mon Dossier</a></li>
+          
         </ul>
+      </div><!-- End mobile menu -->
+    </div><!-- End logo, banner, ask-us and mobile navigation -->
+    
+    <div class="container-fluid nav-container hidden-xs"><!-- non-mobile navigation -->
+      <div class="container">
+        <div class="col-sm-12">
+          <div class="row">
+            <ul class="lib-nav">
+              <li id="home" class="col-sm-2">
+                <a href="//library.ualberta.ca/" data-no-turbolink="true">Search &amp; Home</a>
+              </li>
+              <li id="news" class="col-sm-2">
+                <a href="//www.library.ualberta.ca/francais/#news-pane"><span></span>Nouvelles</a>
+              </li>
+              <li id="services" class="col-sm-2">
+                <a href="//www.library.ualberta.ca/francais/#services"><span></span>Services</a>
+              </li>
+              <li id="subjects" class="col-sm-2">
+                <a href="//www.library.ualberta.ca/francais/#subjects-pane">Subjets</a>
+              </li>
+              <li id="research" class="col-sm-2">
+                <a href="//www.library.ualberta.ca/francais/#research"><span></span>Recherche</a>
+              </li>
+              <li id="account" class="col-sm-2">
+                 <a href="https://www.library.ualberta.ca/myaccount/">Mon Dossier</a></li>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="row green hide-on-phones">
-      <div class="twelve columns ">
-        <div class="four columns">
-	  <h1><a href="/">Bibliothèques</a></h1>
-	</div>
-	<div class="eight columns">
-	  <ul class="home-nav">
-                    <li class="ask"><a href="/askus">Ask Us</a>
-                        <p class="sub-ask-menu"><a href="/askus/chatref.html">chat</a> - <a href="http://www.library.ualberta.ca/askus_fr/">texto</a> - <a href="http://www.library.ualberta.ca/ereference//ereference_fr">courriel</a> - <a href="http://www.library.ualberta.ca/askus_fr/">téléphone</a></p>
-                    </li>
-                    <li>
-                    <li><a  href="/"  class="french">English Version</a></li>
-		    </li>
-               </ul>
-             </div>
-           </div>
-         </div>
-     <div class="row">
-       <ul class="main-nav twelve columns hide-on-phones">
-         <li><a href="http://www.library.ualberta.ca/databases_fr" id="first">Bases de données</a></li>
-         <li><a href="http://www.library.ualberta.ca/ejournals_fr">Périodiques</a></li>
-         <li><a href="http://guides.library.ualberta.ca/pageaccueil">Sujets</a></li>
-         <li><a href="http://www.library.ualberta.ca//aboutus_fr">Bibliothèques</a></li>	
-         <li><a href="https://www.library.ualberta.ca/myaccount_fr/">Mon dossier</a></li>
-         <li><a href="http://www.library.ualberta.ca/services_fr">Services</a></li>
-         
-       </ul>	
-     </div>
-       <div class="row top-margin">
-             <!-- <div class="twelve columns">
-             <div class="panel"> -->
-             <div class="content expand">
-                 <div class="row-fluid expand">
-			<!-- UofA Header END -->
-                        
+    </div><!-- End non-mobile navigation -->
+
+    <div class="container-fluid">
+      <div class="container main-container"><!-- Main content div -->
+    <!-- YOUR STUFF HERE -->
+    <!-- end: your content here -->
+
+<!-- dsp_body start  -->

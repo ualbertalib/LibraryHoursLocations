@@ -32,16 +32,16 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
 }
 </script>
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
- <script src="js/markerwithlabel_packed.js" type="text/javascript"></script>
+ <script src="/js/markerwithlabel_packed.js" type="text/javascript"></script>
 
 <!-- <script src="//google-maps-utility-library-v3.googlecode.com/svn/trunk/markerwithlabel/src/markerwithlabel_packed.js"></script> -->
 
-<script src="js/jquery.hashchange.min.js" type="text/javascript"></script>';
+<script src="/js/jquery.hashchange.min.js" type="text/javascript"></script>';
 }
 
 $insert .= '
 <title>Hours and Locations | University of Alberta</title>
-<link rel="stylesheet" type="text/css" href="./css/hours.css" />
+<link rel="stylesheet" type="text/css" href="/css/hours.css" />
 ';
 
 $clfheader = str_replace('</head>', $insert.'</head>', $clfheader);

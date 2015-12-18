@@ -63,10 +63,10 @@ var mceData={
 if (basename($_SERVER["SCRIPT_NAME"]) != "print.php") {
 
   $insert .= '
-<script type="text/javascript" src="js/jquery.hoverIntent.min.js"></script>
-<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
-<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
-<script type="text/javascript" src="js/hours.js"></script>
+<script type="text/javascript" src="/js/jquery.hoverIntent.min.js"></script>
+<script type="text/javascript" src="/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="/js/hours.js"></script>
 ';
 
 }

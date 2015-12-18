@@ -113,11 +113,11 @@ $(document).ready(function(){
     
     // replace button text
     if (label.indexOf("Map") >= 0) {
-      $('.switch-map').html("<img src='img/list.png' /> Table View");
+      $('.switch-map').html("<img src='/img/list.png' /> Table View");
       $('#map').css({'width' : '100%'});
       $('#api').css({'margin-left' : '-115%'});
     } else if (label.indexOf("Table") >= 0) {
-      $('.switch-map').html("<img src='img/maps.png' /> Map View");
+      $('.switch-map').html("<img src='/img/maps.png' /> Map View");
       $('#map').css({'width' : '95%'});
       $('#api').css({'margin-left' : '-110%'});
     }//closes if-else if

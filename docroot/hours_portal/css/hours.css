@@ -89,12 +89,14 @@
   #locations-table dt,
   #locations dd, time {
     line-height:130%;
+	font-family: Helvetica,Arial,sans-serif;
   }
   /* dts are location names */
   #locations-table dt, #locations-table time {
     float:left;
     width:75%;
-    font-size:12px;
+	
+    font-size:14px;
     font-weight:bold;
     color:black;
     border-right:1px solid #ccc;
@@ -102,8 +104,9 @@
   /* dds are statuses */
   #locations-table dd, #locations-table time  {
     padding-top:4px;
+	font-family: Helvetica,Arial,sans-serif;
     color:black;
-    font-size:11px;
+    font-size:16px;
     text-align:center;
   }
   
@@ -120,7 +123,8 @@
 /* slide-out span wraps each location dt/dd */
 #locations-table .slide-out {
   display:block;
-  height:45px;
+  font-family: Helvetica,Arial,sans-serif;
+  height:55px;
   border:1px solid #ccc;
   border-top:none;
   cursor:pointer;
@@ -302,7 +306,7 @@
     margin-right:-12px;
     cursor:pointer;
     text-indent:-999px;
-    background:url('../img/close-icon.png') no-repeat right top;
+    background:url('/img/close-icon.png') no-repeat right top;
   }
     #slide-content .close-box:hover {
       background-position:0 -29px;
@@ -370,7 +374,7 @@
 
 /* then hours section wraps content */  
 #slide-content .hours {
-  background:url('../img/bg.gif');
+  background:url('/img/bg.gif');
   width:99%;
   float:left;
   clear:both;
@@ -614,7 +618,7 @@ Calendar Colour Palette
     .oldie #slide-content #education .library-img  { background:url('//web.library.ualberta.ca/2012assets/coutts-big.jpg') no-repeat 8px 8px; }
     .oldie #slide-content #business .library-img     { background:url('//web.library.ualberta.ca/2012assets/business-big.jpg') no-repeat 8px 8px; }
     .oldie #slide-content #stjoe .library-img {background:url('//web.library.ualberta.ca/2012assets/stjoes-big.jpg') no-repeat 8px 8px;},
-    .oldie #slide-content #koerner .library-img    { background:url('../img/koerner-library.jpg') no-repeat 8px 8px; }
+    
     .oldie #slide-content #law .library-img        { background:url('//web.library.ualberta.ca/2012assets/law-big.jpg') no-repeat 8px 8px; }
     
     .oldie #slide-content #bsj .library-img      { background:url('//web.library.ualberta.ca/2012assets/bsj-large.jpg') no-repeat 8px 8px; }
@@ -935,7 +939,7 @@ Calendar Colour Palette
       text-align: center;
       line-height: 140%;
       border: 1px solid #CCCCCC;
-      background: url("../img/bg.gif") repeat scroll 0 0 transparent;
+      background: url("/img/bg.gif") repeat scroll 0 0 transparent;
     }
       #slide-content .open,
       #slide-content .closed {
@@ -1063,6 +1067,10 @@ section.hours section.hours-table span dl.exception dd{
 
 .sublevel dt{
   text-indent: 20px;
+}
+
+.breadcrumb {
+    font-size: 10px;
 }
 
 /* setting viewport in CSS as well as HTML to deal with IEMobile 10 bug */
