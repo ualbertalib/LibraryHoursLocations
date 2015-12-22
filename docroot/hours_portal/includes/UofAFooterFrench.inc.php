@@ -23,7 +23,7 @@
             <li><a href="http://www.copyright.ualberta.ca/">Copyright</a></li> 
           </ul>
           <p class="copyright">
-            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img class="cc" alt="Copyright Statement" src="http://web.library.ualberta.ca/img/cc.png"></a>
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img class="cc" alt="Copyright Statement" src="//web.library.ualberta.ca/img/cc.png"></a>
             <span class="hidden-xs">This work is subject to a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license</a> -- For exceptions, see the 
             <a href="https://www.library.ualberta.ca/about-us/policies/re-use/">Library Re-use and Attribution Statement.</a></span> 
           </p>
