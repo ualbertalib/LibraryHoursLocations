@@ -1,18 +1,19 @@
-<div class="hour_grouping index twelve columns nest">
-    <div class="first six columns"><h2><?php __('Dashboard');?></h2></div>
-    <div class="last six columns text-right">
+<div class="col-md-12 hour_grouping index twelve columns nest">
+    <div class="col-md-6 first six columns"><h2><?php __('Dashboard');?></h2></div>
+    <div class="col-md-6 last six columns text-right">
         <?php
 			// don't show add button for branch users
             if($_SERVER['REMOTE_USER'] == 'hours'  || $_SERVER['REMOTE_USER'] == 'hours_admin') { 
-            	echo $this->Html->link(__('Edit Locations',true),array('controller'=>'hour_locations','action'=>'index'),array('class'=>'small button'));
+            	echo $this->Html->link(__('Edit Locations',true),array('controller'=>'hour_locations','action'=>'index'),array('class'=>'btn btn-primary'));
             	echo '<span style="width:10px;">&nbsp;</span>';
-            	echo $this->Html->link(__('Edit Date Ranges', true), array('controller'=>'hour_date_ranges','action' => 'index'),array('class'=>'small button'));
+            	echo $this->Html->link(__('Edit Date Ranges', true), array('controller'=>'hour_date_ranges','action' => 'index'),array('class'=>'btn btn-primary'));
             	echo '<span style="width:10px;">&nbsp;</span>';            	
-            	echo $this->Html->link(__('Add Hours', true), array('action' => 'add'),array('class'=>'small button'));	            
+            	echo $this->Html->link(__('Add Hours', true), array('action' => 'add'),array('class'=>'btn btn-primary'));	            
 			}	
 		?>
 	</div>
-	<div>	
+
+	<div class='col-md-12'>	
         <?php echo $form->create('HourGrouping',array('action'=>'filter'));?>
 		<div class="searchform">		
 		<?php
@@ -81,27 +82,26 @@
 	                $dselected = $this->data['Filter']['hour_date_range_id'] = $this->passedArgs['Filter.hour_date_range_id'];
 	            }            
 	            
-	            echo '<div class="first twelve columns">';
+	            echo '<div class="col-md-12 first twelve columns">';
 				echo '<label for="FilterHourLocationId">Filter by any combination of date range, category, location, or library/reference hours type</label>';
 				echo '</div>';            
-	            echo '<div class="first three columns">';				
+	            echo '<div class="form-group first three columns">';				
 				echo $form->input('Filter.hour_date_range_id',array('label'=>false,'options'=>$doptions,'selected'=>$dselected,'div'=>false));
 				echo '</div>';
-	            echo '<div class="two columns">';				
+	            echo '<div class="form-group two columns">';				
 				echo $form->input('Filter.hour_category_id',array('label'=>false,'options'=>$coptions,'selected'=>$cselected,'div'=>false));
 				echo '</div>';
-	            echo '<div class="three columns">';
+	            echo '<div class="form-group three columns">';
 	            echo $form->input('Filter.hour_location_id',array('label'=>false,'options'=>$loptions,'selected'=>$lselected,'div'=>false));
 				echo '</div>';
-				echo '<div class="two columns">';	
+				echo '<div class="form-group two columns">';	
 				echo $form->input('Filter.hour_type_id',array('label'=>false,'options'=>$toptions,'selected'=>$tselected,'div'=>false));
 				echo '</div>';
-				echo '<div class="one column">';
-				echo $form->submit('Filter',array('label'=>false,'div'=>false, 'class'=>'small button'));
+				echo '<div class="btn-toolbar  one column">';
+				echo $form->submit('Filter',array('label'=>false,'div'=>false, 'class'=>'btn btn-primary'));	
+				echo $form->submit('Clear',array('label'=>false,'div'=>false,'name'=>'ClearFilter','class'=>'btn btn-primary'));
 				echo '</div>';
-				echo '<div class="last one column">';
-				echo $form->submit('Clear',array('label'=>false,'div'=>false,'name'=>'ClearFilter','class'=>'small button'));
-				echo '</div>';
+				
 				echo '<div class="clear"></div>';
 			}
 		?>
@@ -111,7 +111,7 @@
         ?>
    </div>
 
-    <table cellpadding="0" cellspacing="0">
+    <table class='table' cellpadding="0" cellspacing="0">
 	<tr>
 			<?php if($_SERVER['REMOTE_USER'] == 'hours' || $_SERVER['REMOTE_USER'] == 'hours_admin') { // these fields not needed for branches ?>
 			<th><?php echo $this->Paginator->sort('Begin Date', 'HourDateRange.begin_date');?></th>
@@ -120,7 +120,6 @@
 			<th><?php echo $this->Paginator->sort('Category','HourCategory.category');?></th>
 			<th><?php echo $this->Paginator->sort('Location','HourLocation.name');?></th>
 			<th><?php echo $this->Paginator->sort('Type','HourType.type');?></th>
-
 
 	</tr>
 	<?php

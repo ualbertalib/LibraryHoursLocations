@@ -1,36 +1,40 @@
- <div class="row">
-   <div class="twelve columns">		
-        <div class="panel extra"> 	
-	    <div class="row ft">
-             <ul class="three columns">
-	      <li><h3><a href="/aboutus/librarians">People</a></h3></li>
-	       <li><h3><a href="/policies">Policies</a></h3></li>
-	    </ul>
-             <ul class="three columns">
-		<li><h3><a href="/donations">Gifts and Donations</a></h3></li>
-	       <li><h3><a href="/aboutus/collection">Our Collection</a></h3></li>
-	      </ul>
-	      <ul class="three columns">
-	         <li><h3><a href="http://www.copyright.ualberta.ca/">Copyright</a></h3></li>
-	         <li><h3><a href="/employment">Employment</a></h3></li>
-	      </ul>
-              <ul class="three columns">
-	         <li><h3><a href="/askus">Contact Us</a></h3></li>
-	         <li><h3><a href="/search">Search this Site</a></h3></li>
-	      </ul>	  
-	    </div>
-          </div>			
-        </div>
-      </div>
-      <div class="row">
-        <div id="copyright" class="twelve columns">
-          &copy; 2012 
-          <a href="/">University of Alberta Libraries</a> - <a href="http://www.ualberta.ca">University of Alberta</a>, Edmonton, AB, Canada T6G 2R3<br/> <a href="http://www.library.ualberta.ca/privacy/">Web Site Privacy Policy</a>
-        </div>
-      </div>
-    </div>
-  </div>
+
 </div>
-  
-</body>
-</html>
+</div>
+
+
+</div>
+
+
+</div>
+
+</div></div>
+</div>
+</div></div>
+<footer class="footer">
+      <div class="container">
+        <div class="row">
+          <ul class="foot-nav">
+            <li><a href="https://www.library.ualberta.ca/about-us/policies/">Policies</a></li>
+            <li><a href="https://www.library.ualberta.ca/about-us/employment/">Employment</a></li>
+            <li><a href="https://www.library.ualberta.ca/staff/">Our People</a></li>
+            <li><a href="https://www.library.ualberta.ca/about-us/collections/">Our Collection</a></li>
+            <li><a href="https://www.library.ualberta.ca/about-us/donations/">Gifts and Donations</a></li>
+            <li><a href="http://www.copyright.ualberta.ca/">Copyright</a></li> 
+          </ul>
+          <p class="copyright">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img class="cc" alt="Copyright Statement" src="//web.library.ualberta.ca/img/cc.png"></a>
+            <span class="hidden-xs">This work is subject to a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license</a> -- For exceptions, see the 
+            <a href="https://www.library.ualberta.ca/about-us/policies/re-use/">Library Re-use and Attribution Statement.</a></span> 
+          </p>
+          <p>
+            <a href="https://www.library.ualberta.ca/">University of Alberta Libraries</a> - 
+            <a href="http://www.ualberta.ca">University of Alberta</a>, Edmonton, AB, Canada T6G 2R3 | <a href="https://www.library.ualberta.ca/about-us/policies/privacy-policy">Web Site Privacy Policy</a>
+          </p> 
+        </div>
+      </div>
+    </footer>
+
+
+  </body>
+</html> 

@@ -7,13 +7,13 @@
 	<h2><?php echo $this->data['HourLocation']['name'] . ' ' . $this->data['HourCategory']['category'] . ' ' . $this->data['HourType']['type'] . ' Hours'; ?></h2>
 </div>
 <div class="last five columns text-right">
-	<?php echo $this->Form->submit('Save Changes',array('name'=>'submit','div'=>false,'class'=>'medium blue button')); ?>
+	<?php echo $this->Form->submit('Save Changes',array('name'=>'submit','div'=>false,'class'=>'btn btn-primary')); ?>
 	<span style="width:10px;">&nbsp;</span>
-	<?php echo $this->Form->submit('Cancel',array('name'=>'cancel','div'=>false,'class'=>'medium button')); ?>
+	<?php echo $this->Form->submit('Cancel',array('name'=>'cancel','div'=>false,'class'=>'btn btn-primary')); ?>
 	<?php // admin and super-admin can delete
 		if($_SERVER['REMOTE_USER'] == 'hours' || $_SERVER['REMOTE_USER'] == 'hours_admin') {
 			echo '<span style="width:10px;">&nbsp;</span>';
-			echo $this->Html->link(__('Delete Hours', true), array('action' => 'delete', $this->data['HourGrouping']['id']), array('class'=>'medium red button'), sprintf(__('Are you sure you want to delete hours from '. date("F d, Y",strtotime($this->data['HourDateRange']['begin_date']))." - ".date("F d, Y",strtotime($this->data['HourDateRange']['end_date'])). ' for ' . $this->data['HourLocation']['name'], true))); 
+			echo $this->Html->link(__('Delete Hours', true), array('action' => 'delete', $this->data['HourGrouping']['id']), array('class'=>'btn btn-danger'), sprintf(__('Are you sure you want to delete hours from '. date("F d, Y",strtotime($this->data['HourDateRange']['begin_date']))." - ".date("F d, Y",strtotime($this->data['HourDateRange']['end_date'])). ' for ' . $this->data['HourLocation']['name'], true))); 
 		}
 	?>
 </div>
@@ -27,28 +27,32 @@
  	    // only admin and super-admin can edit these
  	    if($_SERVER['REMOTE_USER']=='hours' || $_SERVER['REMOTE_USER']=='hours_admin') {	
 	        echo '<div class="first five columns">';
-			echo $this->Form->input('HourGrouping.hour_location_id',array('label'=>'Location','empty'=>true,'div'=>false));
-			echo $this->Form->input('HourGrouping.orig_hour_location_id',array('type'=>'hidden','value'=>$origValues['HourGrouping']['hour_location_id']));
+			echo $this->Form->input('HourGrouping.hour_location_id',array('label'=>'Location','empty'=>true,'div'=>false, 'class'=>'form-control'));
+			echo $this->Form->input('HourGrouping.orig_hour_location_id',array('type'=>'hidden','value'=>$origValues['HourGrouping']['hour_location_id'], 'class'=>'form-control'));
 			echo '</div>';
 			//echo '<div class="two columns">';
 			echo $this->Form->input('HourGrouping.hour_category_id',array('type'=>'hidden','div'=>false));
 	        echo $this->Form->input('HourGrouping.orig_hour_category_id',array('type'=>'hidden','value'=>$origValues['HourGrouping']['hour_category_id']));
 	        //echo '</div>';
 			echo '<div class="two columns">';
-			echo $this->Form->input('HourGrouping.hour_type_id',array('label'=>'Type','empty'=>true,'div'=>false));
-			echo $this->Form->input('HourGrouping.orig_hour_type_id',array('type'=>'hidden','value'=>$origValues['HourGrouping']['hour_type_id']));			
+			echo $this->Form->input('HourGrouping.hour_type_id',array('label'=>'Type','empty'=>true,'div'=>false, 'class'=>'form-control'));
+			echo $this->Form->input('HourGrouping.orig_hour_type_id',array('type'=>'hidden','value'=>$origValues['HourGrouping']['hour_type_id'], 'class'=>'form-control'));			
 	        echo '</div><div style="clear:both;"></div>';
-			echo $this->Form->input('HourGrouping.hour_date_range_id',array('type'=>'hidden','value'=>$origValues['HourGrouping']['hour_date_range_id']));
+			echo $this->Form->input('HourGrouping.hour_date_range_id',array('type'=>'hidden','value'=>$origValues['HourGrouping']['hour_date_range_id'], 'class'=>'form-control'));
 			if($this->data['HourGrouping']['hour_type_id'] != 3) {
-			echo '<div class="first twelve columns nest row">';
-			echo '<div class="first five columns"><label for="HourGroupingHourDateRangeId">Date Range</label>'. date("F d, Y",strtotime($this->data['HourDateRange']['begin_date']))." - ".date("F d, Y",strtotime($this->data['HourDateRange']['end_date'])).", ".$this->data['HourDateRange']['description']."</div>";
-			echo '<div class="five columns">
-					<label for="HourGroupingHourCategoryId">Category</label><span class="hours-category ';  
-						if ($this->data['HourCategory']['category'] == 'Summer Alternate') { echo 'summer-alternate'; } 
-						else { echo strtolower($this->data['HourCategory']['category']); } echo '">'.$this->data['HourCategory']['category'].'</span> ';
-					
-					echo '<div style="float: left; margin: 0 0 10px 40px; font-size: 16px; "><label style="display: inline;" for="allClosed">Check All</label> <input type=checkbox id="allClosed" name="allClosed"></div>';
-				echo "</div>";
+			echo '<div class="col-md-12 first twelve columns nest row">';
+			echo '<div class="form-group">
+					<label for="HourGroupingHourDateRangeId">Date Range</label>'. date("F d, Y",strtotime($this->data['HourDateRange']['begin_date']))." - ".date("F d, Y",strtotime($this->data['HourDateRange']['end_date'])).", ".$this->data['HourDateRange']['description'] .
+					"</div>";
+			echo '<div class="form-group">
+					<label for="HourGroupingHourCategoryId">Category: </label><span class="hours-category ';  
+						if ($this->data['HourCategory']['category'] == 'Summer Alternate') { 
+							echo 'summer-alternate'; 
+						} else { 
+								echo strtolower($this->data['HourCategory']['category']); 
+						} echo '"> '.$this->data['HourCategory']['category'].'</span> ';
+			echo "</div>";
+					echo '<div"><label for="allClosed">Check All </label> <input type=checkbox id="allClosed" name="allClosed"></div>';
 
 				echo '</div>'; // end first twelve columns nest row
 			}
@@ -67,7 +71,7 @@
 		foreach($days as $key => $day) {
 		
 	?>	
-		<div class="first two columns">
+		<div class="col-md-2 first two columns">
 			<?php 
 				echo $this->Form->input('HourDay.'.$key.'.id',array('type'=>'hidden'));
 				echo $this->Form->input('HourDay.'.$key.'.modified_by',array('type'=>'hidden','value'=>$_SERVER['REMOTE_USER']));
@@ -81,7 +85,7 @@
 				echo $this->Form->input('HourDay.'.$key.'.day_of_week',array('type'=>'hidden','value'=>$day));
 			?>
 		</div>
-		<div class="three columns">
+		<div class="col-md-3 three columns">
 			<?php
 				$value = '';
 				if(isset($this->data['HourDay'][$key]['open_time'])) {
@@ -90,7 +94,7 @@
 				echo $this->Form->input('HourDay.'.$key.'.open_time',array('type'=>'text','label'=>false, 'div'=>false, 'placeholder'=>'Enter open time, e.g. 10:00 am', 'value'=>$value));
 			?>		
 		</div>
-		<div class="three columns">
+		<div class="col-md-3 three columns">
 			<?php  
 				$value = '';
 				if(isset($this->data['HourDay'][$key]['close_time'])) {
@@ -99,7 +103,7 @@
 				echo $this->Form->input('HourDay.'.$key.'.close_time',array('type'=>'text','label'=>false, 'div'=>false, 'placeholder'=>'Enter close time, e.g. 4:00 pm', 'value'=>$value));
 			?>
 		</div>
-		<div class="two columns">
+		<div class="col-md-2 two columns">
 			<?php 
 				echo '<label for="HourDay'.$key.'IsClosed">';
 				echo 	$this->Form->input('HourDay.'.$key.'.is_closed',array('type'=>'checkbox','label'=>false, 'div'=>false, 'class'=>'is_closed'));
@@ -107,7 +111,7 @@
 				echo '</label>';
 			 ?>
 		</div>
-		<div class="last two columns">
+		<div class="col-md-2 last two columns">
 			<?php 
 				if($_SERVER['REMOTE_USER']=='hours' || $_SERVER['REMOTE_USER']=='hours_admin') { // not relevant for reference hours
 					echo '<label for="HourDay'.$key.'IsTbd">';
@@ -260,6 +264,4 @@
 	            }
         	});
         	
-        	//update_days($('#HourGroupingHourDateRangeId').val(), $('#HourGroupingHourCategoryId').val());
-    });
-</script>
+        	//update_days($('#HourGroupingHourDateRangeId').val(), $('#HourGroupingHourCategoryId').v

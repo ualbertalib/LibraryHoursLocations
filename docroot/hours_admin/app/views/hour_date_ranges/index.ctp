@@ -1,36 +1,42 @@
-<div class="date-ranges index twelve columns nest">
-	<div class="first eight columns"><h2><?php __('Date Ranges');?></h2></div>
-  <div class="last four columns text-right">
+<div class="col-md-12 date-ranges index twelve columns nest">
+
+<div class="row">
+  <div class="col-md-8 first eight columns"><h2><?php __('Date Ranges');?></h2></div>
+  <div class="col-md-4 last four columns text-right">
         <?php
 			// don't show add button for branch users
-           	echo $this->Html->link(__('Add Date Range', true), array('action' => 'add'),array('class'=>'medium button'));
+           	echo $this->Html->link(__('Add Date Range', true), array('action' => 'add'),array('class'=>'btn btn-primary'));
 		?>
-	</div>
-	<div class="first seven columns nest">
+   </div>
+  </div>
+
+	<div class="col-md-12 first seven columns nest">
 			<?php 
 				echo $form->create('HourDateRange',array('action'=>'search'));
 				echo '<div class="searchform">';
-				echo '<div class="first seven columns">';
-				echo '	<label for="SearchKeywords">Filter by searching descriptions or dates</label>';
-				echo '</div>';
-				echo '<div class="first three columns">';
-				echo $form->input('Search.keywords',array('label'=>false,'div'=>false));
-				echo '</div>';
-				echo '<div class="one column">';
-				echo $form->submit('Filter',array('label'=>false,'div'=>false,'class'=>'medium button'));
-				echo '</div>';
-				echo '<div class="two columns">';
-				echo $form->submit('Clear',array('label'=>false,'name'=>'ClearFilter','div'=>false,'class'=>'medium button'));
-				echo '</div>';
+					echo '<div class="">';
+					echo '	<label for="SearchKeywords">Filter by searching descriptions or dates</label>';
+					echo '</div>';
+					echo '<div class="form-group">';
+					echo $form->input('Search.keywords',array('label'=>false,'div'=>false, 'class'=>"form-control"));
+					echo '</div>';
+
+					echo '<div class="form-group btn-toolbar">';
+					echo $form->submit('Filter',array('label'=>false,'div'=>false,'class'=>'btn btn-primary'));
+					echo $form->submit('Clear',array('label'=>false,'name'=>'ClearFilter','div'=>false,'class'=>'btn btn-primary'));
+					echo '</div>';				
 				echo '</div>';
 				echo $form->end();
 			?>
 	</div>
-	<div class="last four columns message note">
+
+	
+	<p class=''>
 		Yellow rows are date ranges that have passed.	
-	</div>
+	</p>
+	
     <div class="clear"></div>
-    <table cellpadding="0" cellspacing="0">
+    <table class='table' cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('begin_date');?></th>
 			<th><?php echo $this->Paginator->sort('end_date');?></th>

@@ -5,7 +5,7 @@
 </div>
 <div class="last four columns" style="text-align:right;">
 	<?php 
-		echo $this->Html->link(__('Edit Location', true), array('action' => 'edit', $hourLocation['HourLocation']['id']),array('class'=>'medium button')); 
+		echo $this->Html->link(__('Edit Location', true), array('action' => 'edit', $hourLocation['HourLocation']['id']),array('class'=>'btn btn-primary')); 
 	?>
 </div>
 <div style="clear:both"></div>

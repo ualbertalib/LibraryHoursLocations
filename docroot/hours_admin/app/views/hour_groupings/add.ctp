@@ -3,13 +3,13 @@
 <?php 
 	echo $this->Form->create('HourGrouping');
 ?>
-<div class="first nine columns">
+<div class="col-md-9 first nine columns">
 	<h2>Add Hours</h2>
 </div>
-<div class="last three columns text-right">
-	<?php echo $this->Form->submit('Save Hours',array('name'=>'submit','div'=>false,'class'=>'medium blue button')); ?>
+<div class="col-md-3 last three columns text-right">
+	<?php echo $this->Form->submit('Save Hours',array('name'=>'submit','div'=>false,'class'=>'btn btn-primary')); ?>
 	<span style="width:10px;">&nbsp;</span>
-	<?php echo $this->Form->submit('Cancel',array('name'=>'cancel','div'=>false,'class'=>'medium button')); ?>
+	<?php echo $this->Form->submit('Cancel',array('name'=>'cancel','div'=>false,'class'=>'btn btn-primary')); ?>
 </div>
 <div style="clear:both;"></div>	
  	<?php
@@ -20,17 +20,19 @@
 		foreach($hourDateRanges as $dateRange) {
 			$date_range_options[$dateRange['HourDateRange']['id']] = date("m/d/Y",strtotime($dateRange['HourDateRange']['begin_date']))." - ".date("m/d/Y",strtotime($dateRange['HourDateRange']['end_date'])).", ".$dateRange['HourDateRange']['description'].", ".$dateRange['HourCategory']['category']; 
 		}
-	        echo '<div class="first five columns">';
-			echo $this->Form->input('HourGrouping.hour_location_id',array('label'=>'Location','empty'=>true,'div'=>false));
+	        echo '<div class="form-group">';
+			echo $this->Form->input('HourGrouping.hour_location_id',array('label'=>'Location','empty'=>true,'div'=>false, 'class'=>"form-control"));
 			echo '</div>';
-			echo '<div class="two columns">';
-			echo $this->Form->input('HourGrouping.hour_type_id',array('label'=>'Type','div'=>false));
-            echo "<div style=\"width: 100%; margin: 20px 0px 0px 20%; font-size: 16px; \"><label style=\"display: inline;\" for=\"allClosed\">All Closed</label> 
-                <input type=checkbox id=\"allClosed\" name=\"allClosed\"></div>";
+			echo '<div class="form-group">';
+			echo $this->Form->input('HourGrouping.hour_type_id',array('label'=>'Type','div'=>false, 'class'=>"form-control"));
+           
+            echo "<div class='checkbox' >
+            <label  for=\"allClosed\"><input type=checkbox id='allClosed' name='allClosed'>All Closed </label> </div>";
 	        echo '</div><div style="clear:both;"></div>';
-			echo '<div class="first twelve columns nest row">';
-			echo '<div class="eight columns">';
-			     echo $this->Form->input('HourGrouping.hour_date_range_id',array('empty'=>true,'options'=>$date_range_options));
+
+			echo '<div class="first twelve columns nest">';
+			echo '<div class="form-group">';
+			     echo $this->Form->input('HourGrouping.hour_date_range_id',array('empty'=>true,'options'=>$date_range_options, 'class'=>"form-control"));
            
 			echo '</div>';
             echo '<div class="one columns">';
@@ -38,7 +40,7 @@
                
             echo "</div>";
 
-			echo '<div id="categoryDisplay" class="five columns" style="display:none;"><label for="HourGroupingHourCategoryId">Category</label><span class="hours-category"></span><span class="hours-category-name"></span></div>'; // filled in by AJAX
+			echo '<div id="categoryDisplay" class="col-md-5 five columns" style="display:none;"><label for="HourGroupingHourCategoryId">Category</label><span class="hours-category"></span><span class="hours-category-name"></span></div>'; // filled in by AJAX
 			echo '</div>'; // end first twelve columns nest row                               
 			echo $this->Form->input('HourGrouping.hour_category_id',array('type'=>'hidden','value'=>1,'div'=>false));
 	?>
@@ -48,7 +50,7 @@
 		foreach($days as $key => $day) {
 	?>	
 		<div id="<?php echo $day ?>">
-		<div class="first two columns">
+		<div class="col-md-2 first two columns">
 			<?php 
 				echo $this->Form->input('HourDay.'.$key.'.id',array('type'=>'hidden'));
 				echo $this->Form->input('HourDay.'.$key.'.modified_by',array('type'=>'hidden','value'=>$_SERVER['REMOTE_USER']));
@@ -56,7 +58,7 @@
 				echo $this->Form->input('HourDay.'.$key.'.day_of_week',array('type'=>'hidden','value'=>$day));
 			?>
 		</div>
-		<div class="three columns">
+		<div class="col-md-3 three columns">
 			<?php
 				if(isset($this->data['HourDay'][$key]['open_time']) && !empty($this->data['HourDay'][$key]['open_time'])) {
 					$value = date("g:i a",strtotime($this->data['HourDay'][$key]['open_time']));
@@ -66,7 +68,7 @@
 				echo $this->Form->input('HourDay.'.$key.'.open_time',array('type'=>'text','label'=>false, 'div'=>false, 'placeholder'=>'Enter open time, e.g. 10:00 am', 'value'=>$value));
 			?>		
 		</div>
-		<div class="three columns">
+		<div class="col-md-3 three columns">
 			<?php  
 				if(isset($this->data['HourDay'][$key]['close_time']) && !empty($this->data['HourDay'][$key]['close_time'])) {
 					$value = date("g:i a",strtotime($this->data['HourDay'][$key]['close_time']));
@@ -76,7 +78,7 @@
 				echo $this->Form->input('HourDay.'.$key.'.close_time',array('type'=>'text','label'=>false, 'div'=>false, 'placeholder'=>'Enter close time, e.g. 4:00 pm', 'value'=>$value));
 			?>
 		</div>
-		<div class="two columns">
+		<div class="col-md-2 two columns">
 			<?php 
 				echo '<label for="HourDay'.$key.'IsClosed">';
 				echo 	$this->Form->input('HourDay.'.$key.'.is_closed',array('type'=>'checkbox','label'=>false, 'div'=>false, 'class'=>'is_closed'));
@@ -84,7 +86,7 @@
 				echo '</label>';
 			 ?>
 		</div>
-		<div class="last two columns">
+		<div class="col-md-2 last two columns">
 			<?php 
 				echo '<label for="HourDay'.$key.'IsTbd">';
 				echo 	$this->Form->input('HourDay.'.$key.'.is_tbd',array('type'=>'checkbox','label'=>false, 'div'=>false, 'class'=>'is_tbd'));

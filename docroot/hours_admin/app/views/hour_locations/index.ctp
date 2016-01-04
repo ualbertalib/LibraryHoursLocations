@@ -1,16 +1,16 @@
   
-<div class="locations index twelve columns nest">
-    <div class="first ten columns"><h2><?php __('Locations');?></h2></div>
-    <div class="last two columns text-right">
+<div class="col-md-12 locations index twelve columns nest">
+    <div class="col-md-10 first ten columns"><h2><?php __('Locations');?></h2></div>
+    <div class="col-md-2 last two columns text-right">
         <?php 
         	// only superadmin can add locations
         	if($_SERVER['REMOTE_USER'] == 'hours') {
-        		echo $this->Html->link(__('Add Location', true), array('action' => 'add'),array('class'=>'medium button'));
+        		echo $this->Html->link(__('Add Location', true), array('action' => 'add'),array('class'=>'btn btn-primary'));
         	}
         ?>
     </div>
 
-	<table cellpadding="0" cellspacing="0">
+	<table class='table' cellpadding="0" cellspacing="0">
 	<tr>
 			<th style="width: 28%;" class="sm" ><?php echo $this->Paginator->sort('Location','HourLocation.name');?></th>
 			<?php if($_SERVER['REMOTE_USER'] == 'hours') { ?>

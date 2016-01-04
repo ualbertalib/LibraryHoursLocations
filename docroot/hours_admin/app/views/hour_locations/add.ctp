@@ -4,11 +4,11 @@
 	<h2>Add Location</h2>
 </div>
 <div class="last three columns">
-	<?php echo $this->Form->submit('Save Location',array('name'=>'submit','div'=>false,'class'=>'medium blue button')); ?>
+	<?php echo $this->Form->submit('Save Location',array('name'=>'submit','div'=>false,'class'=>'btn btn-primary')); ?>
 	<span style="width:10px;">&nbsp;</span>
-	<?php echo $this->Form->submit('Cancel',array('name'=>'cancel','div'=>false,'class'=>'medium button')); ?>
+	<?php echo $this->Form->submit('Cancel',array('name'=>'cancel','div'=>false,'class'=>'btn btn-primary')); ?>
 </div>
-<div class="clear"></div>
+<div class="clear"></div> 
 	<?php
 		echo $this->Form->input('modified_by',array('type'=>'hidden','value'=>$_SERVER['REMOTE_USER']));
 		echo '<div class="first twelve columns row">';

@@ -5,10 +5,10 @@
 <div class="last four columns text-right">
 	<?php 
 		if($_SERVER['REMOTE_USER'] != 'hours' && $_SERVER['REMOTE_USER'] != 'hours_admin') {
-			echo $this->Html->link(__('Edit Location',true),array('controller'=>'hour_locations','action'=>'edit',$hourGrouping['HourGrouping']['hour_location_id']),array('class'=>'medium button'));
+			echo $this->Html->link(__('Edit Location',true),array('controller'=>'hour_locations','action'=>'edit',$hourGrouping['HourGrouping']['hour_location_id']),array('class'=>'btn btn-primary'));
 		}
 		echo '<span style="width:10px;">&nbsp;</span>';
-		echo $this->Html->link(__('Edit Hours', true), array('action' => 'edit', $hourGrouping['HourGrouping']['id']),array('class'=>'medium button')); 
+		echo $this->Html->link(__('Edit Hours', true), array('action' => 'edit', $hourGrouping['HourGrouping']['id']),array('class'=>'btn btn-primary')); 
 	?>
 </div>
 <div style="clear:both"></div>
