@@ -4,3 +4,4 @@ docroot/hours_admin/app/tmp/logs/error.log
 docroot/hours_admin/app/config/database.php
 docroot/hours_portal/conf/db.conf
 cakephp-1.3.20
+.htpasswd

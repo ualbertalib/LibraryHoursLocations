@@ -1068,9 +1068,13 @@ section.hours section.hours-table span dl.exception dd{
 .sublevel dt{
   text-indent: 20px;
 }
-
+.breadcrumb li{
+	font-size: 10px;
+}
 .breadcrumb {
-    font-size: 10px;
+	border-radius: none;
+	padding: 0px;
+	height: 30px;
 }
 
 /* setting viewport in CSS as well as HTML to deal with IEMobile 10 bug */

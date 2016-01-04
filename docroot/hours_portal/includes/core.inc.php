@@ -39,7 +39,7 @@ and (max-width : 320px) {
 </style>
 
 <ul class="breadcrumb expand">
-  <li><a href="http://www.library.ualberta.ca" title="UofA Library"><?php echo langConvert('Library Home'); ?></a> <span class="divider">/</span></li>
+  <li><a href="http://www.library.ualberta.ca" title="UofA Library"><?php echo langConvert('Library Home'); ?></a></li> 
   <?php
    echo "<li>". langConvert('hours & locations') . "</li>";
      
