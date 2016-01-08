@@ -30,7 +30,7 @@ $(document).ready(function(){
   //var divsArray = new Array('asian', 'biomedical', 'davidlam', 'education', 'ikblc', 'library', 'chapman', 'rbsc', 'archives', 'koerner', 'law', 'okanagan', 'woodward', 'xwi7xwa');
   var divsArray = new Array('cameron','cameronSD','cameronKC', 'rutherford','rutherfordSS' ,'library', 'brucepeel' ,'jws', 'education', 'law', 
                                 'business' , 'stjoe',                                 
-                                'bsj', 'augustana','augustana24', 'bard', 'fsa','ill','chat','datalibrary');
+                                'bsj', 'augustana','augustana24', 'bard','archives', 'fsa','ill','chat','datalibrary');
   
   
   // the function to open the slide content
@@ -435,6 +435,8 @@ $(document).ready(function(){
 
     var bard = newMarker(latlngBard, "Book and Record Depository", "BARD");
     markersArray.push(bard);
+	var archives = newMarker(latlngBard, "UofA Archives", "Archives");
+    markersArray.push(archives);
     
    
     /*
@@ -602,6 +604,11 @@ $(document).ready(function(){
       }, function() {
       tableMouseout(9); }
     );
+	$('.archives').hoverIntent(function() {
+      tableMouseover(latlngBard, 15, 5);
+      }, function() {
+      tableMouseout(9); }
+    );
     
    
     
@@ -649,6 +656,9 @@ $(document).ready(function(){
      $('.bard').click(function() {
       tableMouseover(latlngBard, 15, 5);
     });//closes click
+	 $('.archives').click(function() {
+      tableMouseover(latlngBard, 15, 5);
+    });//closes click
     
     $('.augustana').click(function() {
       tableMouseover(latlngAugustana, 15, 6);
@@ -679,6 +689,8 @@ $(document).ready(function(){
         tableMouseover(latlngBSJ, 16, -1);
       } else if (window.location.hash == "#view-bard") {
         tableMouseover(latlngBard, 16, -1);
+	  } else if (window.location.hash == "#view-archives") {
+        tableMouseover(latlngBard, 16, -1);      
       } else {
         tableMouseover(latlngDefault, 15, -1);
       }//closes if-elseif-else
