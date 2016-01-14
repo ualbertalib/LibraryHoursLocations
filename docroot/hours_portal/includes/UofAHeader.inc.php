@@ -140,5 +140,9 @@
       <div class="container main-container"><!-- Main content div -->
     <!-- YOUR STUFF HERE -->
     <!-- end: your content here -->
-
 <!-- dsp_body start  -->
+
+<!-- 
+Place this div in your web page where you want your chat widget to appear. 
+--> <div class="needs-js"></div>
+
