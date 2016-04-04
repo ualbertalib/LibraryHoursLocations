@@ -245,7 +245,7 @@ and (max-width : 320px) {
 			branchYM[branch].month=1;
 		}
 		
-    var loadUrl = "includes/calendar.inc.php";
+    var loadUrl = "/includes/calendar.inc.php";
 		
     $('#calendar_'+branch).load(
 		  loadUrl, {

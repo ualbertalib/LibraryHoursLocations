@@ -10,12 +10,13 @@ ob_start();
 session_start();
 
 include('includes/helpers.inc.php');
-if ( getLanguage()=='fr' ){
+$_SESSION['language'] = getLanguage();
+if ( $_SESSION['language']=='fr' ){
 	setlocale(LC_ALL, 'fr_CA'); 	
 }else{
 	setlocale(LC_ALL, 'en_CA'); 
 }
-$_SESSION['language'] = getLanguage();
+
 
 include('includes/head.inc.php');
 
