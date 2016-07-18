@@ -75,6 +75,7 @@
 
 /* dl is locations table */
 #locations-table {
+ background-color: white;
   position:relative;
   width:100%;
   z-index:60;
@@ -86,16 +87,21 @@
   -moz-border-radius-topright:5px;
   border-radius:5px 5px 0 0;
 }
-  #locations-table dt,
-  #locations dd, time {
+#locations-table tr th{
+	background-color: #666;
+	color: #fff;	
+
+}
+
+  #locations-table ,
+  #locations  {
     line-height:130%;
 	font-family: Helvetica,Arial,sans-serif;
   }
   /* dts are location names */
-  #locations-table dt, #locations-table time {
+  #locations-table {
     float:left;
-    width:75%;
-	
+    width:95%;
     font-size:14px;
     font-weight:bold;
     color:black;
@@ -122,6 +128,7 @@
   
 /* slide-out span wraps each location dt/dd */
 #locations-table .slide-out {
+  font-size: 12px;
   display:block;
   font-family: Helvetica,Arial,sans-serif;
   height:55px;
@@ -130,11 +137,11 @@
   cursor:pointer;
   background-color: #fff;
 }
-  #locations-table .slide-out dt, #locations-table .slide-out time {
-    padding:10px 0 15px 12px;
+  #locations-table .slide-out , #locations-table .slide-out  {
+    padding:3px 0 15px 3px;
   }  
-  /* sublevel applies to interior locations e.g. IKBLC locations */
-  #locations-table .sublevel dt, #locations-table .sublevel time {
+  /* sublevel applies to interior locations*/
+  #locations-table .sublevel  {
     font-weight:normal;
   }
   /* right side arrow image */
@@ -154,43 +161,16 @@
   background-color:#eee;
 }
 
-/* headers class is for top bar "location" (dt) and today/time column (dd) */
-#locations-table .headers dt, 
-#locations-table .headers dd, #locations-table .headers time {
-  font-size:11px;
-  font-weight:normal;
-  color:#fff;
-  text-transform:uppercase;
-  background-color:#666;
-  padding:7px 0 7px 12px;
-}
-#locations-table .headers dt {
-  margin-top: 3px;
-  border-right: none;
-  -moz-border-radius-topleft:5px;
-  -moz-border-radius-topright:0;
-  -moz-border-radius-bottomright:0;
-  -moz-border-radius-bottomleft:0;
-  -webkit-border-radius:5px 0 0 0;
-  border-radius:5px 0 0 0;
-}
-#locations-table .headers dd {
-  -moz-border-radius-topleft:5px;
-  -moz-border-radius-topright:5px;
-  -moz-border-radius-bottomright:0;
-  -moz-border-radius-bottomleft:0;
-  -webkit-border-radius:5px 5px 0 0;
-  border-radius:5px 5px 0 0;
-}
+
 
 .ie7 #locations-table .headers {
   display:block;
 }
-  .ie7 #locations-table .headers dt,   .ie7 #locations-table .headers time,
-  .ie7 #locations-table .headers dd {
+  .ie7 #locations-table .headers ,   .ie7 #locations-table .headers ,
+  .ie7 #locations-table .headers  {
     padding:0;
   }
-  .ie7 #locations-table .headers dt   {
+  .ie7 #locations-table .headers    {
     padding-left:11px;
   }
 
@@ -201,8 +181,8 @@
   background:#ddddff;
   border-right-color:#ddddff;
 }
-  #locations-table .selected dt,
-  #locations-table .hover dt {
+  #locations-table .selected ,
+  #locations-table .hover  {
     border-right-color:#ddddff;
   }
 
@@ -211,7 +191,7 @@
 #locations-table .closed {
   display:block;
   color:#006600;
-  font-size:18px;
+  font-size:16px;
   text-align:center;
 }
 #locations-table .closed {
@@ -983,17 +963,15 @@ Calendar Colour Palette
 @media (max-width: 25em) { /* 400 / 16 */
  
   /* accommodate smaller table width */
-  #locations-table dt {
-    width: 65%;
+  #locations-table  {
+    width: 100%;
   }
   
-    #locations-table .sublevel dt {
-      text-indent: -12px;
-    }
+
     
-    #locations-table .ikblc dt,
-    #locations-table .library dt,
-    #locations-table .rbsc dt {
+    #locations-table .ikblc ,
+    #locations-table .library ,
+    #locations-table .rbsc  {
       padding-top: 7px;
       padding-bottom: 7px;
     }
@@ -1066,7 +1044,7 @@ section.hours section.hours-table span dl.exception dd{
 }
 
 
-.sublevel dt{
+span.sublevel {
   text-indent: 20px;
 }
 .breadcrumb li{

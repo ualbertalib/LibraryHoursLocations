@@ -209,11 +209,11 @@ function displayLocationsStatus($branchID = null) {
   $alt = false;
   
   // variable to store code string
-  $locationstable = '<dl id="locations-table">
-      <span class="headers">
-        <dt>Location</dt>
-        <dd>Today</dd>
-      </span>
+  $locationstable = '<table class="" id="locations-table">
+      <thead><tr class="headers">
+        <th>Location</th>
+        <th>Today</th>
+      </tr> </thead><tbody>
       ';
   
   for ($i = 0; $i < $count; $i++) {
@@ -223,47 +223,49 @@ function displayLocationsStatus($branchID = null) {
     
     // start the display with appropriate span tag (inserts alternating rows)
     if ($alt == false && $results[$i]['parent'] == NULL) {
-      $locationstable .= '
+      $locationstable .= '<tr><td>
       <a href="#view-'.$id.'" title="Click to see hours for this location"><span class="slide-out '.$id.'">';
       $alt = true;
     } else if ($alt == true && $results[$i]['parent'] == NULL) {
-      $locationstable .= '
+      $locationstable .= '<tr><td>
       <a href="#view-'.$id.'" title="Click to see hours for this location"><span class="alt slide-out '.$id.'">';
       $alt = false;
     } else if ($alt == false && $results[$i]['parent'] != NULL){
-      $locationstable .= '
-      <a href="#view-'.$id.'" title="Click to see hours for this location"><span class="alt slide-out '.$id.' sublevel">';
+      $locationstable .= '<tr><td>
+      <a href="#view-'.$id.'" title="Click to see hours for this location"><span class="alt slide-out sublevel '.$id.' ">';
     } else if ($alt == true && $results[$i]['parent'] != NULL){
-      $locationstable .= '
-      <a href="#view-'.$id.'" title="Click to see hours for this location"><span class="slide-out '.$id.' sublevel">';
+      $locationstable .= '<tr><td>
+      <a href="#view-'.$id.'" title="Click to see hours for this location"><span class="slide-out sublevel '.$id.' ">';
     }//closes if-elseif
     
     // add image
-    $locationstable .= '<dt><img src="/img/arrow.png" height="43" width="30" />';
+    $locationstable .= '<img src="/img/arrow.png" height="43" width="30" />';
     
     // indent "hack" for sublevels (padding/margin breaks display)
     if ($results[$i]['parent'] == NULL) {
       
-      $locationstable .= $results[$i]['name'];
+      $locationstable .= $results[$i]['name'] . "</span></a>";
     
     } else {
       
-      $locationstable .= $results[$i]['name'];
+      $locationstable .= $results[$i]['name'] . "</span></a>";;
       
     }//closes if-else
     
     // add status (uses displayCurrentStatus function to retrieve and calculate status)
-    $locationstable .= '</dt><dd>'.displayCurrentStatus($currentdate, $currenttime, $results[$i]['id']).'</dd></span></a>';
+    $locationstable .= '</td><td>
+	<a href="#view-'.$id.'" title="Click to see hours for this location">
+	<span class="slide-out '.$id.'">'.displayCurrentStatus($currentdate, $currenttime, $results[$i]['id']).'</span></a></td></tr>';
 
   }//closes for
   
   // close list
   $locationstable .= '
-    </dl>';
+    </tbody></table>';
   
   return $locationstable;
   
-}//closes function
+} //closes function
 
 
 // retrieve and display locations and status in a dl based on (optional) branch id for the homepage
