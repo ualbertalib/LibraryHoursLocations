@@ -130,9 +130,12 @@ class HourLocationsController extends AppController {
         	   }  
         	}
         	// set parent location id, if any
-            if(!empty($this->data['HourLocation']['hour_location_id'])) {
+          //  if(!empty($this->data['HourLocation']['hour_location_id'])) {			  
+		  if($this->data['HourLocation']['hour_location_id']==""){
+			  $this->data['HourLocation']['hour_location_id'] = null;
+		  }
                 $this->data['HourLocation']['parent_hour_location_id'] = $this->data['HourLocation']['hour_location_id'];
-            } 
+          //  } 
         	// format phone and fax numbers for consistency -- taken out 8/21/12 to enable inclusion of text
             //if(!empty($this->data['HourLocation']['phone'])) {
             //    $this->data['HourLocation']['phone'] = $this->__formatPhone($this->data['HourLocation']['phone']);
